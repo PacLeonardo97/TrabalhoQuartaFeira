@@ -1,17 +1,17 @@
 public class EntradaProduto extends Produto{
 	private int idEntradaProduto;
 
-	
+	private Movimentacoes movimentacoes = new Movimentacoes(data, quantidade);
 
 	public EntradaProduto(
 		int idProduto, String nomeProduto, String descricaoProduto, String setorProduto, String pesoProduto, //super
 		int idEntradaProduto,
-		String data, String quantidade
+		String dataEntrada, String quantidadeEntrada
 		){
 		super(idProduto, nomeProduto, descricaoProduto, setorProduto, pesoProduto);
-		Movimentacoes movimentacoes = new Movimentacoes();
-		movimentacoes.setData(data);
-		movimentacoes.setQuantidade(quantidade);	
+		
+		movimentacoes.setData(dataEntrada);
+		movimentacoes.setQuantidade(quantidadeEntrada);	
 
 		setIdEntradaProduto(idEntradaProduto);
 		

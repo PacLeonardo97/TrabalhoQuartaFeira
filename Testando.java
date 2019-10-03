@@ -16,7 +16,8 @@ public class Testando{
         JOptionPane.showMessageDialog(null, p);
         
         //entrada produto
-        EntradaProduto entradaProduto = new EntradaProduto(1, "caneta", "essa caneta é bonita", "setor de vendas", "5kg", 1, "18/04/1997", "15");
+      //  EntradaProduto entradaProduto = new EntradaProduto(1, "caneta", "essa caneta é bonita", "setor de vendas", /*começa a dart erro aqui*/ 1, "18/04/1997","15");
+        EntradaProduto entradaProduto = new EntradaProduto(2, "nomeProduto", "descricaoProduto", "setorProduto", "pesoProduto", 1, "dataEntrada", "quantidadeEntrada");
         String ep = entradaProduto.toString();
         System.out.println(ep);
     }
