@@ -13,6 +13,8 @@ public class Fornecedor {
 		setEndereco(endereco); //fazer objeto endereco
 		setCNPJ(cnpj);
 	}
+
+
 	
 
 	//Metodos de acesso - get
