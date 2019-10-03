@@ -14,9 +14,6 @@ public class Fornecedor {
 		setCNPJ(cnpj);
 	}
 
-
-	
-
 	//Metodos de acesso - get
 	public int getIdFornecedor(){
 	      return idFornecedor;
