@@ -1,37 +1,33 @@
 public class EntradaProduto extends Produto{
 	private int idEntradaProduto;
-	private String dataEntrada;
 
-	Movimentacoes movimentacoes = new Movimentacoes(data, produto, quantidade);
+	
 
 	public EntradaProduto(
-		int idProduto, String nomeProduto, String descricaoProduto, String setorProduto, String pesoProduto,
-		int idEntradaProduto, String dataEntrada){
+		int idProduto, String nomeProduto, String descricaoProduto, String setorProduto, String pesoProduto, //super
+		int idEntradaProduto,
+		String data, String quantidade
+		){
 		super(idProduto, nomeProduto, descricaoProduto, setorProduto, pesoProduto);
+		Movimentacoes movimentacoes = new Movimentacoes();
 		movimentacoes.setData(data);
-		movimentacoes.setProduto(produto);
 		movimentacoes.setQuantidade(quantidade);	
-		
 
 		setIdEntradaProduto(idEntradaProduto);
-		setDataEntrada(dataEntrada);
+		
 	}
 	
 	//Metodos de acesso - get
-		public int getIdEntradaProduto(){
-		      return idEntradaProduto;
-		}
-		
-		public String getDataEntrada(){
-		      return dataEntrada;
-		}
-		
-		
-		//metodos modificadores
-			public void setIdEntradaProduto(int idEntradaProduto) {
-				this.idEntradaProduto = idEntradaProduto;
-			}
-			public void setDataEntrada(String dataEntrada) {
-				this.dataEntrada = dataEntrada;
-			}
+	public int getIdEntradaProduto(){
+		return idEntradaProduto;
+	}	
+
+	//metodos modificadores
+	public void setIdEntradaProduto(int idEntradaProduto) {
+		this.idEntradaProduto = idEntradaProduto;
 	}
+
+	public String toString(){
+		return super.toString() + "id da entrada: " + Integer.toString(idEntradaProduto) + "data da entrada: " + movimentacoes.getData(data) + "quantidade: " + movimentacoes.getQuantidade(quantidade);
+	}
+}

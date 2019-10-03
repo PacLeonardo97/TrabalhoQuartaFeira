@@ -9,6 +9,7 @@ public class Produto extends Fornecedor {
 				int idProduto, String nomeProduto, String descricaoProduto, 
 				String setorProduto, String pesoProduto) {
 		super(idFornecedor, nome, telefone, endereco, cnpj); //super
+		
 		setIdProduto(idProduto);
 		setNomeProduto(nomeProduto);
 		setDescricaoProduto(descricaoProduto);
@@ -56,4 +57,8 @@ public class Produto extends Fornecedor {
 	public void setIPesoProduto(String pesoProduto) {
 		this.pesoProduto = pesoProduto;
 	}	
+
+	public String toString(){
+		return super.toString() + "id do produto: " + Integer.toString(idProduto) + " nome do produto: " + nomeProduto + " descrição do produto: " + descricaoProduto + " setor do produto: " + setorProduto + " CNPJ: " + pesoProduto;
+	}
 }
