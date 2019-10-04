@@ -1,19 +1,14 @@
-public class Produto extends Fornecedor {
+public class Produto {
 	private int idProduto;
 	private String nomeProduto;
 	private String descricaoProduto;
-	private String setorProduto;
-	private String pesoProduto;
-	
-	public Produto ( int idFornecedor, String nome, String telefone, String endereco, String cnpj, //super
-				int idProduto, String nomeProduto, String descricaoProduto, 
-				String setorProduto, String pesoProduto) {
-		super(idFornecedor, nome, telefone, endereco, cnpj); //super
+	private int pesoProduto;
+
+	public Produto (int idProduto, String nomeProduto, String descricaoProduto, int pesoProduto) {
 		
 		setIdProduto(idProduto);
 		setNomeProduto(nomeProduto);
 		setDescricaoProduto(descricaoProduto);
-		setSetorProduto(setorProduto);
 		setIPesoProduto(pesoProduto);		
 	}
 
@@ -29,14 +24,9 @@ public class Produto extends Fornecedor {
 	      return descricaoProduto;
 	}
 	
-	public String getSetorProduto(){
-	      return setorProduto;
-	}
-	
-	public String getPesoProduto(){
+	public int getPesoProduto(){
 	      return pesoProduto;
 	}
-
 	
 	public void setIdProduto(int idProduto) {
 		this.idProduto = idProduto;
@@ -49,16 +39,12 @@ public class Produto extends Fornecedor {
 	public void setDescricaoProduto(String descricaoProduto) {
 		this.descricaoProduto = descricaoProduto;
 	}
-	
-	public void setSetorProduto(String setorProduto) {
-		this.setorProduto = setorProduto;
-	}
-	
-	public void setIPesoProduto(String pesoProduto) {
+
+	public void setIPesoProduto(int pesoProduto) {
 		this.pesoProduto = pesoProduto;
 	}	
 
 	public String toString(){
-		return super.toString() + "id do produto: " + Integer.toString(idProduto) + " nome do produto: " + nomeProduto + " descriÃ§Ã£o do produto: " + descricaoProduto + " setor do produto: " + setorProduto + " CNPJ: " + pesoProduto;
+		return super.toString() + "Id do produto: " + Integer.toString(idProduto) + " nome do produto: " + nomeProduto + " descrição do produto: " + descricaoProduto + " CNPJ: " + Integer.toString(pesoProduto);
 	}
 }

@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TelaCadastroProduto",
+            "request": "launch",
+            "mainClass": "TelaCadastroProduto"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Testando",
             "request": "launch",
             "mainClass": "Testando"

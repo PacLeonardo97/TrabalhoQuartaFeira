@@ -1,36 +1,23 @@
-public class SaidaProduto extends Estoque {
-	private int idSaidaProduto;
-	private String dataSaidaProduto;
-	
-	Movimentacoes movimentacoes = new Movimentacoes(data, produto, quantidade);
+import java.util.Date;
 
-	public SaidaProduto (
-		int idEstoque, String quantidadeEstoque, //super
-		int idSaidaProduto, String dataSaidaProduto) {
-		super(idEstoque, quantidadeEstoque);
-
-		movimentacoes.setData(data);
-		movimentacoes.setProduto(produto);
-		movimentacoes.setQuantidade(quantidade);	
-
-		setIdProduto(idSaidaProduto);
-		setNomeProduto(dataSaidaProduto);
-	}
+public class SaidaProduto extends Movimentacoes{
+	 private int idSaidaProduto;
+	 
+	 public SaidaProduto(Date data, int quantidade, Produto produto,
+				int idSaidaProduto) {
+			super(data, quantidade, produto);
+			setIdSaidaProduto(idSaidaProduto);
+		}
 	
 	public int getIdSaidaProduto(){
 	      return idSaidaProduto;
 	}
 	
-	public String getDataSaidaProduto(){
-	      return dataSaidaProduto;
-	}
-	
-
 	public void setIdSaidaProduto(int idSaidaProduto) {
 		this.idSaidaProduto = idSaidaProduto;
 	}
 	
-	public void setDataSaidaProduto(String dataSaidaProduto) {
-		this.dataSaidaProduto = dataSaidaProduto;
+	public String toString(){
+		return super.toString() + " Id saida do produto: " + idSaidaProduto;
 	}
 }

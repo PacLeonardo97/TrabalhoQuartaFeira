@@ -1,23 +1,19 @@
 
-public class Departamento extends SaidaProduto {
+public class Departamento{
 	private int idDepartamento;
 	private String nomeDepartamento;
 	private String localDepartamento;
 	private String telefoneDepartamento;
 
-	public Departamento(
-			int idSaidaProduto, String dataSaidaProduto, //super
-			 int idDepartamento, String nomeDepartamento, String localDepartamento, String telefoneDepartamento
-			) {
-		super(idSaidaProduto, dataSaidaProduto);
-		
+	public Departamento(int idDepartamento, String nomeDepartamento, String localDepartamento,
+			String telefoneDepartamento) {
 		setIdDepartamento(idDepartamento);
 		setNomeDepartamento(nomeDepartamento);
 		setLocaDepartamento(localDepartamento);
 		setTelefoneDepartamento(telefoneDepartamento);
 	}
 	
-	//MÃ©todos Get
+	//Métodos Get
 	public int getIdDepartamento(){
 	      return idDepartamento;
 	}

@@ -1,18 +1,19 @@
-public class Estoque extends EntradaProduto{
+public class Estoque{
     private int idEstoque;
     private int quantidadeEstoque;
-
+    
+    
     public Estoque(int idEntradaProduto, String dataEntrada, int idEstoque, int quantidadeEstoque){
-        super(idEntradaProduto, dataEntrada);
+       
         setIdEstoque(idEstoque);
         setQuantidadeEstoque(quantidadeEstoque);
     }
 
-    public String getIdEstoque(){
+    public int getIdEstoque(){
         return this.idEstoque;
     }
 
-    public String getQuantidadeEstoque(){
+    public int getQuantidadeEstoque(){
         return this.quantidadeEstoque;
     }
 
