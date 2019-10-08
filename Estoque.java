@@ -1,25 +1,18 @@
-public class Estoque{
-    private int idEstoque;
-    private int quantidadeEstoque;
+import java.util.Date;
 
-    public Estoque( int idEstoque, int quantidadeEstoque){
-     setIdEstoque(idEstoque);
-     setQuantidadeEstoque(quantidadeEstoque);
+public class Estoque extends EntradaProduto{
+    private int idEstoque;
+
+    public Estoque( int idEstoque, int idEntradaProduto, Date data, int quantidade, Produto produto){
+      super(idEntradaProduto, data, quantidade, produto);
+      setIdEstoque(idEstoque);
     }
 
     public int getIdEstoque(){
       return this.idEstoque;
     }
 
-    public int getQuantidadeEstoque(){
-      return this.quantidadeEstoque;
-    }
-
     public void setIdEstoque(int idEstoque) {
 	  	this.idEstoque= idEstoque;
-    }
-
-    public void setQuantidadeEstoque(int quantidadeEstoque) {
-	  	this.quantidadeEstoque = quantidadeEstoque;
     }
 }

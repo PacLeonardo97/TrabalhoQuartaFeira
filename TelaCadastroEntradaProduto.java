@@ -88,29 +88,29 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 		JPanel painel17 = new JPanel(new FlowLayout());
 		JPanel painel18 = new JPanel(new FlowLayout());
         
-         painel1.add(lblID);
-         painel2.add(txtID);
+        painel1.add(lblID);
+        painel2.add(txtID);
 
-         painel3.add(lblData);
-         painel4.add(txtData);
+        painel3.add(lblData);
+        painel4.add(txtData);
 
-         painel5.add(lblQuantidade);
-         painel6.add(txtQuantidade);
+        painel5.add(lblQuantidade);
+        painel6.add(txtQuantidade);
 
-         painel7.add(lblIdProduto);
-         painel8.add(txtIdProduto);
+        painel7.add(lblIdProduto);
+        painel8.add(txtIdProduto);
 
-         painel9.add(lblNomeProduto);
-         painel10.add(txtNomeProduto);
+        painel9.add(lblNomeProduto);
+        painel10.add(txtNomeProduto);
 
-         painel11.add(lblDescricaoProduto);
-         painel12.add(txtDescricaoProduto);
+        painel11.add(lblDescricaoProduto);
+        painel12.add(txtDescricaoProduto);
 
-         painel13.add(lblPesoProduto);
-         painel14.add(txtPesoProduto);
+        painel13.add(lblPesoProduto);
+        painel14.add(txtPesoProduto);
 
-         painel15.add(lblID);
-         painel16.add(lblID);
+        painel15.add(lblID);
+        painel16.add(lblID);
 
         painel17.add(btnCadastrar);
         painel18.add(btnLimpar);

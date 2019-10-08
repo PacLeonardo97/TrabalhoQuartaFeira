@@ -5,3 +5,6 @@ As entidade principais são: Fornecedor, Produto, EntradaProduto, Departamento, 
 
 ### Classes genéricas:
 As classes genéricas são: Movimentacoes
+
+### Telas do sistema
+As telas são: TelaCadastroFornecedor, TelaCadastroProduto, TelaCadastroEntradaProduto, TelaCadastroSaidaProduto

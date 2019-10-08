@@ -1,5 +1,4 @@
 public class Fornecedor {
-	
 	private int idFornecedor; 
 	private String nome;
 	private String telefone;

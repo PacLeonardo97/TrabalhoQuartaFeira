@@ -1,16 +1,15 @@
 import java.util.Date;
-
 public class SaidaProduto extends Movimentacoes{
-	 private int idSaidaProduto;
+	private int idSaidaProduto;
 	 
-	 public SaidaProduto(int idSaidaProduto, Date data, int quantidade, Produto produto) {
+	public SaidaProduto(int idSaidaProduto, Date data, int quantidade, Produto produto) {
 		super(data, quantidade, produto);
 		
 		setIdSaidaProduto(idSaidaProduto);
 	}
 	
 	public int getIdSaidaProduto(){
-	      return idSaidaProduto;
+	    return idSaidaProduto;
 	}
 
 	public void setIdSaidaProduto(int idSaidaProduto) {
