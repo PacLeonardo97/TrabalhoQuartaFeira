@@ -3,7 +3,7 @@ import java.util.Date;
 public class EntradaProduto extends Movimentacoes{
 	private int idEntradaProduto;
 
-	public EntradaProduto(Date data, int quantidade, Produto produto, int idEntradaProduto){
+	public EntradaProduto( int idEntradaProduto, Date data, int quantidade, Produto produto){
 		super(data, quantidade, produto);
 		setIdEntradaProduto(idEntradaProduto);
 	}
@@ -17,6 +17,6 @@ public class EntradaProduto extends Movimentacoes{
 	}
 
 	public String toString(){
-		return super.toString() + " Id Entrada Produto: " + idEntradaProduto;
+		return " Id Entrada Produto: " + idEntradaProduto + super.toString();
 	}
 }

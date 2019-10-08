@@ -45,6 +45,6 @@ public class Produto {
 	}	
 
 	public String toString(){
-		return super.toString() + "Id do produto: " + Integer.toString(idProduto) + " nome do produto: " + nomeProduto + " descrição do produto: " + descricaoProduto + " CNPJ: " + Integer.toString(pesoProduto);
+		return "Id do produto: " + Integer.toString(idProduto) + " nome do produto: " + nomeProduto + " descriÃ§Ã£o do produto: " + descricaoProduto + " CNPJ: " + Integer.toString(pesoProduto);
 	}
 }
