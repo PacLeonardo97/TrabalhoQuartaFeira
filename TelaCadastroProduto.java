@@ -16,40 +16,55 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 
 	private JTextField txtID;
 	private JLabel lblID;
+
 	private JTextField txtNome;
 	private JLabel lblNome;
+
 	private JTextField txtDescricao;
 	private JLabel lblDescricao;
+
 	private JTextField txtSetor;
-    private JLabel lblSetor;
+	private JLabel lblSetor;
+	
 	private JTextField txtPeso;
 	private JLabel lblPeso;
+
 	private JTextField txtQtdaMax;
 	private JLabel lblQuantidade_Maxima;
+
 	private JTextField txtQtdaMin;
 	private JLabel lblQuantidade_Minima;
+
 	private JButton btnCadastrar, btnLimpar;
 	   
 	public TelaCadastroProduto(){
 		//configura o titulo
-		super("Cadastro Produto");
+		super("Cadastro de Produto");
 		//instanciar elementos de interface
 		lblID = new JLabel("ID:");
 		txtID = new JTextField(10);
+
 		lblNome = new JLabel("Nome:");
 		txtNome = new JTextField(20);
+
 		lblDescricao = new JLabel("Descrição:");
 		txtDescricao = new JTextField(20);
+
 		lblSetor = new JLabel("Setor:");
 		txtSetor = new JTextField(10);
+
 		lblPeso = new JLabel("Peso:");
 		txtPeso = new JTextField(10);
+
 		lblQuantidade_Maxima = new JLabel("QtdaMax:");
 		txtQtdaMax = new JTextField(10);
+
 		lblQuantidade_Minima = new JLabel("QtdaMinima:");
 		txtQtdaMin = new JTextField(10);
+
 		btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
+
 		//configura o gerenciador de layout
 		Container tela = getContentPane();
 		tela.setLayout(new GridLayout(8,2));
@@ -131,7 +146,7 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 			txtPeso.setText("" + peso);
 		         
 			Produto produto = new Produto(id, nNome, dDescricao, peso);
-			    		 
+
 		} else if (cadastrar.getSource()==btnLimpar){
 			System.exit(0);
 		}
