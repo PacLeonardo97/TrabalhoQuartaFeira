@@ -5,7 +5,7 @@ public class Fornecedor {
 	private Endereco endereco;
 	private String cnpj;
 	
-	public Fornecedor(int idFornecedor, String nome, String telefone, String endereco, String cnpj){
+	public Fornecedor(int idFornecedor, String nome, String telefone, Endereco endereco, String cnpj){
 		setIdFornecedor(idFornecedor);
 		setNome(nome);
 		setTelefone(telefone);
@@ -26,7 +26,7 @@ public class Fornecedor {
 	      return telefone;
 	}
 	
-	public String getEndereco(){
+	public Endereco getEndereco(){
 	      return endereco;
 	}
 	
@@ -47,7 +47,7 @@ public class Fornecedor {
 			this.telefone = telefone;
 		}
 
-		public void setEndereco(String endereco) {
+		public void setEndereco(Endereco endereco) {
 			this.endereco = endereco;
 		}
 

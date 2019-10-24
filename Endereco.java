@@ -31,7 +31,7 @@ public class Endereco {
 	      return bairro;
 	}
 	
-	public String getNumero(){
+	public int getNumero(){
 	      return numero;
 	}
 	
