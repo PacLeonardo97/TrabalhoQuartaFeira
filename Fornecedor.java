@@ -2,7 +2,7 @@ public class Fornecedor {
 	private int idFornecedor; 
 	private String nome;
 	private String telefone;
-	private String endereco;
+	private Endereco endereco;
 	private String cnpj;
 	
 	public Fornecedor(int idFornecedor, String nome, String telefone, String endereco, String cnpj){

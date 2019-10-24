@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
@@ -40,7 +42,7 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 
     
     public TelaCadastroSaidaProduto(){
-        super("Cadastro de SaÃ­da de Produto");
+        super("Cadastro de Saída de Produto");
 
         lblID = new JLabel("ID:");
         txtID = new JTextField(10);
@@ -48,7 +50,7 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
         lblData = new JLabel("Data:");
         txtData = new JTextField(10);
 
-        lblQuantidade = new JLabel("Data:");
+        lblQuantidade = new JLabel("Quantidade:");
         txtQuantidade = new JTextField(10);
 
         lblIdProduto = new JLabel("ID do produto:");
@@ -57,8 +59,8 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
         lblNomeProduto = new JLabel("Nome do produto:");
         txtNomeProduto = new JTextField(10);
 
-        lblDescricaoProduto = new JLabel("DescriÃ§Ã£o do produto:");
-        txtDescricaoProduto = new JTextField(60);
+        lblDescricaoProduto = new JLabel("Descrição do produto:");
+        txtDescricaoProduto = new JTextField(20);
 
         lblPesoProduto = new JLabel("Peso do produto:");
         txtPesoProduto  = new JTextField(10);
@@ -68,7 +70,7 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
         
         Container tela = getContentPane();
 
-        tela.setLayout(new GridLayout(8,2));
+        tela.setLayout(new GridLayout(9,2));
 
 		JPanel painel1 = new JPanel(new FlowLayout());
 		JPanel painel2 = new JPanel(new FlowLayout());
@@ -86,8 +88,6 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 		JPanel painel14 = new JPanel(new FlowLayout());
         JPanel painel15 = new JPanel(new FlowLayout());
 		JPanel painel16 = new JPanel(new FlowLayout());
-		JPanel painel17 = new JPanel(new FlowLayout());
-		JPanel painel18 = new JPanel(new FlowLayout());
         
          painel1.add(lblID);
          painel2.add(txtID);
@@ -110,11 +110,8 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
          painel13.add(lblPesoProduto);
          painel14.add(txtPesoProduto);
 
-         painel15.add(lblID);
-         painel16.add(lblID);
-
-        painel17.add(btnCadastrar);
-        painel18.add(btnLimpar);
+         painel15.add(btnCadastrar);
+         painel16.add(btnLimpar);
         
         tela.add(painel1);
 		tela.add(painel2);
@@ -132,13 +129,11 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
         tela.add(painel14);
         tela.add(painel15);
         tela.add(painel16);
-        tela.add(painel17);
-        tela.add(painel18);
 
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
 
-        setSize(1000,1000);
+        setSize(700,700);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,11 +144,22 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 		    int id = Integer.parseInt(iId);
 			txtID.setText(""+id);
 			     
-		    String ndata = txtData.getText();
-		    txtData.setText(ndata); 
+			try {
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			//começo data
+		    String nData = txtData.getText();
+		    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+		    
+		    Date pData = Date.formato(nData);
+		    txtData.setText(pData); 
+		    //fim data 
 		         
 		    String dQuantidade = txtQuantidade.getText();
-		    txtQuantidade.setText(dQuantidade);
+		    int sQuantidade = Integer.parseInt(iId);
+		    txtQuantidade.setText(""+sQuantidade);
             
             String pId  = txtIdProduto.getText();
 		    int prodId = Integer.parseInt(pId);
@@ -171,7 +177,7 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
             
             Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, stringPesoProd);
 
-            SaidaProduto saidaProduto = new SaidaProduto(id, ndata, dQuantidade, produto);
+            SaidaProduto saidaProduto = new SaidaProduto(id, ndata, sQuantidade, produto);
 		} else if (cadastrar.getSource() == btnLimpar){
 			System.exit(0);
 		}

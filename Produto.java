@@ -9,7 +9,11 @@ public class Produto {
 		setIdProduto(idProduto);
 		setNomeProduto(nomeProduto);
 		setDescricaoProduto(descricaoProduto);
-		setIPesoProduto(pesoProduto);		
+		setPesoProduto(pesoProduto);		
+	}
+
+	public Produto() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getIdProduto(){
@@ -40,7 +44,7 @@ public class Produto {
 		this.descricaoProduto = descricaoProduto;
 	}
 
-	public void setIPesoProduto(int pesoProduto) {
+	public void setPesoProduto(int pesoProduto) {
 		this.pesoProduto = pesoProduto;
 	}	
 

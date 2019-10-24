@@ -3,15 +3,18 @@ public class Departamento{
 	private String nomeDepartamento;
 	private String localDepartamento;
 	private String telefoneDepartamento;
+	private Funcionario funcionario;
+	//arrayList de saidaProduto
 
-	public Departamento(int idDepartamento, String nomeDepartamento, String localDepartamento, String telefoneDepartamento) {
+	public Departamento(int idDepartamento, String nomeDepartamento, String localDepartamento, String telefoneDepartamento, Funcionario funcionario) {
 		setIdDepartamento(idDepartamento);
 		setNomeDepartamento(nomeDepartamento);
 		setLocaDepartamento(localDepartamento);
 		setTelefoneDepartamento(telefoneDepartamento);
+		setFuncionario(funcionario);
 	}
 	
-	//Mï¿½todos Get
+	//Métodos Get
 	public int getIdDepartamento(){
 	      return idDepartamento;
 	}
@@ -27,6 +30,10 @@ public class Departamento{
 	public String getTelefoneDepartamento(){
 	      return telefoneDepartamento;
 	}
+			
+	 public Funcionario funcionario(){
+		 return funcionario;
+	    }
 	
 	//MÃ©todos set
 	public void setIdDepartamento(int idDepartamento) {
@@ -44,4 +51,8 @@ public class Departamento{
 	public void setTelefoneDepartamento(String telefoneDepartamento) {
 		this.telefoneDepartamento = telefoneDepartamento;
 	}
+	
+	public void setFuncionario(Funcionario funcionario) {
+    	this.funcionario = funcionario;
+    }
 }

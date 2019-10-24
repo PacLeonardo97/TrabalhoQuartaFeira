@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-public class TelaCadastroProduto extends JFrame implements ActionListener {
+public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 	public static void main(String[] args){
-		new TelaCadastroProduto();
+		new TelaCadastroDepartamento();
 	}
 
 	private JTextField txtID;
@@ -20,26 +20,20 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 	private JTextField txtNome;
 	private JLabel lblNome;
 
-	private JTextField txtDescricao;
-	private JLabel lblDescricao;
+	private JTextField txtLocal;
+	private JLabel lblLocal;
 
-	private JTextField txtSetor;
-	private JLabel lblSetor;
+	private JTextField txtTelefone;
+	private JLabel lblTelefone;
 	
-	private JTextField txtPeso;
-	private JLabel lblPeso;
-
-	private JTextField txtQtdaMax;
-	private JLabel lblQuantidade_Maxima;
-
-	private JTextField txtQtdaMin;
-	private JLabel lblQuantidade_Minima;
-
+	private JTextField txtFuncionario;
+	private JLabel lblFuncionario;
+	
 	private JButton btnCadastrar, btnLimpar;
 	   
-	public TelaCadastroProduto(){
+	public TelaCadastroDepartamento(){
 		//configura o titulo
-		super("Cadastro de Produto");
+		super("Cadastro de Departamento");
 		//instanciar elementos de interface
 		lblID = new JLabel("ID:");
 		txtID = new JTextField(10);
@@ -47,21 +41,21 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		lblNome = new JLabel("Nome:");
 		txtNome = new JTextField(20);
 
-		lblDescricao = new JLabel("Descrição:");
-		txtDescricao = new JTextField(20);
+		lblLocal = new JLabel("Local:");
+		txtLocal = new JTextField(20);
 
-		lblSetor = new JLabel("Setor:");
-		txtSetor = new JTextField(10);
-
-		lblPeso = new JLabel("Peso:");
-		txtPeso = new JTextField(10);
+		lblTelefone= new JLabel("telefone:");
+        txtTelefone = new JTextField(20);
+        
+        lblFuncionario= new JLabel("Nome Funcionario:");
+        txtFuncionario = new JTextField(12);
 
 		btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
 
 		//configura o gerenciador de layout
 		Container tela = getContentPane();
-		tela.setLayout(new GridLayout(6,2));
+		tela.setLayout(new GridLayout(5,2));
 		JPanel painel1 = new JPanel(new FlowLayout());
 		JPanel painel2 = new JPanel(new FlowLayout());
 		JPanel painel3 = new JPanel(new FlowLayout());
@@ -80,12 +74,12 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		painel2.add(txtID);
 		painel3.add(lblNome);
 		painel4.add(txtNome);
-		painel5.add(lblDescricao);
-		painel6.add(txtDescricao);
-		painel7.add(lblSetor);
-		painel8.add(txtSetor);
-		painel9.add(lblPeso);
-		painel10.add(txtPeso);
+		painel5.add(lblLocal);
+		painel6.add(txtLocal);
+		painel7.add(lblTelefone);
+		painel8.add(txtTelefone);
+		painel9.add(lblFuncionario);
+		painel10.add(txtFuncionario);
 		painel11.add(btnCadastrar);
 		painel12.add(btnLimpar);
 		//adicionar a tela
@@ -99,8 +93,6 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		tela.add(painel8);
 		tela.add(painel9);
 		tela.add(painel10);
-		tela.add(painel11);
-		tela.add(painel12);
 		//configurar eventos
 		btnCadastrar.addActionListener(this);
 		btnLimpar.addActionListener(this);
@@ -120,21 +112,26 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		    String nNome = txtNome.getText();
 		    txtNome.setText(nNome); 
 		         
-		    String dDescricao = txtDescricao.getText();
-		    txtDescricao.setText(dDescricao);
+		    String lLocal = txtLocal.getText();
+		    txtLocal.setText(lLocal);
 		         
-		    String pPeso  = txtPeso.getText();
-		    int peso = Integer.parseInt(pPeso);
-			txtPeso.setText("" + peso);
+		    String tTelefone = txtTelefone.getText();
+		    txtTelefone.setText(tTelefone);
+		    
+		    String fFuncionario = txtFuncionario.getText();
+		    txtFuncionario.setText(fFuncionario);
+		    
+		    
+		    
+		    Departamento departamento = new Departamento(id, nNome, lLocal, tTelefone, fFuncionario);
 		         
-			Produto produto = new Produto(id, nNome, dDescricao, peso);
-
+		    
+		    
 		} else if (cadastrar.getSource()==btnLimpar){
 			txtID.setText("");
 	    	  txtNome.setText("");
-	    	  txtDescricao.setText("");
-	    	  txtPeso.setText("");
-	    	  txtSetor.setText("");;
+	    	  txtLocal.setText("");
+	    	  txtTelefone.setText("");
 		}
 	}
 }

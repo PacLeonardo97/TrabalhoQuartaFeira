@@ -10,9 +10,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
 public class TelaCadastroFornecedor extends JFrame implements ActionListener {
-    public static void main(String[] args){
+   
+	public static void main(String[] args){
 		new TelaCadastroFornecedor();
     }
+    
     private JTextField txtID;
     private JLabel lblID;
 
@@ -42,7 +44,7 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
         lblTelefone= new JLabel("telefone:");
         txtTelefone = new JTextField(20);
         
-        lblEndereco = new JLabel("EndereÃ§o:");
+        lblEndereco = new JLabel("Endereço:");
         txtEndereco = new JTextField(20);
         
         lblCnpj = new JLabel("CNPJ:");
@@ -53,7 +55,7 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
         
         Container tela = getContentPane();
 
-        tela.setLayout(new GridLayout(8,2));
+        tela.setLayout(new GridLayout(6,2));
 		JPanel painel1 = new JPanel(new FlowLayout());
 		JPanel painel2 = new JPanel(new FlowLayout());
 		JPanel painel3 = new JPanel(new FlowLayout());
@@ -128,7 +130,11 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
 			Fornecedor fornecedor = new Fornecedor(id, nNome, dTelefone, pEndereco, pCnpj);
 			    		 
 		} else if (cadastrar.getSource() == btnLimpar){
-			System.exit(0);
+			  txtID.setText("");
+	    	  txtNome.setText("");
+	    	  txtTelefone.setText("");
+	    	  txtEndereco.setText("");
+	    	  txtCnpj.setText("");
 		}
     }
 }
