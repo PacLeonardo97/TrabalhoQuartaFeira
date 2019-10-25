@@ -1,0 +1,4 @@
+porta=3306
+database=nomeDoBancoDeDados
+usuario=SeuUsuarioNoMysql
+senha=SuaSenhaNoMysql

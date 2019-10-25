@@ -1,5 +1,8 @@
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import br.com.parg.viacep.ViaCEP;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
@@ -10,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
 public class TelaCadastroDepartamento extends JFrame implements ActionListener {
+	
 	public static void main(String[] args){
 		new TelaCadastroDepartamento();
 	}

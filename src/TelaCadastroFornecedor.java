@@ -1,5 +1,9 @@
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import br.com.parg.viacep.ViaCEP;
+import br.com.parg.viacep.ViaCEPException;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -8,6 +12,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -139,7 +145,28 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
 		tela.add(painel20);
 		tela.add(painel21);
 		tela.add(painel22);
+		
         
+		txtCep.addFocusListener(new FocusAdapter() {			
+			public void focusLost(FocusEvent e) {
+				ViaCEP viacep = new ViaCEP();	
+				
+				try {
+					viacep.buscar(txtCep.getText());
+					txtBairro.setText(viacep.getBairro());
+					txtRua.setText(viacep.getLogradouro());
+					txtEstado.setText(viacep.getUf());
+					txtCidade.setText(viacep.getLocalidade());
+					txtBairro.setEditable(false);
+					txtRua.setEditable(false);
+					txtEstado.setEditable(false);
+					txtCidade.setEditable(false);
+					txtBairro.setEditable(false);
+				} catch (ViaCEPException e1) {
+					e1.printStackTrace();
+				}
+			}						
+		});
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
 
@@ -182,6 +209,7 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
 		         
             Fornecedor fornecedor = new Fornecedor(nNome, dTelefone, pCnpj);
             Endereco endereco = new Endereco(eEstado, cCidade, rRua, bBairro, number, cCep, fornecedor);
+            
             try {
 				this.funcDao = new FornecedorDAO();
 				this.funcDao.incluir(fornecedor, endereco);
