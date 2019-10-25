@@ -1,5 +1,12 @@
 create database simetec;
-use  simetec;
+use simetec;
+
+create table Fornecedor(
+id_forn int not null auto_increment primary key,
+nome_forn varchar(80) not null,
+telefone varchar(80) not null,
+cnpj varchar(80) not null
+);
 
 create table endereco_forn(
 id_end_forn int not null auto_increment primary key,
@@ -8,16 +15,9 @@ cidade varchar(80) not null,
 rua varchar(80) not null,
 bairro varchar(80) not null,
 numero int not null,
-cep varchar(80) not null
-);
-
-create table Fornecedor(
-id_forn int not null auto_increment primary key,
-nome_forn varchar(80) not null,
-telefone varchar(80) not null,
-cnpj varchar(80) not null,
-end_forn_id int,
-foreign key(end_forn_id) REFERENCES endereco_forn(id_end_forn)
+cep varchar(80) not null,
+forn_id int,
+foreign key(forn_id) REFERENCES Fornecedor(id_forn)
 on delete set null
 );
 
@@ -72,3 +72,4 @@ func_id int,
 foreign key (func_id) REFERENCES funcionario(id_func)
 on delete set null
 );
+
