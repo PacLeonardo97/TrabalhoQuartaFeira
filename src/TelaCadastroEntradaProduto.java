@@ -4,22 +4,32 @@ import javax.swing.JTextField;
 import br.com.parg.viacep.ViaCEPException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TelaCadastroEntradaProduto extends JFrame implements ActionListener {
-    
+	
+	public static void main(String[] args){
+		new TelaCadastroEntradaProduto();
+    }
 
-    private JTextField  txtData, txtQuantidade, txtIdProduto;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
+	private JTextField  txtData, txtQuantidade;
     
     private JLabel  lblData, lblQuantidade, lblIdProduto;
 
@@ -31,11 +41,11 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
         lblData = new JLabel("Data:");
         txtData = new JTextField(10);
 
-        lblQuantidade = new JLabel("Data:");
+        lblQuantidade = new JLabel("Quantidade:");
         txtQuantidade = new JTextField(10);
 
         lblIdProduto = new JLabel("ID do produto:");
-        txtIdProduto = new JTextField(10);
+//        txtIdProduto = new JTextField(10);
 
         btnCadastrar = new JButton("Cadastrar");
         btnLimpar = new JButton("Limpar");
@@ -60,17 +70,38 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
         painel4.add(txtQuantidade);
 
         painel5.add(lblIdProduto);
-        painel6.add(txtIdProduto);
+    
 
         painel7.add(btnCadastrar);
         painel8.add(btnLimpar);
+        JComboBox cbProdutos = new JComboBox();
         
+//        javax.swing.JComboBox<Object> cbProdutos = null;
+		try {
+			ProdutoDAO dao = new ProdutoDAO();
+	        
+	        for(Produto p: dao.buscar()){
+	        	cbProdutos.addItem(p);
+	        	
+	        	System.out.println("id: " + p.getIdProduto());
+	        	cbProdutos.setSelectedIndex(p.getIdProduto());
+	        	cbProdutos.getSelectedIndex();
+	        	System.out.println("cbProduto: "+cbProdutos.getSelectedIndex());
+	        	
+	        }
+	       
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         tela.add(painel1);
 		tela.add(painel2);
 		tela.add(painel3);
 		tela.add(painel4);
 		tela.add(painel5);
 		tela.add(painel6);
+		
+		painel6.add(cbProdutos);
 		tela.add(painel7);
 		tela.add(painel8);
 
@@ -102,11 +133,9 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 			    int sQuantidade = Integer.parseInt(dQuantidade);
 			    txtQuantidade.setText(""+sQuantidade);
 	            
-	            String pId  = txtIdProduto.getText();
-			    int prodId = Integer.parseInt(pId);
-				txtIdProduto.setText("" + prodId);
-
-	            Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, stringPesoProd);
+	            
+				
+	            Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, Prod);
 
 	            EntradaProduto entradaProduto = new EntradaProduto(pData, sQuantidade, produto);
 			} catch (ParseException e) {
@@ -119,8 +148,7 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 		}
     }
     
-    public static void main(String[] args){
-		new TelaCadastroEntradaProduto();
-    }
     
+    
+   
 }

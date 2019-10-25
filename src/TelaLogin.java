@@ -86,14 +86,12 @@ public class TelaLogin extends JFrame implements ActionListener{
 			//
 			
 			if (dao.checkLogin(txtCPF.getText(), senha)) {
-				JOptionPane.showMessageDialog(null, "Você entrou no sistema!");
 				new TelaCadastroFornecedor().setVisible(true);
 				this.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Credenciais Erradas!!");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
            

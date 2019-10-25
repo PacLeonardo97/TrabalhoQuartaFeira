@@ -29,7 +29,7 @@ public class TelaLoadingScreen extends JFrame{
 	        public void run() {
 	            for (int i = 0; i < 101; i++) {
 	                try {
-	                    sleep(10);
+	                    sleep(30);
 	                    progresso.setValue(i);
 	
 	                } catch (InterruptedException e) {

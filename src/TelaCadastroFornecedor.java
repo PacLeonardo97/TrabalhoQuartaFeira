@@ -17,7 +17,12 @@ import br.com.parg.viacep.ViaCEP; //ViaCep
 import br.com.parg.viacep.ViaCEPException; //Exception do ViaCep
 
 public class TelaCadastroFornecedor extends JFrame  implements ActionListener {
-    FornecedorDAO funcDao;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	FornecedorDAO funcDao;
     	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

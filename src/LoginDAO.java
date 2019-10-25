@@ -26,15 +26,16 @@ public class LoginDAO {
         	rs = stm.executeQuery();
             
             if (rs.next()) {
+            	JOptionPane.showMessageDialog(null, "olá, você entrou com o cpf: " + cpf);
                 check = true;
             }
 
         } catch (SQLException ex) {
-            System.out.println("erro caralho, " +ex);
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
         return check;
     }
+	 
 	 public void incluir(Funcionario funcionario) {
 		    String sqlInsert = "INSERT INTO funcionario(cpf, nome, senha) VALUES (?, ?, ?)";
 

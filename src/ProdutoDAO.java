@@ -81,10 +81,10 @@ public void excluir(Produto p) {
     try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
         while (rs.next()) {
         	Produto p = new Produto();
-             p.setIdProduto(rs.getInt("id"));
-             p.setNomeProduto(rs.getString("nome"));
-             p.setDescricaoProduto(rs.getString("descricao"));
-             p.setPesoProduto(rs.getInt("peso"));
+             p.setIdProduto(rs.getInt("id_prod"));
+             p.setNomeProduto(rs.getString("nome_produto"));
+             p.setDescricaoProduto(rs.getString("descricao_produto"));
+             p.setPesoProduto(rs.getInt("peso_produto"));
              lista.add(p);
           }
        
@@ -96,4 +96,3 @@ public void excluir(Produto p) {
     }
 
  } 
- 
