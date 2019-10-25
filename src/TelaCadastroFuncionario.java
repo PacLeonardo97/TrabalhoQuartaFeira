@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
@@ -15,7 +16,7 @@ public class TelaCadastroFuncionario extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private LoginDAO dao;
 //	public static void main(String[] args){
 //		new TelaCadastroFuncionario();
 //	}
@@ -110,10 +111,17 @@ public class TelaCadastroFuncionario extends JFrame implements ActionListener {
 		    txtNome.setText(nNome); 
 		         
 		    String sSenha  = txtSenha.getText();
-		    int ssenha = Integer.parseInt(sSenha);
-			txtSenha.setText("" + ssenha);
+		   
+			txtSenha.setText("" + sSenha);
 		         
-			Funcionario funcionario = new Funcionario(cCPF, nNome, ssenha);
+			Funcionario funcionario = new Funcionario(cCPF, nNome, sSenha);
+			try {
+				this.dao = new LoginDAO();
+				this.dao.incluir(funcionario);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		} else if (cadastrar.getSource()==btnLimpar){
 			  txtCPF.setText("");

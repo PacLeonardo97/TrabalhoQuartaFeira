@@ -2,15 +2,23 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
 public class TelaLogin extends JFrame implements ActionListener{
-    public static void main(String[] args){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static void main(String[] args){
 		new TelaLogin();
     }
 
@@ -65,15 +73,21 @@ public class TelaLogin extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent logar){
-        if(logar.getSource()==btnLogar){
-            
-           //metodo de pegar string do textField
-           String cCpf = txtCPF.getText();
-           txtCPF.setText(cCpf); 
+        if(logar.getSource()==btnLogar){   
+           try {
+			LoginDAO dao = new LoginDAO();
+			if (dao.checkLogin(txtCPF.getText(), txtSenha.getText())) {
+				JOptionPane.showMessageDialog(null, "Você entrou no sistema!");
+				new TelaCadastroFornecedor().setVisible(true);
+				this.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Credenciais Erradas!!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
            
-           String sSenha = txtSenha.getText();
-           txtSenha.setText(sSenha);
-                                                 
         } else {
             System.exit(0);
         }

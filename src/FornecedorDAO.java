@@ -58,7 +58,7 @@ public void incluir(Fornecedor fornecedor, Endereco endereco) {
 public void excluir(Fornecedor f) {
     String sqlDelete = "DELETE FROM fornecedor WHERE id = ?";
     try (PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
-//       stm.setInt(1, f.getIdFornecedor());
+       stm.setInt(1, f.getIdFornecedor());
     
        stm.execute();
     } 
@@ -93,26 +93,25 @@ public void excluir(Fornecedor f) {
     } 
  }
 
- public ArrayList<Fornecedor> buscar() {
-    String sqlSelect = 
-       "SELECT * FROM fornecedor";
-    ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
-    try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
-        while (rs.next()) {
-        	
-        	 Fornecedor f = new Fornecedor();
-             f.setIdFornecedor(rs.getInt("id"));
-             f.setNome(rs.getString("nome"));
-             f.setTelefone(rs.getString("telefone"));
-             f.setCNPJ(rs.getString("cnpj"));
-             lista.add(f);
-          }
-       
-       } 
-       catch (Exception e) {
-          e.printStackTrace();
-       }
-    return lista;
-    }
-
+	 public ArrayList<Fornecedor> buscar() {
+	    String sqlSelect = 
+	       "SELECT * FROM fornecedor";
+	    ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
+	        while (rs.next()) {
+	        	
+	        	 Fornecedor f = new Fornecedor();
+	             f.setIdFornecedor(rs.getInt("id"));
+	             f.setNome(rs.getString("nome"));
+	             f.setTelefone(rs.getString("telefone"));
+	             f.setCNPJ(rs.getString("cnpj"));
+	             lista.add(f);
+	          }
+	       
+	       } 
+	       catch (Exception e) {
+	          e.printStackTrace();
+	       }
+	    return lista;
+	    }
  }

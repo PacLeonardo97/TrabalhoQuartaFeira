@@ -1,21 +1,17 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import br.com.parg.viacep.ViaCEP;
-import br.com.parg.viacep.ViaCEPException;
-
 import javax.swing.JProgressBar;
-
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
-public class TelaLoadingScreen extends JFrame implements ActionListener {
-    public static void main(String[] args) {
+public class TelaLoadingScreen extends JFrame{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static void main(String[] args) {
         new TelaLoadingScreen();
     }
 

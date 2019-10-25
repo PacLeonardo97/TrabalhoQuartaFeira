@@ -1,10 +1,12 @@
+import br.com.parg.politicaDeFoco.Criptografia;
+
 public class Funcionario{
 	private String cpfFuncionario;
 	private String nomeFuncionario;
-	private int senhaFuncionario;
+	private String senhaFuncionario;
 	//arrayList de saidaProduto
 
-	public Funcionario(String cpfFuncionario, String nomeFuncionario, int senhaFuncionario) {
+	public Funcionario(String cpfFuncionario, String nomeFuncionario, String senhaFuncionario) {
 		setCPFFuncionario(cpfFuncionario);
 		setNomeFuncionario(nomeFuncionario);
 		setSenhaFuncionario(senhaFuncionario);
@@ -23,7 +25,7 @@ public class Funcionario{
 	      return nomeFuncionario;
 	}
 	
-	public int getSenhaFuncionario(){
+	public String getSenhaFuncionario(){
 	      return senhaFuncionario;
 	}
 	
@@ -37,9 +39,14 @@ public class Funcionario{
 		this.nomeFuncionario = nomeFuncionario;
 	}
 	
-	public void setSenhaFuncionario(int senhaFuncionario) {
-		this.senhaFuncionario = senhaFuncionario;
+	public void setSenhaFuncionario(String senhaFuncionario) {
+		Criptografia criptografia = new Criptografia();
+		String senha = criptografia.Criptografia(senhaFuncionario);
+		this.senhaFuncionario = senha;
 	}
 	
+	public String toString() {
+		return getNomeFuncionario() + " com o nome: " + getNomeFuncionario() + "com a senha: " + getSenhaFuncionario();
+	}
 }
 

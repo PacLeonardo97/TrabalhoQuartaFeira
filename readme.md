@@ -4,6 +4,9 @@
 ### Entidades:
 As entidade principais são: Fornecedor, Produto, EntradaProduto, SaidaProduto, Departamento.
 
+### Classes DAO
+As classes DAO são classes de connecção com o banco de dados para fazer o CRUD.
+
 ## config.ini
 Você precisa colocar suas credencias do banco de dados no config.ini sendo:
 porta=3306

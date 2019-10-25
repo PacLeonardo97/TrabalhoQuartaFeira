@@ -24,6 +24,7 @@ public void incluir(Produto produto) {
        stm.setInt(4, produto.getPesoProduto());       
        stm.execute();
     } 
+    
     catch (Exception e) {
        e.printStackTrace();
        try {
