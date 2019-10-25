@@ -1,36 +1,74 @@
 create database simetec;
-use simetec;
-CREATE TABLE Fornecedor (
-    id_Fornecedor INT PRIMARY KEY AUTO_INCREMENT,
-    nome_fornecedor VARCHAR(80) NOT NULL,
-    telefone_fornecedor VARCHAR(80) NOT NULL,
-    endereco VARCHAR(80) NOT NULL,
-    cnpj VARCHAR(80)
+use  simetec;
+
+create table endereco_forn(
+id_end_forn int not null auto_increment primary key,
+estado varchar(80) not null,
+cidade varchar(80) not null,
+rua varchar(80) not null,
+bairro varchar(80) not null,
+numero int not null,
+cep varchar(80) not null
 );
 
-CREATE TABLE Produto (
-    id_produto INT PRIMARY KEY AUTO_INCREMENT,
-    nome_produto VARCHAR(80) NOT NULL,
-    descricao_produto VARCHAR(80) NOT NULL,
-    setorProduto VARCHAR(80) NOT NULL,
-    pesoProduto VARCHAR(80) NOT NULL,
-    fornecedor_id INT NOT NULL,
-    FOREIGN KEY (fornecedor_id)
-        REFERENCES Fornecedor (id_Fornecedor)
+create table Fornecedor(
+id_forn int not null auto_increment primary key,
+nome_forn varchar(80) not null,
+telefone varchar(80) not null,
+cnpj varchar(80) not null,
+end_forn_id int,
+foreign key(end_forn_id) REFERENCES endereco_forn(id_end_forn)
+on delete set null
 );
 
-create table EntradaProduto(
-	id_entrada_produto INT PRIMARY KEY AUTO_INCREMENT,
-    dataEntrada datetime,
-    Produto_id INT NOT NULL,
-    FOREIGN KEY (Produto_id)
-        REFERENCES Produto (id_Produto)
+create table Aluno(
+NumAluno int(10) unsigned not null auto_increment primary key,
+NomeAluno varchar(80) not null,
+EndereçoAluno varchar(80) not null,
+CidadeAluno varchar(80) not null,
+Telefone varchar(80) not null,
+NumCurso int(10) unsigned,
+foreign key(NumCurso) REFERENCES Curso(NumCurso)
+on delete set null
 );
 
-CREATE TABLE Estoque (
-    id_estoque INT PRIMARY KEY AUTO_INCREMENT,
-    quantidadeEstoque VARCHAR(80) NOT NULL,
-    entrada_produto_id INT NOT NULL,
-    FOREIGN KEY (entrada_produto_id)
-        REFERENCES EntradaProduto (id_entrada_produto)
+
+create table produto(
+id_prod int not null auto_increment primary key,
+nome_produto varchar(80) not null,
+Descricao_produto varchar(80) not null,
+peso_produto int not null
+);
+
+create table entradaProduto(
+id_ent_prod int not null auto_increment primary key,
+data date not null,
+quantidade int not null,
+prod_id int,
+foreign key (prod_id) REFERENCES produto(id_prod)
+on delete set null
+);
+
+create table saidaProduto(
+id_saida_prod int not null auto_increment primary key,
+data date not null,
+quantidade int not null,
+prod_id int,
+foreign key (prod_id) REFERENCES produto(id_prod)
+on delete set null
+);
+
+create table funcionario(
+id_func int not null auto_increment primary key,
+nome varchar(80) not null,
+senha varchar(255) not null
+);
+
+create table departamento(
+id_departamento int not null auto_increment primary key,
+nome_departamento varchar(80) not null,
+local varchar(80) not null,
+func_id int,
+foreign key (func_id) REFERENCES funcionario(id_func)
+on delete set null
 );
