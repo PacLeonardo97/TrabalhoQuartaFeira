@@ -1,5 +1,8 @@
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import br.com.parg.politicaDeFoco.Criptografia;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -76,7 +79,13 @@ public class TelaLogin extends JFrame implements ActionListener{
         if(logar.getSource()==btnLogar){   
            try {
 			LoginDAO dao = new LoginDAO();
-			if (dao.checkLogin(txtCPF.getText(), txtSenha.getText())) {
+			
+			//criptografia para entrar no sistema
+			Criptografia cripto = new Criptografia();
+			String senha = cripto.Criptografia(txtSenha.getText());
+			//
+			
+			if (dao.checkLogin(txtCPF.getText(), senha)) {
 				JOptionPane.showMessageDialog(null, "Você entrou no sistema!");
 				new TelaCadastroFornecedor().setVisible(true);
 				this.dispose();
