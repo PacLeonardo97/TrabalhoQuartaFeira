@@ -2,39 +2,36 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import ViaCep.CEP;
-import ViaCep.ViaCEP;
-import ViaCep.ViaCEPEvents;
-import ViaCep.ViaCEPException;
-
 
 public class TelaCadastroFornecedor extends JFrame implements ActionListener {
-   
+    FornecedorDAO funcDao;
+    
 	public static void main(String[] args){
 		new TelaCadastroFornecedor();
     }
     
-    private JTextField txtID, txtNome, txtTelefone, 
+    private JTextField  txtNome, txtTelefone, 
     txtCep, txtCidade, txtRua, 
     txtNumero, txtBairro, txtEstado , txtCnpj;
     
-    private JLabel lblID, lblNome, lblTelefone, 
+    private JLabel  lblNome, lblTelefone, 
     lblCep, lblCidade, lblRua, 
     lblNumero, lblBairro, lblEstado, lblCnpj;
     
     
     private JButton btnCadastrar, btnLimpar;
+    
 
     public TelaCadastroFornecedor(){
         super("Cadastro de Fornecedor");
-
-        lblID = new JLabel("ID:");
-        txtID = new JTextField(10);
         
         lblNome = new JLabel("Nome:");
         txtNome = new JTextField(20);
@@ -70,8 +67,6 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
         Container tela = getContentPane();
 
         tela.setLayout(new GridLayout(11,2));
-		JPanel painel1 = new JPanel(new FlowLayout());
-		JPanel painel2 = new JPanel(new FlowLayout());
 		JPanel painel3 = new JPanel(new FlowLayout());
 		JPanel painel4 = new JPanel(new FlowLayout());
 		JPanel painel5 = new JPanel(new FlowLayout());
@@ -93,8 +88,6 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
 		JPanel painel21 = new JPanel(new FlowLayout());
 		JPanel painel22 = new JPanel(new FlowLayout());
         
-        painel1.add(lblID);
-        painel2.add(txtID);
         
 		painel3.add(lblNome);
         painel4.add(txtNome);
@@ -126,8 +119,6 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
         painel21.add(btnCadastrar);
         painel22.add(btnLimpar);
 
-        tela.add(painel1);
-		tela.add(painel2);
 		tela.add(painel3);
 		tela.add(painel4);
 		tela.add(painel5);
@@ -160,29 +151,50 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource() == btnCadastrar){	  
-		    String iId  = txtID.getText();
-		    int id = Integer.parseInt(iId);
-			txtID.setText(""+id);
-			     
-		    String nNome = txtNome.getText();
+
+			String nNome = txtNome.getText();
 		    txtNome.setText(nNome); 
 		         
 		    String dTelefone = txtTelefone.getText();
 		    txtTelefone.setText(dTelefone);
-		         
-		    String pEndereco  = txtEndereco.getText();
-            txtEndereco.setText(pEndereco);
+		    
+		    String eEstado = txtEstado.getText();
+		    txtEstado.setText(eEstado);
+		    
+		    String cCidade = txtCidade.getText();
+		    txtCidade.setText(cCidade);
+		    
+		    String cCep = txtCep.getText();
+		    txtCep.setText(cCep);
+		    
+		    String rRua = txtRua.getText();
+		    txtRua.setText(rRua);
+		    
+		    String bBairro = txtBairro.getText();
+		    txtBairro.setText(bBairro);
+		    
+		    String nNumero = txtNumero.getText();
+		    int number = Integer.parseInt(nNumero);
+		    txtNumero.setText(""+number);
 
             String pCnpj = txtCnpj.getText();
             txtCnpj.setText(pCnpj);
 		         
-			Fornecedor fornecedor = new Fornecedor(id, nNome, dTelefone, pEndereco, pCnpj);
+            Fornecedor fornecedor = new Fornecedor(nNome, dTelefone, pCnpj);
+            Endereco endereco = new Endereco(eEstado, cCidade, rRua, bBairro, number, cCep, fornecedor);
+            try {
+				this.funcDao = new FornecedorDAO();
+				this.funcDao.incluir(fornecedor, endereco);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+           
 			    		 
 		} else if (cadastrar.getSource() == btnLimpar){
-			  txtID.setText("");
+
 	    	  txtNome.setText("");
 	    	  txtTelefone.setText("");
-	    	  txtEndereco.setText("");
 	    	  txtCnpj.setText("");
 		}
     }

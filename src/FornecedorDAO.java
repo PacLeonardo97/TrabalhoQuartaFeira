@@ -4,26 +4,45 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class FornecedorDAO {
 	
 // a conexão com o banco de dados
 private Connection conn;
+FornecedorDAO funrnDao;
 
 public FornecedorDAO() throws SQLException {
     this.conn = new ConexaoBD().conectar();
  }
 
-public void incluir(Fornecedor fornecedor) {
-    String sqlInsert = 
-       "INSERT INTO fornecedor(idFornecedor, nome, telefone, endereco, cnpj) VALUES (?, ?, ?)";
- 
-    try (PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-       stm.setInt(1, fornecedor.getIdFornecedor());
-       stm.setString(2, fornecedor.getNome());
-       stm.setString(3, fornecedor.getTelefone());
-//       stm.setString(4, fornecedor.getEndereco());
-       stm.setString(5, fornecedor.getCNPJ());
+public void incluir(Fornecedor fornecedor, Endereco endereco) {
+    String sqlInsert = "INSERT INTO fornecedor(nome_forn, telefone, cnpj) VALUES (?, ?, ?)";
+
+    try (PreparedStatement stm = conn.prepareStatement(sqlInsert, PreparedStatement.RETURN_GENERATED_KEYS);) {
+       stm.setString(1, fornecedor.getNome());
+       stm.setString(2, fornecedor.getTelefone());
+       stm.setString(3, fornecedor.getCNPJ());
        stm.execute();
+       
+       ResultSet rs = stm.getGeneratedKeys();  
+       rs.next();
+       int idFunc = rs.getInt(1);
+       rs.close();
+       
+       String sqlInsertEndereco = "INSERT INTO endereco_forn(estado, cidade, rua, bairro, numero, cep, forn_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+       PreparedStatement pstm = conn.prepareStatement(sqlInsertEndereco);
+	   pstm.setString(1, endereco.getEstado());
+	   pstm.setString(2, endereco.getCidade());
+	   pstm.setString(3, endereco.getRua());
+	   pstm.setString(4, endereco.getBairro());
+	   pstm.setString(5, Integer.toString(endereco.getNumero()));
+	   pstm.setString(6, endereco.getCep());
+	   pstm.setString(7, Integer.toString(idFunc));
+	   pstm.execute();
+	   
+	   
+	   JOptionPane.showMessageDialog (null, "Foi cadastrado o fornecedor: " + fornecedor.toString() + "\n\n" + endereco.toString());
     } 
     catch (Exception e) {
        e.printStackTrace();
@@ -33,13 +52,13 @@ public void incluir(Fornecedor fornecedor) {
        catch (SQLException e1) {
           System.out.print(e1.getStackTrace());
        }
-    } 
+    }
  }
 
 public void excluir(Fornecedor f) {
     String sqlDelete = "DELETE FROM fornecedor WHERE id = ?";
     try (PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
-       stm.setInt(1, f.getIdFornecedor());
+//       stm.setInt(1, f.getIdFornecedor());
     
        stm.execute();
     } 
@@ -80,12 +99,11 @@ public void excluir(Fornecedor f) {
     ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
     try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
         while (rs.next()) {
-//        	Fornecedor f = new Fornecedor();
-        	Fornecedor f = new Fornecedor();
+        	
+        	 Fornecedor f = new Fornecedor();
              f.setIdFornecedor(rs.getInt("id"));
              f.setNome(rs.getString("nome"));
              f.setTelefone(rs.getString("telefone"));
-//             f.setEndereco(rs.getString("endereco"));
              f.setCNPJ(rs.getString("cnpj"));
              lista.add(f);
           }

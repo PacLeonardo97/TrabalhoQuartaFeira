@@ -5,7 +5,6 @@
  * Obtem um CEP no ViaCEP
  */
 package br.com.parg.viacep;
-
 /**
  * Interface para os eventos
  *
