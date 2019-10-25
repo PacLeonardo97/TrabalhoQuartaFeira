@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -140,44 +141,46 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
     }
     public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource() == btnCadastrar){	  
-		    String iId  = txtID.getText();
-		    int id = Integer.parseInt(iId);
-			txtID.setText(""+id);
-			     
+
 			try {
-				
-			} catch (Exception e) {
-				// TODO: handle exception
+				String iId  = txtID.getText();
+			    int id = Integer.parseInt(iId);
+				txtID.setText(""+id);
+				  			
+				//começo data
+				Date pData;
+			    String nData = txtData.getText();
+			    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				pData = formato.parse(nData);
+				txtData.setText(nData); 
+			    //fim data 
+			         
+			    String dQuantidade = txtQuantidade.getText();
+			    int sQuantidade = Integer.parseInt(dQuantidade);
+			    txtQuantidade.setText(""+sQuantidade);
+	            
+	            String pId  = txtIdProduto.getText();
+			    int prodId = Integer.parseInt(pId);
+				txtIdProduto.setText("" + prodId);
+
+	            String nNomeProduto = txtNomeProduto.getText();
+			    txtNomeProduto.setText(nNomeProduto); 
+
+	            String nDescProduto = txtDescricaoProduto.getText();
+			    txtDescricaoProduto.setText(nDescProduto); 
+	            
+	            String pPesoProd  = txtPesoProduto.getText();
+			    int stringPesoProd = Integer.parseInt(pPesoProd);
+				txtPesoProduto.setText("" + stringPesoProd);
+	            
+	            Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, stringPesoProd);
+
+	            SaidaProduto saidaProduto = new SaidaProduto(id, pData, sQuantidade, produto);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			//começo data
-		    String nData = txtData.getText();
-		    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
 		    
-		    Date pData = Date.formato(nData);
-		    txtData.setText(pData); 
-		    //fim data 
-		         
-		    String dQuantidade = txtQuantidade.getText();
-		    int sQuantidade = Integer.parseInt(iId);
-		    txtQuantidade.setText(""+sQuantidade);
-            
-            String pId  = txtIdProduto.getText();
-		    int prodId = Integer.parseInt(pId);
-			txtIdProduto.setText("" + prodId);
-
-            String nNomeProduto = txtNomeProduto.getText();
-		    txtNomeProduto.setText(nNomeProduto); 
-
-            String nDescProduto = txtDescricaoProduto.getText();
-		    txtDescricaoProduto.setText(nDescProduto); 
-            
-            String pPesoProd  = txtPesoProduto.getText();
-		    int stringPesoProd = Integer.parseInt(pPesoProd);
-			txtPesoProduto.setText("" + stringPesoProd);
-            
-            Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, stringPesoProd);
-
-            SaidaProduto saidaProduto = new SaidaProduto(id, ndata, sQuantidade, produto);
 		} else if (cadastrar.getSource() == btnLimpar){
 			System.exit(0);
 		}

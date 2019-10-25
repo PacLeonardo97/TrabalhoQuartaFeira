@@ -21,7 +21,7 @@ public void incluir(Fornecedor fornecedor) {
        stm.setInt(1, fornecedor.getIdFornecedor());
        stm.setString(2, fornecedor.getNome());
        stm.setString(3, fornecedor.getTelefone());
-       stm.setString(4, fornecedor.getEndereco());
+//       stm.setString(4, fornecedor.getEndereco());
        stm.setString(5, fornecedor.getCNPJ());
        stm.execute();
     } 
@@ -80,11 +80,12 @@ public void excluir(Fornecedor f) {
     ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
     try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
         while (rs.next()) {
+//        	Fornecedor f = new Fornecedor();
         	Fornecedor f = new Fornecedor();
              f.setIdFornecedor(rs.getInt("id"));
              f.setNome(rs.getString("nome"));
              f.setTelefone(rs.getString("telefone"));
-             f.setEndereco(rs.getString("endereco"));
+//             f.setEndereco(rs.getString("endereco"));
              f.setCNPJ(rs.getString("cnpj"));
              lista.add(f);
           }
