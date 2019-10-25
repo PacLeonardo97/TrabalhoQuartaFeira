@@ -122,13 +122,14 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 		    String tTelefone = txtTelefone.getText();
 		    txtTelefone.setText(tTelefone);
 		    
-		    String fFuncionario = txtFuncionario.getText();
-		    txtFuncionario.setText(fFuncionario);
+			String fFuncionario = txtFuncionario.getText();
+			int fkFunc = Integer.parseInt(fFuncionario);
+		    txtFuncionario.setText("" +fkFunc);
 		    
 		    
 		    
-		    Departamento departamento = new Departamento(id, nNome, lLocal, tTelefone, fFuncionario);
-		         
+		    // Departamento departamento = new Departamento(id, nNome, lLocal, tTelefone, fFuncionario);
+			Departamento departamento = new Departamento(id, nNome, lLocal, tTelefone, Fornecedor)
 		    
 		    
 		} else if (cadastrar.getSource()==btnLimpar){

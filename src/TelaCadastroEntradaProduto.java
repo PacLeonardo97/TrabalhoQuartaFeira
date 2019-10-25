@@ -19,35 +19,14 @@ import java.util.Date;
 public class TelaCadastroEntradaProduto extends JFrame implements ActionListener {
     
 
-    private JTextField txtID;
-    private JLabel lblID;
+    private JTextField  txtData, txtQuantidade, txtIdProduto;
     
-    private JTextField txtData;
-    private JLabel lblData;
-    
-    private JTextField txtQuantidade;
-    private JLabel lblQuantidade;
-
-
-    private JTextField txtIdProduto;
-    private JLabel lblIdProduto;
-
-    private JTextField txtNomeProduto;
-    private JLabel lblNomeProduto;
-
-    private JTextField txtDescricaoProduto;
-    private JLabel lblDescricaoProduto;
-
-    private JTextField txtPesoProduto;
-    private JLabel lblPesoProduto;
+    private JLabel  lblData, lblQuantidade, lblIdProduto;
 
     private JButton btnCadastrar, btnLimpar;
     
     public TelaCadastroEntradaProduto(){
         super("Cadastro de Entrada de Produto");
-
-        lblID = new JLabel("ID Entrada Produto:");
-        txtID = new JTextField(10);
 
         lblData = new JLabel("Data:");
         txtData = new JTextField(10);
@@ -58,21 +37,12 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
         lblIdProduto = new JLabel("ID do produto:");
         txtIdProduto = new JTextField(10);
 
-        lblNomeProduto = new JLabel("Nome do produto:");
-        txtNomeProduto = new JTextField(10);
-
-        lblDescricaoProduto = new JLabel("Descrição do produto:");
-        txtDescricaoProduto = new JTextField(20);
-
-        lblPesoProduto = new JLabel("Peso do produto:");
-        txtPesoProduto  = new JTextField(10);
-
         btnCadastrar = new JButton("Cadastrar");
         btnLimpar = new JButton("Limpar");
         
         Container tela = getContentPane();
 
-        tela.setLayout(new GridLayout(8,2));
+        tela.setLayout(new GridLayout(4,2));
 
 		JPanel painel1 = new JPanel(new FlowLayout());
 		JPanel painel2 = new JPanel(new FlowLayout());
@@ -82,38 +52,18 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 		JPanel painel6 = new JPanel(new FlowLayout());
 		JPanel painel7 = new JPanel(new FlowLayout());
 		JPanel painel8 = new JPanel(new FlowLayout());
-		JPanel painel9 = new JPanel(new FlowLayout());
-		JPanel painel10 = new JPanel(new FlowLayout());
-		JPanel painel11 = new JPanel(new FlowLayout());
-		JPanel painel12 = new JPanel(new FlowLayout());
-		JPanel painel13 = new JPanel(new FlowLayout());
-		JPanel painel14 = new JPanel(new FlowLayout());
-        JPanel painel15 = new JPanel(new FlowLayout());
-		JPanel painel16 = new JPanel(new FlowLayout());
         
-        painel1.add(lblID);
-        painel2.add(txtID);
+        painel1.add(lblData);
+        painel2.add(txtData);
 
-        painel3.add(lblData);
-        painel4.add(txtData);
+        painel3.add(lblQuantidade);
+        painel4.add(txtQuantidade);
 
-        painel5.add(lblQuantidade);
-        painel6.add(txtQuantidade);
+        painel5.add(lblIdProduto);
+        painel6.add(txtIdProduto);
 
-        painel7.add(lblIdProduto);
-        painel8.add(txtIdProduto);
-
-        painel9.add(lblNomeProduto);
-        painel10.add(txtNomeProduto);
-
-        painel11.add(lblDescricaoProduto);
-        painel12.add(txtDescricaoProduto);
-
-        painel13.add(lblPesoProduto);
-        painel14.add(txtPesoProduto);
-
-        painel15.add(btnCadastrar);
-        painel16.add(btnLimpar);
+        painel7.add(btnCadastrar);
+        painel8.add(btnLimpar);
         
         tela.add(painel1);
 		tela.add(painel2);
@@ -123,14 +73,6 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 		tela.add(painel6);
 		tela.add(painel7);
 		tela.add(painel8);
-		tela.add(painel9);
-		tela.add(painel10);
-		tela.add(painel11);
-        tela.add(painel12);
-        tela.add(painel13);
-        tela.add(painel14);
-        tela.add(painel15);
-        tela.add(painel16);
 
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
@@ -146,9 +88,7 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
     	if(cadastrar.getSource() == btnCadastrar){	  
 
 			try {
-				String iId  = txtID.getText();
-			    int id = Integer.parseInt(iId);
-				txtID.setText(""+id);
+
 				  			
 				//começo data
 				Date pData;
@@ -166,19 +106,9 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 			    int prodId = Integer.parseInt(pId);
 				txtIdProduto.setText("" + prodId);
 
-	            String nNomeProduto = txtNomeProduto.getText();
-			    txtNomeProduto.setText(nNomeProduto); 
-
-	            String nDescProduto = txtDescricaoProduto.getText();
-			    txtDescricaoProduto.setText(nDescProduto); 
-	            
-	            String pPesoProd  = txtPesoProduto.getText();
-			    int stringPesoProd = Integer.parseInt(pPesoProd);
-				txtPesoProduto.setText("" + stringPesoProd);
-	            
 	            Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, stringPesoProd);
 
-	            EntradaProduto entradaProduto = new EntradaProduto(id, pData, sQuantidade, produto);
+	            EntradaProduto entradaProduto = new EntradaProduto(pData, sQuantidade, produto);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

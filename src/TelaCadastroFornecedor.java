@@ -1,28 +1,36 @@
+
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
-
-import br.com.parg.viacep.ViaCEP;
-import br.com.parg.viacep.ViaCEPException;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class TelaCadastroFornecedor extends JFrame implements ActionListener {
+import br.com.parg.politicaDeFoco.PoliticaFocoGenerica; //Política de foco
+import br.com.parg.viacep.ViaCEP; //ViaCep
+import br.com.parg.viacep.ViaCEPException; //Exception do ViaCep
+
+public class TelaCadastroFornecedor extends JFrame  implements ActionListener {
     FornecedorDAO funcDao;
-    
-	public static void main(String[] args){
-		new TelaCadastroFornecedor();
-    }
+    	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroFornecedor frame = new TelaCadastroFornecedor();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
     
     private JTextField  txtNome, txtTelefone, 
     txtCep, txtCidade, txtRua, 
@@ -32,121 +40,96 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
     lblCep, lblCidade, lblRua, 
     lblNumero, lblBairro, lblEstado, lblCnpj;
     
-    
-    private JButton btnCadastrar, btnLimpar;
-    
+    private JButton btnCadastrar, btnLimpar;    
 
     public TelaCadastroFornecedor(){
         super("Cadastro de Fornecedor");
         
         lblNome = new JLabel("Nome:");
+        lblNome.setBounds(26, 25, 40, 20);
+		getContentPane().add(lblNome);
+		
         txtNome = new JTextField(20);
+        txtNome.setBounds(92, 25, 153, 20);
+		getContentPane().add(txtNome);
+		txtNome.setColumns(10);
         
-        lblTelefone= new JLabel("telefone:");
+        lblTelefone= new JLabel("Telefone:");
+        lblTelefone.setBounds(26, 75, 57, 20);
+		getContentPane().add(lblTelefone);
+		
         txtTelefone = new JTextField(20);
+        txtTelefone.setBounds(92, 75, 153, 20);
+		getContentPane().add(txtTelefone);
+		txtTelefone.setColumns(10);
+		
+		lblCnpj = new JLabel("CNPJ:");
+        lblCnpj.setBounds(26, 125, 45, 20);
+		getContentPane().add(lblCnpj);
+		
+        txtCnpj = new JTextField(20);
+        txtCnpj.setBounds(92, 125, 153, 20);
+		getContentPane().add(txtCnpj);
+		txtCnpj.setColumns(10);
         
         lblCep = new JLabel("Cep:");
+        lblCep.setBounds(26, 175, 40, 20);
+		getContentPane().add(lblCep);
+        
         txtCep = new JTextField(20);
+        txtCep.setBounds(92, 175, 153, 20);
+		getContentPane().add(txtCep);
+		txtCep.setColumns(10);
         
         lblEstado = new JLabel("Estado:");
+        lblEstado.setBounds(297, 25, 45, 20);
+		getContentPane().add(lblEstado);
+		
         txtEstado = new JTextField(20);
+        txtEstado.setBounds(352, 25, 153, 20);
+		getContentPane().add(txtEstado);
+		txtEstado.setColumns(10);
         
         lblCidade = new JLabel("Cidade:");
+        lblCidade.setBounds(297, 75, 57, 20);
+		getContentPane().add(lblCidade);
+		
         txtCidade = new JTextField(20);
+        txtCidade.setBounds(352, 75, 153, 20);
+		getContentPane().add(txtCidade);
+		txtCidade.setColumns(10);
         
         lblRua = new JLabel("Rua:");
+        lblRua.setBounds(297, 175, 40, 20);
+		getContentPane().add(lblRua);
+        
         txtRua = new JTextField(20);
+        txtRua.setBounds(352, 175, 153, 20);
+		getContentPane().add(txtRua);
+		txtRua.setColumns(10);
         
         lblBairro = new JLabel("Bairro:");
+        lblBairro.setBounds(297, 125, 40, 20);
+		getContentPane().add(lblBairro);
+		
         txtBairro = new JTextField(20);
+        txtBairro.setBounds(352, 125, 153, 20);
+		getContentPane().add(txtBairro);
+		txtBairro.setColumns(10);
         
         lblNumero = new JLabel("Numero:");
+        lblNumero.setBounds(142, 225, 56, 20);
+		getContentPane().add(lblNumero);
+		
         txtNumero = new JTextField(20);
+        txtNumero.setBounds(208, 225, 153, 20);
+		getContentPane().add(txtNumero);
+		txtNumero.setColumns(10);
         
-        
-        lblCnpj = new JLabel("CNPJ:");
-        txtCnpj = new JTextField(20);
 
         btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
-        
-        Container tela = getContentPane();
-
-        tela.setLayout(new GridLayout(11,2));
-		JPanel painel3 = new JPanel(new FlowLayout());
-		JPanel painel4 = new JPanel(new FlowLayout());
-		JPanel painel5 = new JPanel(new FlowLayout());
-		JPanel painel6 = new JPanel(new FlowLayout());
-		JPanel painel7 = new JPanel(new FlowLayout());
-		JPanel painel8 = new JPanel(new FlowLayout());
-		JPanel painel9 = new JPanel(new FlowLayout());
-		JPanel painel10 = new JPanel(new FlowLayout());
-		JPanel painel11 = new JPanel(new FlowLayout());
-		JPanel painel12 = new JPanel(new FlowLayout());
-		JPanel painel13 = new JPanel(new FlowLayout());
-		JPanel painel14 = new JPanel(new FlowLayout());
-		JPanel painel15 = new JPanel(new FlowLayout());
-		JPanel painel16 = new JPanel(new FlowLayout());
-		JPanel painel17 = new JPanel(new FlowLayout());
-		JPanel painel18 = new JPanel(new FlowLayout());
-		JPanel painel19 = new JPanel(new FlowLayout());
-		JPanel painel20 = new JPanel(new FlowLayout());
-		JPanel painel21 = new JPanel(new FlowLayout());
-		JPanel painel22 = new JPanel(new FlowLayout());
-        
-        
-		painel3.add(lblNome);
-        painel4.add(txtNome);
-
-        painel5.add(lblTelefone);
-        painel6.add(txtTelefone);
-
-        painel7.add(lblCep);
-        painel8.add(txtCep);
-        
-        painel9.add(lblEstado);
-        painel10.add(txtEstado);
-        
-        painel11.add(lblCidade);
-        painel12.add(txtCidade);
-        
-        painel13.add(lblRua);
-        painel14.add(txtRua);
-        
-        painel15.add(lblBairro);
-        painel16.add(txtBairro);
-        
-        painel17.add(lblNumero);
-        painel18.add(txtNumero);
-
-        painel19.add(lblCnpj);
-        painel20.add(txtCnpj);
-
-        painel21.add(btnCadastrar);
-        painel22.add(btnLimpar);
-
-		tela.add(painel3);
-		tela.add(painel4);
-		tela.add(painel5);
-		tela.add(painel6);
-		tela.add(painel7);
-		tela.add(painel8);
-		tela.add(painel9);
-		tela.add(painel10);
-		tela.add(painel11);
-        tela.add(painel12);
-        tela.add(painel13);
-		tela.add(painel14);
-		tela.add(painel15);
-		tela.add(painel16);
-		tela.add(painel17);
-		tela.add(painel18);
-		tela.add(painel19);
-		tela.add(painel20);
-		tela.add(painel21);
-		tela.add(painel22);
-		
-        
+	
 		txtCep.addFocusListener(new FocusAdapter() {			
 			public void focusLost(FocusEvent e) {
 				ViaCEP viacep = new ViaCEP();	
@@ -167,13 +150,25 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
 				}
 			}						
 		});
+		
+		
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
-
-        setSize(500,500);
+        this.setSize(600, 450);
+        this.setResizable(false); //Não tem mais o botão para maximizar e o tamanho é sempre padrão
 		setLocationRelativeTo(null);
-		setVisible(true);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		
+		btnCadastrar.setBounds(156, 268, 89, 34);
+		getContentPane().add(btnCadastrar);
+		
+		JButton btnLimpar = new JButton("limpar");
+		btnLimpar.setBounds(297, 268, 89, 34);
+		getContentPane().add(btnLimpar);
+		
+		setFocusTraversalPolicy(new PoliticaFoco());
     }
 
     public void actionPerformed(ActionEvent cadastrar){
@@ -226,4 +221,18 @@ public class TelaCadastroFornecedor extends JFrame implements ActionListener {
 	    	  txtCnpj.setText("");
 		}
     }
+    
+    class PoliticaFoco extends PoliticaFocoGenerica {
+    	  private PoliticaFoco() {
+    	    this.componentes.add(txtNome);
+    	    this.componentes.add(txtTelefone);
+    	    this.componentes.add(txtCnpj);
+    	    this.componentes.add(txtCep);
+    	    this.componentes.add(txtEstado);
+    	    this.componentes.add(txtCidade);
+    	    this.componentes.add(txtBairro);
+    	    this.componentes.add(txtRua);
+    	    this.componentes.add(txtNumero);
+    	  }
+    	}  
 }

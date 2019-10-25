@@ -5,13 +5,32 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
+import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
 public class TelaCadastroFuncionario extends JFrame implements ActionListener {
-	public static void main(String[] args){
-		new TelaCadastroFuncionario();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+//	public static void main(String[] args){
+//		new TelaCadastroFuncionario();
+//	}
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroFuncionario frame = new TelaCadastroFuncionario();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	private JTextField txtCPF;
