@@ -1,12 +1,12 @@
 package views;
 
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
@@ -22,8 +22,7 @@ import dao.FornecedorDAO;
 import model.Endereco;
 import model.Fornecedor;
 
-
-public class TelaCadastroFornecedor extends JFrame  implements ActionListener {
+public class TelaCadastroFornecedor extends JInternalFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private FornecedorDAO funcDao;
@@ -163,9 +162,7 @@ public class TelaCadastroFornecedor extends JFrame  implements ActionListener {
         btnLimpar.addActionListener(this);
         this.setSize(600, 450);
         this.setResizable(false); //Não tem mais o botão para maximizar e o tamanho é sempre padrão
-		setLocationRelativeTo(null);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		btnCadastrar.setBounds(156, 268, 89, 34);
