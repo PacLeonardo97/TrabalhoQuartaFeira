@@ -2,9 +2,11 @@ package views;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
@@ -19,6 +21,7 @@ import br.com.parg.viacep.ViaCEPException; //Exception do ViaCep
 import dao.FornecedorDAO;
 import model.Endereco;
 import model.Fornecedor;
+
 
 public class TelaCadastroFornecedor extends JFrame  implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -205,11 +208,13 @@ public class TelaCadastroFornecedor extends JFrame  implements ActionListener {
 
             String pCnpj = txtCnpj.getText();
             txtCnpj.setText(pCnpj);
-		         
+            	         
             Fornecedor fornecedor = new Fornecedor(nNome, dTelefone, pCnpj);
             Endereco endereco = new Endereco(eEstado, cCidade, rRua, bBairro, number, cCep, fornecedor);
-            
+    
             try {
+            	
+            	
 				this.funcDao = new FornecedorDAO();
 				this.funcDao.incluir(fornecedor, endereco);
 			} catch (SQLException e) {

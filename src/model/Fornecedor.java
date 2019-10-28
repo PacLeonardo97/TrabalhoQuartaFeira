@@ -1,4 +1,7 @@
 package model;
+
+import org.apache.commons.mail.*;
+
 public class Fornecedor {
 
 	private String nome;
@@ -10,8 +13,27 @@ public class Fornecedor {
 		setNome(nome);
 		setTelefone(telefone);
 		setCNPJ(cnpj);
+		email1();
 	}
+	
+	private void email1() {
+		try {
+			SimpleEmail email = new SimpleEmail();
+			email.setDebug(true);  
+			email.setHostName("smtp.gmail.com");  
+			email.setAuthentication("pacleonardo97@gmail.com","Guga983838753a");  
+			email.setSSL(true);  
+			email.addTo("pacleonardo97@gmail.com"); //pode ser qualquer email  
+			email.setFrom("pacleonardo97@gmail.com"); //será passado o email que você fará a autenticação
+			email.setSubject("Enviando email");  
+			email.setMsg("Teste de envio de email"+ " " + nome + " " + telefone + " " + cnpj);  
+			email.send();  
+			
+		} catch (EmailException e) {
 
+			e.printStackTrace();
+		}
+	}
 
 	//Metodos de acesso - get
 	public int getIdFornecedor(){

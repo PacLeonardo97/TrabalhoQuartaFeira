@@ -1,6 +1,10 @@
 package model;
 import java.util.Date;
 
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+
+
 public class EntradaProduto{
 	private int idEntradaProduto;
 	private Date date;
@@ -16,6 +20,7 @@ public class EntradaProduto{
 	public int getIdEntradaProduto(){
 	    return idEntradaProduto;
 	}
+	
 	public Date getDate(){
 	    return date;
 	}
@@ -37,6 +42,7 @@ public class EntradaProduto{
 		this.quantidade = quantidade;
 	}
 	public void setProduto(Produto produto) {
+		
 		this.produto = produto;
 	}
 
