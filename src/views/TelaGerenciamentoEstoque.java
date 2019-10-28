@@ -101,7 +101,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==fornecedorCad){   
-			System.out.print("ola");
+			
 			telaCadastro = new TelaCadastroFornecedor();
 			desktop.add(telaCadastro);
 			telaCadastro.setLocation(50, 50);
