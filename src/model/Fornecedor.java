@@ -15,7 +15,12 @@ public class Fornecedor {
 		setCNPJ(cnpj);
 		email1();
 	}
-	
+	public Fornecedor() {
+		nome = null;
+		telefone = null;
+		cnpj = null;
+		idFornecedor = 0;
+	}
 	private void email1() {
 		try {
 			SimpleEmail email = new SimpleEmail();

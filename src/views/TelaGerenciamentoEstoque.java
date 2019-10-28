@@ -57,7 +57,8 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	private JMenuItem dptoCadastro = new JMenuItem("Cadastro");
 	private JMenuItem DptoConsulta = new JMenuItem("Consultar");
 	
-	private TelaCadastroFornecedor i;
+	private TelaCadastroFornecedor telaCadastro;
+	private TelaConsultaFornecedor telaConsulta;
 
 	public TelaGerenciamentoEstoque() {	
 		setJMenuBar(menuBar);
@@ -89,6 +90,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		menuFuncionario.add(funcionarioConsulta);
 		
 		fornecedorCad.addActionListener(this);
+		FornecedorConsulta.addActionListener(this);
 		
 		this.setResizable(false);
 		contentPane = new JPanel();
@@ -100,10 +102,16 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==fornecedorCad){   
 			System.out.print("ola");
-			i = new TelaCadastroFornecedor();
-			desktop.add(i);
-			i.setLocation(50, 50);
-			i.setVisible(true);
-	    } 
+			telaCadastro = new TelaCadastroFornecedor();
+			desktop.add(telaCadastro);
+			telaCadastro.setLocation(50, 50);
+			telaCadastro.setVisible(true);
+	    } else if(e.getSource()== FornecedorConsulta) {
+	    	telaConsulta = new TelaConsultaFornecedor();
+			desktop.add(telaConsulta);
+			telaConsulta.setLocation(50, 50);
+			telaConsulta.setVisible(true);
+	    }
+	    	
 	}
 }

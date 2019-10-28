@@ -105,12 +105,12 @@ public void excluir(Fornecedor f) {
 	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
 	        while (rs.next()) {
 	        	
-//	        	 Fornecedor f = new Fornecedor();
-//	             f.setIdFornecedor(rs.getInt("id"));
-//	             f.setNome(rs.getString("nome"));
-//	             f.setTelefone(rs.getString("telefone"));
-//	             f.setCNPJ(rs.getString("cnpj"));
-//	             lista.add(f);
+	        	 Fornecedor f = new Fornecedor();
+	             f.setIdFornecedor(rs.getInt("id_forn"));
+	             f.setNome(rs.getString("nome_forn"));
+	             f.setTelefone(rs.getString("telefone"));
+	             f.setCNPJ(rs.getString("cnpj"));
+	             lista.add(f);
 	          }
 	       
 	       } 

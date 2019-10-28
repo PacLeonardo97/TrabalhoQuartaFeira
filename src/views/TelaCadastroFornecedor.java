@@ -210,8 +210,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
             Endereco endereco = new Endereco(eEstado, cCidade, rRua, bBairro, number, cCep, fornecedor);
     
             try {
-            	
-            	
+
 				this.funcDao = new FornecedorDAO();
 				this.funcDao.incluir(fornecedor, endereco);
 			} catch (SQLException e) {
