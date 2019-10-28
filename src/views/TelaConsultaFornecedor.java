@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import dao.FornecedorDAO;
 import model.Fornecedor;
@@ -38,14 +37,16 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
 	private FornecedorDAO DAO;
-
+	
 	private JPanel contentPane;
-	private JTable tabelaFuncionario;
 	private JScrollPane scrollPane;
-	private String[] colunasTabela = {"Id", "Nome", "Fone", "CNPJ"};
-	private JButton btnDeletar = new JButton("Deletar");
+	private JButton btnDeletar = new JButton("Deletar"), btnAtualizar = new JButton("Atualizar");;
 	private JTextField txtNome, txtTelefone,  txtcnpj;
 	private FornecedorDAO dao;
+	
+	private JTable tabelaFuncionario;
+	
+	private String[][] dadosClientes = carregarDadosCliente();
 	
 	public TelaConsultaFornecedor() {
 		super("Consulta de Fornecedor");
@@ -53,10 +54,11 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		String[][] dadosClientes = carregarDadosCliente();
-		contentPane.setLayout(null);
 		
-		tabelaFuncionario = new JTable(dadosClientes, this.colunasTabela);
+		contentPane.setLayout(null);
+		String[] colunasTabela = {"Id", "Nome", "Fone", "CNPJ"};
+		tabelaFuncionario = new JTable(dadosClientes, colunasTabela);
+		
 		scrollPane = new JScrollPane(tabelaFuncionario);
 		scrollPane.setBounds(30, 113, 498, 295);
 		getContentPane().add(scrollPane);
@@ -64,7 +66,7 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
         getContentPane().setLayout(null);
         
      
-        btnDeletar.setBounds(64, 79, 89, 23);
+        btnDeletar.setBounds(246, 79, 89, 23);
         getContentPane().add(btnDeletar);
         
         txtNome = new JTextField();
@@ -94,6 +96,10 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
         lblCnpj.setBounds(449, 23, 48, 14);
         getContentPane().add(lblCnpj);
         
+        
+        btnAtualizar.setBounds(51, 79, 89, 23);
+        getContentPane().add(btnAtualizar);
+        
         tabelaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTProdutosMouseClicked(evt);
@@ -105,11 +111,11 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
                 jTProdutosKeyReleased(evt);
             }
         });
-        
         btnDeletar.addActionListener(this);
+        btnAtualizar.addActionListener(this);
 	}
 	
-	private String[][] carregarDadosCliente() {
+	public String[][] carregarDadosCliente() {
 		String[][] dadosFuncionario = null;
 		
 		try {
@@ -126,36 +132,11 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Erro ao carregar lista de Fornecedor!");
 			e.printStackTrace();
 		}
-		
 		return dadosFuncionario;
 	}
-
-	
-	
-    private void readJTable() {
-        DefaultTableModel modelo = (DefaultTableModel) tabelaFuncionario.getModel();
-        modelo.setNumRows(0);
-        FornecedorDAO dao = null;
-
-        try {
-			dao = new FornecedorDAO(); 
-			for (Fornecedor p : dao.buscar()) {
-	            modelo.addRow(new Object[]{
-	                p.getIdFornecedor(),
-	                p.getNome(),
-	                p.getTelefone(),
-	                p.getCNPJ()
-	            });
-	        }
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
     
     private void jTProdutosMouseClicked(java.awt.event.MouseEvent evt) {
     	if (tabelaFuncionario.getSelectedRow() != -1) {
-    		System.out.println(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0).toString());
             txtNome.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 1).toString());
             txtTelefone.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 2).toString());
             txtcnpj.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 3).toString());
@@ -168,7 +149,6 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
             txtNome.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 1).toString());
             txtTelefone.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 2).toString());
             txtcnpj.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 3).toString());
-
         }
     }
     
@@ -176,19 +156,17 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 		if(e.getSource() == btnDeletar) {
 			if (tabelaFuncionario.getSelectedRow() != -1) {
 				try {
-					Fornecedor p = new Fornecedor();
-			        
+					Fornecedor f = new Fornecedor();
 					dao = new FornecedorDAO();
 					
-					p.setIdFornecedor(Integer.parseInt((String) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0)) );
+					f.setIdFornecedor(Integer.parseInt((String) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0)) );
 					
-					dao.excluir(p);
+					dao.excluir(f);
 					
 					txtNome.setText("");
 		            txtTelefone.setText("");
 		            txtcnpj.setText("");
 		            carregarDadosCliente();
-		            
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -196,6 +174,29 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 	        } else {
 	            JOptionPane.showMessageDialog(null, "Selecione um Fornecedor para excluir.");
 	        }
+			
+		} else if(e.getSource() == btnAtualizar) {
+			if (tabelaFuncionario.getSelectedRow() != -1) {
+				try {
+					Fornecedor f = new Fornecedor();
+					dao = new FornecedorDAO();
+					f.setNome(txtNome.getText());
+					f.setTelefone(txtTelefone.getText());
+					f.setCNPJ(txtcnpj.getText());
+					
+					f.setIdFornecedor(Integer.parseInt((String) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0)));
+					
+					dao.update(f);
+					
+					txtNome.setText("");
+		            txtTelefone.setText("");
+		            txtcnpj.setText("");
+		            carregarDadosCliente();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}			
 		}
 	}
 }

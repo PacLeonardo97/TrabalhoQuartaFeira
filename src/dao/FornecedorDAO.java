@@ -79,14 +79,19 @@ public class FornecedorDAO {
 	    } 
 	 }
 	
-	 public void atualizarTelefone(Fornecedor f, String novoTelefone) {
-	    String sqlUpdate = "UPDATE FORNECEDOR SET TELEFONE = ? WHERE ID = ?";
-	  
+	 public void update(Fornecedor f) {
+	    String sqlUpdate = "UPDATE FORNECEDOR SET nome_forn = ? ,TELEFONE = ?,cnpj = ? WHERE id_forn = ?";
+
 	    try (PreparedStatement stm = conn.prepareStatement(sqlUpdate);){
-	       stm.setString(1, novoTelefone);
-	       stm.setInt(2, f.getIdFornecedor());
-	    
+	       stm.setString(1, f.getNome());
+	       stm.setString(2, f.getTelefone());
+	       stm.setString(3, f.getCNPJ());
+	       stm.setInt(4, f.getIdFornecedor());
+	       
+	       System.out.println(stm);
+	       
 	       stm.execute();
+	       JOptionPane.showMessageDialog(null, "atualizado com sucesso!");
 	    } 
 	    catch (Exception e) {
 	       e.printStackTrace();
