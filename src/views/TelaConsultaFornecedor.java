@@ -1,11 +1,18 @@
 package views;
 
+import dao.FornecedorDAO;
+import model.Fornecedor;
+
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -15,15 +22,11 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
-import dao.FornecedorDAO;
-import model.Fornecedor;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-public class TelaConsultaFornecedor extends JFrame implements ActionListener{
+public class TelaConsultaFornecedor extends JInternalFrame implements ActionListener{
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,18 +53,37 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
         	 DefaultTableModel modelo = (DefaultTableModel) tabelaFuncionario.getModel();
              modelo.setNumRows(0);
              FornecedorDAO dao = new FornecedorDAO();
+             
              for (Fornecedor f : dao.buscar()) {
+            	 
+            	 
                  modelo.addRow(new Object[]{
+                		 
                      f.getIdFornecedor(),
                      f.getNome(),
                      f.getTelefone(),
-                     f.getCNPJ()
+                     f.getCNPJ(),
+                     convertStringToDate(
+                    		 f.getData()
+                     )
                  });
              }
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e);
 		}
     }
+	
+	
+	public String convertStringToDate(Date indate){
+	   String dateString = null;
+	   SimpleDateFormat sdfr = new SimpleDateFormat("dd/MM/yyyy");
+	   try{
+		   dateString = sdfr.format( indate );
+		   return dateString;
+	   }catch (Exception ex ){
+		   return "";
+	   }
+	}
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -74,8 +96,11 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 	private JTable tabelaFuncionario;
 	
 
-	private TelaConsultaFornecedor() {
+	public TelaConsultaFornecedor() {
 		super("Consulta de Fornecedor");
+		setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
 		setBounds(100, 100, 600, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
@@ -128,7 +153,7 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
                 new Object [][] {
                 },
                 new String [] {
-                    "ID", "Nome", "Telefone", "CNPJ"
+                    "ID", "Nome", "Telefone", "CNPJ","Criado em"
                 }
             ) {
 
@@ -154,7 +179,9 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
                 jTProdutosKeyReleased(evt);
             }
         });
+        
         readJTable();
+        
         btnDeletar.addActionListener(this);
         btnAtualizar.addActionListener(this);
 	}

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import org.apache.commons.mail.*;
 
 public class Fornecedor {
@@ -8,6 +9,7 @@ public class Fornecedor {
 	private String telefone;
 	private String cnpj;
 	private int idFornecedor;
+	private Date data;
 	
 	public Fornecedor(String nome, String telefone, String cnpj){	
 		setNome(nome);
@@ -26,7 +28,6 @@ public class Fornecedor {
 	private void email1() {
 		try {
 			SimpleEmail email = new SimpleEmail();
-			email.setDebug(true);  
 			email.setHostName("smtp.gmail.com");  
 			email.setAuthentication("pacleonardo97@gmail.com","Guga983838753a");  
 			email.setSSL(true);  
@@ -58,6 +59,9 @@ public class Fornecedor {
 	public String getCNPJ(){
 	      return cnpj;
 	}
+	public Date getData() {
+		return data;
+	}
 	
 	//metodos modificadores
 	public void setIdFornecedor(int idFornecedor) {
@@ -74,6 +78,10 @@ public class Fornecedor {
 	
 	public void setCNPJ(String cnpj) {
 		this.cnpj = cnpj;
+	}
+	
+	public void setData(Date data) {
+		this.data = data;
 	}
 	
 	public String toString(){

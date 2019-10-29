@@ -112,6 +112,5 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 			telaConsulta.setLocation(50, 50);
 			telaConsulta.setVisible(true);
 	    }
-	    	
 	}
 }

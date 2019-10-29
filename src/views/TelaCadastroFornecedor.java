@@ -2,9 +2,7 @@ package views;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -19,6 +17,7 @@ import br.com.parg.politicaDeFoco.PoliticaFocoGenerica; //Política de foco
 import br.com.parg.viacep.ViaCEP; //ViaCep
 import br.com.parg.viacep.ViaCEPException; //Exception do ViaCep
 import dao.FornecedorDAO;
+
 import model.Endereco;
 import model.Fornecedor;
 
@@ -50,6 +49,9 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 
     public TelaCadastroFornecedor(){
         super("Cadastro de Fornecedor");
+        setMaximizable(true);
+        setIconifiable(true);
+        setClosable(true);
         
         lblNome = new JLabel("Nome:");
         lblNome.setBounds(26, 25, 40, 20);

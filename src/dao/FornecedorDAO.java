@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -22,12 +23,21 @@ public class FornecedorDAO {
 	 }
 
 	public void incluir(Fornecedor fornecedor, Endereco endereco) {
-	    String sqlInsert = "INSERT INTO fornecedor(nome_forn, telefone, cnpj) VALUES (?, ?, ?)";
+	    String sqlInsert = "INSERT INTO fornecedor(nome_forn, telefone, cnpj, created_at) VALUES (?, ?, ?, ?)";
 	
 	    try (PreparedStatement stm = conn.prepareStatement(sqlInsert, PreparedStatement.RETURN_GENERATED_KEYS);) {
 	       stm.setString(1, fornecedor.getNome());
+	       
 	       stm.setString(2, fornecedor.getTelefone());
 	       stm.setString(3, fornecedor.getCNPJ());
+	       
+	       java.util.Date data = new java.util.Date();  
+	       java.sql.Date dataSql = new java.sql.Date(data.getTime());
+//	       stm.setti
+	       stm.setDate(4, dataSql);
+	      
+	       
+	       
 	       stm.execute();
 	       
 	       ResultSet rs = stm.getGeneratedKeys();  
@@ -116,6 +126,7 @@ public class FornecedorDAO {
 	             f.setNome(rs.getString("nome_forn"));
 	             f.setTelefone(rs.getString("telefone"));
 	             f.setCNPJ(rs.getString("cnpj"));
+	             f.setData(rs.getDate("created_at"));
 	             lista.add(f);
 	          }
 	       
