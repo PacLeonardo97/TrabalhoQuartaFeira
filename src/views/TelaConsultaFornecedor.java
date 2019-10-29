@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import dao.FornecedorDAO;
 import model.Fornecedor;
@@ -26,6 +28,7 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					TelaConsultaFornecedor frame = new TelaConsultaFornecedor();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -35,8 +38,32 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 		});
 	}
 	
+
+	public void ViewJTable() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaFuncionario.getModel();
+        tabelaFuncionario.setRowSorter(new TableRowSorter<DefaultTableModel>(modelo));
+        readJTable();
+	}
+
+	public void readJTable() {
+        try {
+        	 DefaultTableModel modelo = (DefaultTableModel) tabelaFuncionario.getModel();
+             modelo.setNumRows(0);
+             FornecedorDAO dao = new FornecedorDAO();
+             for (Fornecedor f : dao.buscar()) {
+                 modelo.addRow(new Object[]{
+                     f.getIdFornecedor(),
+                     f.getNome(),
+                     f.getTelefone(),
+                     f.getCNPJ()
+                 });
+             }
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+    }
+	
 	private static final long serialVersionUID = 1L;
-	private FornecedorDAO DAO;
 	
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
@@ -46,9 +73,8 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 	
 	private JTable tabelaFuncionario;
 	
-	private String[][] dadosClientes = carregarDadosCliente();
-	
-	public TelaConsultaFornecedor() {
+
+	private TelaConsultaFornecedor() {
 		super("Consulta de Fornecedor");
 		setBounds(100, 100, 600, 500);
 		contentPane = new JPanel();
@@ -56,15 +82,14 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		contentPane.setLayout(null);
-		String[] colunasTabela = {"Id", "Nome", "Fone", "CNPJ"};
-		tabelaFuncionario = new JTable(dadosClientes, colunasTabela);
+		tabelaFuncionario = new JTable();
 		
 		scrollPane = new JScrollPane(tabelaFuncionario);
+		scrollPane.setViewportView(tabelaFuncionario);
 		scrollPane.setBounds(30, 113, 498, 295);
 		getContentPane().add(scrollPane);
         this.setResizable(false);
         getContentPane().setLayout(null);
-        
      
         btnDeletar.setBounds(246, 79, 89, 23);
         getContentPane().add(btnDeletar);
@@ -96,9 +121,27 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
         lblCnpj.setBounds(449, 23, 48, 14);
         getContentPane().add(lblCnpj);
         
-        
         btnAtualizar.setBounds(51, 79, 89, 23);
         getContentPane().add(btnAtualizar);
+        
+        tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                },
+                new String [] {
+                    "ID", "Nome", "Telefone", "CNPJ"
+                }
+            ) {
+
+                private static final long serialVersionUID = 1L;
+
+                boolean[] canEdit = new boolean[] {
+                    false, false, false, false
+                };
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit [columnIndex];
+                }
+            });
         
         tabelaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -111,29 +154,11 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
                 jTProdutosKeyReleased(evt);
             }
         });
+        readJTable();
         btnDeletar.addActionListener(this);
         btnAtualizar.addActionListener(this);
 	}
 	
-	public String[][] carregarDadosCliente() {
-		String[][] dadosFuncionario = null;
-		
-		try {
-			DAO = new FornecedorDAO();
-			ArrayList<Fornecedor> forn = DAO.buscar();
-			dadosFuncionario = new String[forn.size()][4];	
-			for(int i = 0; i < forn.size(); i++) {
-				dadosFuncionario[i][0] = Integer.toString(forn.get(i).getIdFornecedor());
-				dadosFuncionario[i][1] = forn.get(i).getNome();
-				dadosFuncionario[i][2] = forn.get(i).getTelefone();
-				dadosFuncionario[i][3] = forn.get(i).getCNPJ();
-			}
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao carregar lista de Fornecedor!");
-			e.printStackTrace();
-		}
-		return dadosFuncionario;
-	}
     
     private void jTProdutosMouseClicked(java.awt.event.MouseEvent evt) {
     	if (tabelaFuncionario.getSelectedRow() != -1) {
@@ -159,14 +184,14 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 					Fornecedor f = new Fornecedor();
 					dao = new FornecedorDAO();
 					
-					f.setIdFornecedor(Integer.parseInt((String) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0)) );
+					f.setIdFornecedor((int) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0));
 					
 					dao.excluir(f);
 					
 					txtNome.setText("");
 		            txtTelefone.setText("");
 		            txtcnpj.setText("");
-		            carregarDadosCliente();
+		            readJTable();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -183,15 +208,14 @@ public class TelaConsultaFornecedor extends JFrame implements ActionListener{
 					f.setNome(txtNome.getText());
 					f.setTelefone(txtTelefone.getText());
 					f.setCNPJ(txtcnpj.getText());
-					
-					f.setIdFornecedor(Integer.parseInt((String) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0)));
+					f.setIdFornecedor((int) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0));
 					
 					dao.update(f);
 					
 					txtNome.setText("");
 		            txtTelefone.setText("");
 		            txtcnpj.setText("");
-		            carregarDadosCliente();
+		            readJTable();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

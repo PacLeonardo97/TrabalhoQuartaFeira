@@ -107,7 +107,7 @@ public class FornecedorDAO {
 	 public ArrayList<Fornecedor> buscar() {
 	    String sqlSelect = 
 	       "SELECT * FROM fornecedor";
-	    ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+	    ArrayList<Fornecedor> lista = new ArrayList<>();
 	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
 	        while (rs.next()) {
 	        	

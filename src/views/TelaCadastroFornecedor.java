@@ -164,6 +164,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         this.setResizable(false); //Não tem mais o botão para maximizar e o tamanho é sempre padrão
 
 		getContentPane().setLayout(null);
+				
 		
 		btnCadastrar.setBounds(156, 268, 89, 34);
 		getContentPane().add(btnCadastrar);
