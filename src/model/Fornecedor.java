@@ -4,11 +4,11 @@ import java.util.Date;
 import org.apache.commons.mail.*;
 
 public class Fornecedor {
-
+	
+	private int idFornecedor;
 	private String nome;
 	private String telefone;
 	private String cnpj;
-	private int idFornecedor;
 	private Date data;
 	
 	public Fornecedor(String nome, String telefone, String cnpj){	
@@ -59,6 +59,7 @@ public class Fornecedor {
 	public String getCNPJ(){
 	      return cnpj;
 	}
+	
 	public Date getData() {
 		return data;
 	}

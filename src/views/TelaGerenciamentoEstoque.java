@@ -57,8 +57,11 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	private JMenuItem dptoCadastro = new JMenuItem("Cadastro");
 	private JMenuItem DptoConsulta = new JMenuItem("Consultar");
 	
-	private TelaCadastroFornecedor telaCadastro;
-	private TelaConsultaFornecedor telaConsulta;
+	private TelaCadastroFornecedor telaCadastroFornecedor;
+	private TelaConsultaFornecedor telaConsultaFornecedor;
+	
+	private TelaCadastroFuncionario telaCadastroFuncionario;
+	private TelaConsultaFuncionario2 telaConsultaFuncionario;
 
 	public TelaGerenciamentoEstoque() {	
 		setJMenuBar(menuBar);
@@ -92,6 +95,9 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		fornecedorCad.addActionListener(this);
 		FornecedorConsulta.addActionListener(this);
 		
+		funcionarioCad.addActionListener(this);
+		funcionarioConsulta.addActionListener(this);
+		
 		this.setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,15 +108,25 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==fornecedorCad){   
 			
-			telaCadastro = new TelaCadastroFornecedor();
-			desktop.add(telaCadastro);
-			telaCadastro.setLocation(50, 50);
-			telaCadastro.setVisible(true);
+			telaCadastroFornecedor = new TelaCadastroFornecedor();
+			desktop.add(telaCadastroFornecedor);
+			telaCadastroFornecedor.setLocation(50, 50);
+			telaCadastroFornecedor.setVisible(true);
 	    } else if(e.getSource()== FornecedorConsulta) {
-	    	telaConsulta = new TelaConsultaFornecedor();
-			desktop.add(telaConsulta);
-			telaConsulta.setLocation(50, 50);
-			telaConsulta.setVisible(true);
-	    }
+	    	telaConsultaFornecedor = new TelaConsultaFornecedor();
+			desktop.add(telaConsultaFornecedor);
+			telaConsultaFornecedor.setLocation(50, 50);
+			telaConsultaFornecedor.setVisible(true);
+	    } else if(e.getSource() == funcionarioCad) {
+	    	telaCadastroFuncionario = new TelaCadastroFuncionario();
+	    	desktop.add(telaCadastroFuncionario);
+	    	telaCadastroFuncionario.setLocation(50, 50);
+	    	telaCadastroFuncionario.setVisible(true);
+	    }else if(e.getSource() == funcionarioConsulta) {
+	    	telaConsultaFuncionario = new TelaConsultaFuncionario2();
+	    	desktop.add(telaConsultaFuncionario);
+	    	telaConsultaFuncionario.setLocation(50, 50);
+	    	telaConsultaFuncionario.setVisible(true);
+	    } 
 	}
 }

@@ -5,7 +5,8 @@ create table Fornecedor(
 id_forn int not null auto_increment primary key,
 nome_forn varchar(80) not null,
 telefone varchar(80) not null,
-cnpj varchar(80) not null
+cnpj varchar(80) not null,
+created_at datetime
 );
 
 create table endereco_forn(
@@ -31,7 +32,6 @@ NumCurso int(10) unsigned,
 foreign key(NumCurso) REFERENCES Curso(NumCurso)
 on delete set null
 );
-
 
 create table produto(
 id_prod int not null auto_increment primary key,
@@ -60,9 +60,13 @@ on delete set null
 
 create table funcionario(
 id_func int not null auto_increment primary key,
+cpf varchar(80) not null,
 nome varchar(80) not null,
-senha varchar(255) not null
+senha varchar(255) not null,
+created_at datetime
 );
+
+insert into funcionario (cpf, nome, senha) values("123456789-00", "josemir","A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3"); -- cpf = 123456789-00, nome = josemir, senha = 123(criptografada)
 
 create table departamento(
 id_departamento int not null auto_increment primary key,

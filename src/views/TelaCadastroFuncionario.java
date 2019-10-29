@@ -1,5 +1,5 @@
 package views;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import dao.LoginDAO;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-public class TelaCadastroFuncionario extends JFrame implements ActionListener {
+public class TelaCadastroFuncionario extends JInternalFrame implements ActionListener {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,9 +37,11 @@ public class TelaCadastroFuncionario extends JFrame implements ActionListener {
 	private JButton btnCadastrar, btnLimpar;
 	   
 	public TelaCadastroFuncionario(){
-		//configura o titulo
+		
 		super("Cadastro de Funcionario");
-		//instanciar elementos de interface
+		setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
 		lblCPF = new JLabel("CPF:");
 		txtCPF = new JTextField(11);
 
@@ -52,7 +54,7 @@ public class TelaCadastroFuncionario extends JFrame implements ActionListener {
 		btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
 
-		//configura o gerenciador de layout
+		
 		Container tela = getContentPane();
 		tela.setLayout(new GridLayout(4,2));
 		JPanel painel1 = new JPanel(new FlowLayout());
@@ -87,9 +89,9 @@ public class TelaCadastroFuncionario extends JFrame implements ActionListener {
 		btnLimpar.addActionListener(this);
 		//retoques finais
 		setSize(500,500);
-		setLocationRelativeTo(null);
+
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 	   
 	public void actionPerformed(ActionEvent cadastrar){

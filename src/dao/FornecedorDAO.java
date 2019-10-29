@@ -33,11 +33,8 @@ public class FornecedorDAO {
 	       
 	       java.util.Date data = new java.util.Date();  
 	       java.sql.Date dataSql = new java.sql.Date(data.getTime());
-//	       stm.setti
 	       stm.setDate(4, dataSql);
-	      
-	       
-	       
+
 	       stm.execute();
 	       
 	       ResultSet rs = stm.getGeneratedKeys();  
@@ -55,7 +52,6 @@ public class FornecedorDAO {
 		   pstm.setString(6, endereco.getCep());
 		   pstm.setString(7, Integer.toString(idFunc));
 		   pstm.execute();
-		   
 		   
 		   JOptionPane.showMessageDialog (null, "Foi cadastrado o fornecedor: " + fornecedor.toString() + "\n\n" + endereco.toString());
 	    } 
@@ -97,8 +93,6 @@ public class FornecedorDAO {
 	       stm.setString(2, f.getTelefone());
 	       stm.setString(3, f.getCNPJ());
 	       stm.setInt(4, f.getIdFornecedor());
-	       
-	       System.out.println(stm);
 	       
 	       stm.execute();
 	       JOptionPane.showMessageDialog(null, "atualizado com sucesso!");

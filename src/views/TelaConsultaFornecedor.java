@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,10 +21,21 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.JButton;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 public class TelaConsultaFornecedor extends JInternalFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
+	
+	private JPanel contentPane;
+	private JScrollPane scrollPane;
+	private JButton btnDeletar = new JButton("Deletar"), btnAtualizar = new JButton("Atualizar");;
+	private JTextField txtNome, txtTelefone,  txtcnpj;
+	private FornecedorDAO dao;
+	
+	private JTable tabelaFornecedor;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,14 +52,14 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 	
 
 	public void ViewJTable() {
-        DefaultTableModel modelo = (DefaultTableModel) tabelaFuncionario.getModel();
-        tabelaFuncionario.setRowSorter(new TableRowSorter<DefaultTableModel>(modelo));
+        DefaultTableModel modelo = (DefaultTableModel) tabelaFornecedor.getModel();
+        tabelaFornecedor.setRowSorter(new TableRowSorter<DefaultTableModel>(modelo));
         readJTable();
 	}
 
 	public void readJTable() {
         try {
-        	 DefaultTableModel modelo = (DefaultTableModel) tabelaFuncionario.getModel();
+        	 DefaultTableModel modelo = (DefaultTableModel) tabelaFornecedor.getModel();
              modelo.setNumRows(0);
              FornecedorDAO dao = new FornecedorDAO();
              
@@ -63,9 +72,7 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
                      f.getNome(),
                      f.getTelefone(),
                      f.getCNPJ(),
-                     convertStringToDate(
-                    		 f.getData()
-                     )
+                     convertStringToDate(f.getData())
                  });
              }
 		} catch (Exception e) {
@@ -85,37 +92,26 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 	   }
 	}
 	
-	private static final long serialVersionUID = 1L;
-	
-	private JPanel contentPane;
-	private JScrollPane scrollPane;
-	private JButton btnDeletar = new JButton("Deletar"), btnAtualizar = new JButton("Atualizar");;
-	private JTextField txtNome, txtTelefone,  txtcnpj;
-	private FornecedorDAO dao;
-	
-	private JTable tabelaFuncionario;
-	
-
 	public TelaConsultaFornecedor() {
 		super("Consulta de Fornecedor");
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
 		setBounds(100, 100, 600, 500);
+		getContentPane().setLayout(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		contentPane.setLayout(null);
-		tabelaFuncionario = new JTable();
+		tabelaFornecedor = new JTable();
 		
-		scrollPane = new JScrollPane(tabelaFuncionario);
-		scrollPane.setViewportView(tabelaFuncionario);
+		scrollPane = new JScrollPane(tabelaFornecedor);
+		scrollPane.setViewportView(tabelaFornecedor);
 		scrollPane.setBounds(30, 113, 498, 295);
 		getContentPane().add(scrollPane);
         this.setResizable(false);
-        getContentPane().setLayout(null);
-     
+        
         btnDeletar.setBounds(246, 79, 89, 23);
         getContentPane().add(btnDeletar);
         
@@ -149,7 +145,7 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
         btnAtualizar.setBounds(51, 79, 89, 23);
         getContentPane().add(btnAtualizar);
         
-        tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaFornecedor.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                 },
                 new String [] {
@@ -168,13 +164,13 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
                 }
             });
         
-        tabelaFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTProdutosMouseClicked(evt);
             }
         });
         
-        tabelaFuncionario.addKeyListener(new java.awt.event.KeyAdapter() {
+        tabelaFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTProdutosKeyReleased(evt);
             }
@@ -188,30 +184,30 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 	
     
     private void jTProdutosMouseClicked(java.awt.event.MouseEvent evt) {
-    	if (tabelaFuncionario.getSelectedRow() != -1) {
-            txtNome.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 1).toString());
-            txtTelefone.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 2).toString());
-            txtcnpj.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 3).toString());
+    	if (tabelaFornecedor.getSelectedRow() != -1) {
+            txtNome.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 1).toString());
+            txtTelefone.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 2).toString());
+            txtcnpj.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 3).toString());
         }
     }
     
     
     private void jTProdutosKeyReleased(java.awt.event.KeyEvent evt) {
-        if (tabelaFuncionario.getSelectedRow() != -1) {
-            txtNome.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 1).toString());
-            txtTelefone.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 2).toString());
-            txtcnpj.setText(tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 3).toString());
+        if (tabelaFornecedor.getSelectedRow() != -1) {
+            txtNome.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 1).toString());
+            txtTelefone.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 2).toString());
+            txtcnpj.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 3).toString());
         }
     }
     
     public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnDeletar) {
-			if (tabelaFuncionario.getSelectedRow() != -1) {
+			if (tabelaFornecedor.getSelectedRow() != -1) {
 				try {
 					Fornecedor f = new Fornecedor();
 					dao = new FornecedorDAO();
 					
-					f.setIdFornecedor((int) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0));
+					f.setIdFornecedor((int) tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 0));
 					
 					dao.excluir(f);
 					
@@ -220,7 +216,6 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		            txtcnpj.setText("");
 		            readJTable();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 	        } else {
@@ -228,14 +223,14 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 	        }
 			
 		} else if(e.getSource() == btnAtualizar) {
-			if (tabelaFuncionario.getSelectedRow() != -1) {
+			if (tabelaFornecedor.getSelectedRow() != -1) {
 				try {
 					Fornecedor f = new Fornecedor();
 					dao = new FornecedorDAO();
 					f.setNome(txtNome.getText());
 					f.setTelefone(txtTelefone.getText());
 					f.setCNPJ(txtcnpj.getText());
-					f.setIdFornecedor((int) tabelaFuncionario.getValueAt(tabelaFuncionario.getSelectedRow(), 0));
+					f.setIdFornecedor((int) tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 0));
 					
 					dao.update(f);
 					

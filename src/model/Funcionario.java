@@ -1,10 +1,14 @@
 package model;
+import java.util.Date;
+
 import br.com.parg.politicaDeFoco.Criptografia;
 
 public class Funcionario{
+	private int id;
 	private String cpfFuncionario;
 	private String nomeFuncionario;
 	private String senhaFuncionario;
+	private Date data;
 	//arrayList de saidaProduto
 
 	public Funcionario(String cpfFuncionario, String nomeFuncionario, String senhaFuncionario) {
@@ -18,6 +22,10 @@ public class Funcionario{
 	}
 	
 	//Métodos Get
+	public int getidFunc(){
+	      return id;
+	}
+	
 	public String getCPFFuncionario(){
 	      return cpfFuncionario;
 	}
@@ -30,8 +38,16 @@ public class Funcionario{
 	      return senhaFuncionario;
 	}
 	
+	public Date getData() {
+		return data;
+	}
+	
 	
 	//MÃ©todos set
+	public void setIduncionario(int id) {
+		this.id = id;
+	}
+			
 	public void setCPFFuncionario(String cpfFuncionario) {
 		this.cpfFuncionario = cpfFuncionario;
 	}
@@ -44,6 +60,10 @@ public class Funcionario{
 		Criptografia criptografia = new Criptografia();
 		String senha = criptografia.Criptografia(senhaFuncionario);
 		this.senhaFuncionario = senha;
+	}
+	
+	public void setData(Date data) {
+		this.data = data;
 	}
 	
 	public String toString() {
