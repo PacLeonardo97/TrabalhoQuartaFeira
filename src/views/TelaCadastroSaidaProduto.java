@@ -5,10 +5,13 @@ import javax.swing.JTextField;
 import dao.ProdutoDAO;
 import model.EntradaProduto;
 import model.Produto;
+import model.SaidaProduto;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
@@ -29,7 +32,7 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 	private JTextField txtData, txtQuantidade;
     private JLabel lblData, lblQuantidade, lblIdProduto;
     private JButton btnCadastrar, btnLimpar;
-    private JComboBox cbProdutos = new JComboBox();
+    private JComboBox<Object> cbProdutos = new JComboBox<Object>();
     
     public TelaCadastroSaidaProduto(){
         super("Cadastro de Saída de Produto");
@@ -80,9 +83,10 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 		try {
 			ProdutoDAO dao = new ProdutoDAO();
 	        for(Produto p: dao.buscar()){
-	        	cbProdutos.addItem("Id: " + p.getIdProduto() + " - Nome" + p.getNomeProduto() );
-	        	cbProdutos.getSelectedIndex();    		        	
+	        	cbProdutos.addItem(p);
+	        	  		        	
 	        }  
+	        
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,12 +126,11 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 			    String dQuantidade = txtQuantidade.getText();
 			    int sQuantidade = Integer.parseInt(dQuantidade);
 			    txtQuantidade.setText(""+sQuantidade);
-	            
-			   
-			    
-	            Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, Prod);
 
-	            EntradaProduto entradaProduto = new EntradaProduto(pData, sQuantidade, produto);
+			    Produto ProdutoSelecionado = (Produto) this.cbProdutos.getSelectedItem();
+
+	            SaidaProduto entradaProduto = new SaidaProduto(pData, sQuantidade, ProdutoSelecionado);
+	            JOptionPane.showMessageDialog(this, entradaProduto);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

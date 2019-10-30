@@ -1,7 +1,9 @@
 package views;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import dao.ProdutoDAO;
+import model.EntradaProduto;
 import model.Produto;
 
 import javax.swing.JButton;
@@ -16,10 +18,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-public class TelaCadastroEntradaProduto extends JFrame implements ActionListener, ItemListener {
+public class TelaCadastroEntradaProduto extends JFrame implements ActionListener {
 	public static void main(String[] args){
 		new TelaCadastroEntradaProduto();
     }
@@ -28,7 +32,7 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 	private JTextField  txtData, txtQuantidade;
     private JLabel lblData= new JLabel("Data:"), lblQuantidade= new JLabel("Quantidade:"), lblIdProduto= new JLabel("Id do Produto:");
     private JButton btnCadastrar , btnLimpar;
-    private JComboBox<Object> cbProdutos = new JComboBox();
+    private JComboBox<Object> cbProdutos = new JComboBox<Object>();
     
 	public TelaCadastroEntradaProduto(){
         super("Cadastro de Entrada de Produto");
@@ -37,7 +41,7 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 			ProdutoDAO dao = new ProdutoDAO();
 	        
 	        for(Produto p: dao.buscar()){
-	        	cbProdutos.addItem(p.getNomeProduto());
+	        	cbProdutos.addItem(p);
 	        	
 	        }
 	       
@@ -46,7 +50,7 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
 			e.printStackTrace();
 		}
 		
-		cbProdutos.addItemListener(this);
+//		cbProdutos.addItemListener(this);
 		cbProdutos.setBounds(139, 123, 153, 22);
 		getContentPane().add(cbProdutos);
 		
@@ -94,39 +98,34 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
     
     public void actionPerformed(ActionEvent cadastrar){
     	
-//    	if(cadastrar.getSource() == btnCadastrar){	  
-//
-//			try {	  			
-//				//começo data
-//				Date pData;
-//			    String nData = txtData.getText();
-//			    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-//				pData = formato.parse(nData);
-//				txtData.setText(nData); 
-//			    //fim data 
-//			         
-//			    String dQuantidade = txtQuantidade.getText();
-//			    int sQuantidade = Integer.parseInt(dQuantidade);
-//			    txtQuantidade.setText(""+sQuantidade);
-//	            
-//	           
-//	            Produto produto = new Produto(prodId, nNomeProduto, nDescProduto, Prod);
-//
-//	            EntradaProduto entradaProduto = new EntradaProduto(pData, sQuantidade, produto);
-//			} catch (ParseException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		    
-//		} else if (cadastrar.getSource() == btnLimpar){
-//			
-//		}
+    	if(cadastrar.getSource() == btnCadastrar){	  
+
+			try {	  			
+				Date pData;
+			    String nData = txtData.getText();
+			    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				pData = formato.parse(nData);
+				txtData.setText(nData); 
+			    //fim data 
+			         
+			    String dQuantidade = txtQuantidade.getText();
+			    int sQuantidade = Integer.parseInt(dQuantidade);
+			    txtQuantidade.setText(""+sQuantidade);
+	            
+	           
+	            Produto ProdutoSelecionado = (Produto) this.cbProdutos.getSelectedItem();
+	            EntradaProduto entradaProduto = new EntradaProduto(pData, sQuantidade, ProdutoSelecionado);
+	            JOptionPane.showMessageDialog(this, entradaProduto);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    
+		} else if (cadastrar.getSource() == btnLimpar){
+			
+		}
     }
     
-	public void itemStateChanged(ItemEvent e) {
-		if(e.getStateChange() == ItemEvent.SELECTED) {
-			String itemCombo = cbProdutos.getSelectedItem().toString();
-			JOptionPane.showMessageDialog(null, itemCombo);
-		}
-	}
+
+	
 }

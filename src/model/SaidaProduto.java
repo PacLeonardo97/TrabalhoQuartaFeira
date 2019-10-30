@@ -6,8 +6,7 @@ public class SaidaProduto{
 	private int quantidade;
 	private Produto produto;
 	
-	public SaidaProduto(int idSaidaProduto, Date data, int quantidade, Produto produto) {
-		setIdSaidaProduto(idSaidaProduto);
+	public SaidaProduto( Date data, int quantidade, Produto produto) {
 		setDate(data);
 		setQuantidade(quantidade);
 		setProduto(produto);
