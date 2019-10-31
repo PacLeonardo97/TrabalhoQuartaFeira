@@ -65,14 +65,14 @@ public class EntradaProdutoDAO {
 	             f.setDataEntrada(rs.getDate("data_entrada"));
 	             f.setQuantidade(rs.getInt("quantidade"));
 	             
-	             //pegar nome_produto, descricao, peso_produto
 	             Produto produto = new Produto();
 	             produto.setNomeProduto(rs.getString("nome_produto"));
 	             produto.setDescricaoProduto(rs.getString("descricao_produto"));
 	             produto.setPesoProduto(rs.getInt("peso_produto"));
-	           
+	             
 	             f.setDataCriada(rs.getDate("created_at"));
 	             lista.add(f);
+	            
 	          }
 	       
 	       } 
