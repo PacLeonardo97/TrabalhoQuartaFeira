@@ -63,6 +63,8 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	private TelaCadastroFuncionario telaCadastroFuncionario;
 	private TelaConsultaFuncionario2 telaConsultaFuncionario;
 
+	private TelaCadastroProduto telaCadastroProduto;
+	
 	public TelaGerenciamentoEstoque() {	
 		setJMenuBar(menuBar);
 		
@@ -98,6 +100,8 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		funcionarioCad.addActionListener(this);
 		funcionarioConsulta.addActionListener(this);
 		
+		ProdutoCad.addActionListener(this);
+		
 		this.setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -117,16 +121,25 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 			desktop.add(telaConsultaFornecedor);
 			telaConsultaFornecedor.setLocation(50, 50);
 			telaConsultaFornecedor.setVisible(true);
+			
 	    } else if(e.getSource() == funcionarioCad) {
 	    	telaCadastroFuncionario = new TelaCadastroFuncionario();
 	    	desktop.add(telaCadastroFuncionario);
 	    	telaCadastroFuncionario.setLocation(50, 50);
 	    	telaCadastroFuncionario.setVisible(true);
-	    }else if(e.getSource() == funcionarioConsulta) {
+	    } else if(e.getSource() == funcionarioConsulta) {
 	    	telaConsultaFuncionario = new TelaConsultaFuncionario2();
 	    	desktop.add(telaConsultaFuncionario);
 	    	telaConsultaFuncionario.setLocation(50, 50);
 	    	telaConsultaFuncionario.setVisible(true);
 	    } 
+		
+	    else if(e.getSource() == ProdutoCad) {
+	    	telaCadastroProduto = new TelaCadastroProduto();
+	    	desktop.add(telaCadastroProduto);
+	    	telaCadastroProduto.setLocation(50, 50);
+	    	telaCadastroProduto.setVisible(true);
+	    }
+		
 	}
 }

@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +18,7 @@ public class FornecedorDAO {
 	FornecedorDAO funrnDao;
 
 	public FornecedorDAO() throws SQLException {
-	    this.conn = new ConexaoBD().conectar();
+		this.conn = new ConexaoBD().conectar();
 	 }
 
 	public void incluir(Fornecedor fornecedor, Endereco endereco) {
