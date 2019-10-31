@@ -1,5 +1,5 @@
 package views;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-public class TelaCadastroEntradaProduto extends JFrame implements ActionListener {
+public class TelaCadastroEntradaProduto extends JInternalFrame implements ActionListener {
 	
 	public static void main(String[] args){
 		new TelaCadastroEntradaProduto();
@@ -35,7 +35,10 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
     
 	public TelaCadastroEntradaProduto(){
         super("Cadastro de Entrada de Produto");
-
+        setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
+		
 		try {
 			ProdutoDAO dao = new ProdutoDAO();
 	        
@@ -88,10 +91,7 @@ public class TelaCadastroEntradaProduto extends JFrame implements ActionListener
         btnLimpar.addActionListener(this);
         
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
-		
+		getContentPane().setLayout(null);	
     }
     
     public void actionPerformed(ActionEvent cadastrar){

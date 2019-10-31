@@ -84,7 +84,7 @@ public class TelaLogin extends JFrame implements ActionListener{
 			//
 			
 			if (dao.checkLogin(txtCPF.getText(), senha)) {
-				new TelaCadastroFornecedor().setVisible(true);
+				new TelaGerenciamentoEstoque().setVisible(true);
 				this.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Credenciais Erradas!!");

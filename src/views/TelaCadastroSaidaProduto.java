@@ -3,7 +3,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import dao.ProdutoDAO;
-import model.EntradaProduto;
 import model.Produto;
 import model.SaidaProduto;
 

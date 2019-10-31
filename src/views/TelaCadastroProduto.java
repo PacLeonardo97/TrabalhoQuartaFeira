@@ -1,5 +1,5 @@
 package views;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import dao.ProdutoDAO;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-public class TelaCadastroProduto extends JFrame implements ActionListener {
+public class TelaCadastroProduto extends JInternalFrame implements ActionListener {
 	public static void main(String[] args){
 		new TelaCadastroProduto();
 	}
@@ -27,9 +27,11 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 	private JButton btnCadastrar, btnLimpar;
 	   
 	public TelaCadastroProduto(){
-		//configura o titulo
 		super("Cadastro de Produto");
-		//instanciar elementos de interface
+		
+		setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
 
 		lblNome = new JLabel("Nome:");
 		txtNome = new JTextField(20);
@@ -43,7 +45,6 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
 
-		//configura o gerenciador de layout
 		Container tela = getContentPane();
 		tela.setLayout(new GridLayout(6,2));
 		JPanel painel3 = new JPanel(new FlowLayout());
@@ -55,7 +56,6 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		JPanel painel11 = new JPanel(new FlowLayout());
 		JPanel painel12 = new JPanel(new FlowLayout());
 		      
-		//adicionar aos paineis
 		painel3.add(lblNome);
 		painel4.add(txtNome);
 		painel5.add(lblDescricao);
@@ -64,7 +64,7 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		painel10.add(txtPeso);
 		painel11.add(btnCadastrar);
 		painel12.add(btnLimpar);
-		//adicionar a tela
+	
 		tela.add(painel3);
 		tela.add(painel4);
 		tela.add(painel5);
@@ -73,20 +73,17 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 		tela.add(painel10);
 		tela.add(painel11);
 		tela.add(painel12);
-		//configurar eventos
+	
 		btnCadastrar.addActionListener(this);
 		btnLimpar.addActionListener(this);
-		//retoques finais
+	
 		setSize(500,500);
-		setLocationRelativeTo(null);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	   
 	public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource()==btnCadastrar){	  
 		    
-			     
 		    String nNome = txtNome.getText();
 		    txtNome.setText(nNome); 
 		         
@@ -102,7 +99,6 @@ public class TelaCadastroProduto extends JFrame implements ActionListener {
 					this.dao = new ProdutoDAO();
 					this.dao.incluir(produto);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		} else if (cadastrar.getSource()==btnLimpar){

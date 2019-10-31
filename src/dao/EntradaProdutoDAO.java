@@ -2,12 +2,16 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import connection.ConexaoBD;
 import model.EntradaProduto;
+import model.Fornecedor;
+import model.Produto;
 
 public class EntradaProdutoDAO {
 	private Connection conn;
@@ -48,5 +52,34 @@ public class EntradaProdutoDAO {
 	          System.out.print(e1.getStackTrace());
 	       }
 	    } 
+	 }
+	
+	 public ArrayList<EntradaProduto> buscar() {
+	    String sqlSelect = 
+	       "SELECT * FROM entprod;";
+	    ArrayList<EntradaProduto> lista = new ArrayList<>();
+	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
+	        while (rs.next()) {
+	        	
+	        	 EntradaProduto f = new EntradaProduto();
+	             f.setDataEntrada(rs.getDate("data_entrada"));
+	             f.setQuantidade(rs.getInt("quantidade"));
+	             
+	             //pegar nome_produto, descricao, peso_produto
+	             Produto produto = new Produto();
+	             produto.setNomeProduto(rs.getString("nome_produto"));
+	             produto.setDescricaoProduto(rs.getString("descricao_produto"));
+	             produto.setPesoProduto(rs.getInt("peso_produto"));
+	           
+	             f.setDataCriada(rs.getDate("created_at"));
+	             lista.add(f);
+	          }
+	       
+	       } 
+	       catch (Exception e) {
+	          e.printStackTrace();
+	       }
+	    System.out.println(lista);
+	    return lista;
 	 }
 }

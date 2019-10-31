@@ -14,6 +14,9 @@ public class EntradaProduto{
 		setQuantidade(quantidade);
 		setProduto(produto);
 	}
+	public EntradaProduto() {
+		
+	}
 	
 	public int getIdEntradaProduto(){
 	    return idEntradaProduto;

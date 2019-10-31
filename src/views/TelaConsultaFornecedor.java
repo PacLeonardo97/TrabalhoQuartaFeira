@@ -97,6 +97,7 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		setClosable(true);
 		setIconifiable(true);
 		setMaximizable(true);
+		
 		setBounds(100, 100, 600, 500);
 		getContentPane().setLayout(null);
 		contentPane = new JPanel();
