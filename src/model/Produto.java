@@ -48,6 +48,7 @@ public class Produto {
 	}	
 
 	public String toString(){
-		return "Foi cadastrado o produto com nome do produto: " + getNomeProduto() + " com a descrição: " + getDescricaoProduto() + " com o peso: " + Integer.toString(getPesoProduto());
+		return getNomeProduto();
 	}
+	
 }

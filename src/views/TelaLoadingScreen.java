@@ -11,7 +11,7 @@ public class TelaLoadingScreen extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
     private JProgressBar progresso;
-    private ImageIcon imagem = new ImageIcon(getClass().getResource("../logo.jpg"));
+    private ImageIcon imagem = new ImageIcon(getClass().getResource("logo.jpg"));
     private JLabel label =new JLabel(imagem);
    
     public TelaLoadingScreen() {

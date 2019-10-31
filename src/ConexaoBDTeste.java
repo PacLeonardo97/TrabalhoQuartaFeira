@@ -1,8 +1,6 @@
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import connection.ConexaoBD;
-
 public class ConexaoBDTeste {
 
 	public static void main(String[] args) {

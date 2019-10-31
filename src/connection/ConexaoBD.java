@@ -9,9 +9,10 @@ public class ConexaoBD {
 		String porta = "3306";
 		String database = "simetec";
 		String usuario = "root";
-		String senha = "guilherme1904";
+		String senha = "Guga983838753@";
 		String conexao = "jdbc:mysql://" + servidor + ":" + porta + 
 				"/" + database + "?useTimezone=true&serverTimezone=UTC";
+		
 		return DriverManager.getConnection(conexao, usuario, senha);
 	}
 	

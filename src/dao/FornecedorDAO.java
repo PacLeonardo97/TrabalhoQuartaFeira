@@ -13,12 +13,13 @@ import model.Fornecedor;
 
 public class FornecedorDAO {
 	
-// a conexão com o banco de dados
+
 	private Connection conn;
 	FornecedorDAO funrnDao;
 
+	// a conexão com o banco de dados
 	public FornecedorDAO() throws SQLException {
-		this.conn = new ConexaoBD().conectar();
+	    this.conn = new ConexaoBD().conectar();
 	 }
 
 	public void incluir(Fornecedor fornecedor, Endereco endereco) {
