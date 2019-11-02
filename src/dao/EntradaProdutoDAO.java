@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 
 import connection.ConexaoBD;
 import model.EntradaProduto;
-import model.Fornecedor;
 import model.Produto;
 
 public class EntradaProdutoDAO {
@@ -54,14 +53,16 @@ public class EntradaProdutoDAO {
 	    } 
 	 }
 	
-	 public ArrayList<EntradaProduto> buscar() {
+	 public ArrayList<Object> buscar() {
 	    String sqlSelect = 
 	       "SELECT * FROM entprod;";
-	    ArrayList<EntradaProduto> lista = new ArrayList<>();
+	    ArrayList<Object> lista = new ArrayList<Object>();
+	    
 	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
 	        while (rs.next()) {
 	        	
 	        	 EntradaProduto f = new EntradaProduto();
+	        	 
 	             f.setDataEntrada(rs.getDate("data_entrada"));
 	             f.setQuantidade(rs.getInt("quantidade"));
 	             
@@ -72,7 +73,7 @@ public class EntradaProdutoDAO {
 	             
 	             f.setDataCriada(rs.getDate("created_at"));
 	             lista.add(f);
-	            
+	             lista.add(produto);
 	          }
 	       
 	       } 

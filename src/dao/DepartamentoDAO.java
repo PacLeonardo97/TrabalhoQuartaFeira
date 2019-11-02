@@ -13,7 +13,8 @@ public class DepartamentoDAO {
 	DepartamentoDAO dptoDao;
 	
 	public DepartamentoDAO() throws SQLException {
-	    this.conn = new ConexaoBD().conectar();
+	    new ConexaoBD();
+		this.conn = ConexaoBD.conectar();
 	 }
 	
 	public void incluir(Departamento departamento) {

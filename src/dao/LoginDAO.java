@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import connection.ConexaoBD;
-import model.Fornecedor;
 import model.Funcionario;
 
 public class LoginDAO {
@@ -18,9 +17,10 @@ public class LoginDAO {
 	FornecedorDAO funrnDao;
 
 	public LoginDAO() throws SQLException {
-	    this.conn = new ConexaoBD().conectar();
+	    new ConexaoBD();
+		this.conn = ConexaoBD.conectar();
 	 }
-	
+
 	 public boolean checkLogin(String cpf, String senha) {
 		String sqlCheck = "SELECT * FROM funcionario WHERE cpf = ? and senha = ?";
         boolean check = false;

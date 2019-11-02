@@ -16,10 +16,10 @@ public class FornecedorDAO {
 
 	private Connection conn;
 	FornecedorDAO funrnDao;
-
 	// a conexão com o banco de dados
 	public FornecedorDAO() throws SQLException {
-	    this.conn = new ConexaoBD().conectar();
+	    new ConexaoBD();
+		this.conn = ConexaoBD.conectar();
 	 }
 
 	public void incluir(Fornecedor fornecedor, Endereco endereco) {
@@ -37,7 +37,7 @@ public class FornecedorDAO {
 
 	       stm.execute();
 	       
-	       ResultSet rs = stm.getGeneratedKeys();  
+	       ResultSet rs = stm.getGeneratedKeys();
 	       rs.next();
 	       int idFunc = rs.getInt(1);
 	       rs.close();

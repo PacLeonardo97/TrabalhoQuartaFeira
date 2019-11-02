@@ -2,9 +2,7 @@ package views;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import br.com.parg.viacep.ViaCEP;
 import dao.DepartamentoDAO;
-import model.Departamento;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,7 +18,7 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 	public static void main(String[] args){
 		new TelaCadastroDepartamento();
 	}
-	
+
 	private static final long serialVersionUID = 1L;
 	private DepartamentoDAO dao;
 	private JTextField txtNome, txtLocal, txtFuncionario;

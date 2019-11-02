@@ -25,7 +25,7 @@ public class TelaCadastroProduto extends JInternalFrame implements ActionListene
 	private JTextField txtNome, txtDescricao, txtPeso;
 	private JLabel lblNome, lblDescricao, lblPeso;
 	private JButton btnCadastrar, btnLimpar;
-	   
+	  
 	public TelaCadastroProduto(){
 		super("Cadastro de Produto");
 		

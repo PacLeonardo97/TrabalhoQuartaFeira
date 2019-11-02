@@ -26,7 +26,7 @@ public class ViaCEPException extends Exception {
         this.CEP = "";
         this.Classe = classe;
     }
-    
+   
     /**
      * Gera uma nova exceção e define o CEP que foi solicitado
      * 

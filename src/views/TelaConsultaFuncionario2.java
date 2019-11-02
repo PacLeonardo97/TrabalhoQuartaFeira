@@ -164,9 +164,6 @@ public class TelaConsultaFuncionario2 extends JInternalFrame implements ActionLi
         public void keyReleased(java.awt.event.KeyEvent evt) {
         	jFuncionarioKeyReleased(evt);
         	}});
-		
-		btnDeletar.addActionListener(this);
-	    btnAtualizar.addActionListener(this);
 	        
 		readJTable();
 		btnDeletar.addActionListener(this);

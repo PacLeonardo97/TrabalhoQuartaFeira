@@ -1,10 +1,11 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,9 +19,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 import dao.EntradaProdutoDAO;
-import dao.FornecedorDAO;
 import model.EntradaProduto;
-import model.Fornecedor;
+import model.Produto;
 
 public class TelaConsultaEntradaProduto extends JFrame {
 
@@ -56,16 +56,18 @@ public class TelaConsultaEntradaProduto extends JFrame {
         	 DefaultTableModel modelo = (DefaultTableModel) tabelaEntradaProduto.getModel();
              modelo.setNumRows(0);
              EntradaProdutoDAO dao = new EntradaProdutoDAO();
-             
-             for (EntradaProduto f : dao.buscar()) {
+             ArrayList<Object> f = dao.buscar();
+             Iterator<Object> iter = f.iterator(); 
+             while(iter.hasNext()) {
+            	 EntradaProduto ep = (EntradaProduto) iter.next();
+            	 Produto p = (Produto) iter.next();
                  modelo.addRow(new Object[]{		 
-                     f.getIdEntradaProduto(),
-                     convertStringToDate(f.getDataEntrada()),
-                     f.getQuantidade(),
-//                     f.getProduto().getNomeProduto(),
-//                     f.getProduto().getDescricaoProduto(),
-//                     f.getProduto().getPesoProduto(),
-                     convertStringToDate(f.getDataCriada())
+                     convertStringToDate(ep.getDataEntrada()),
+                     ep.getQuantidade(),
+                     p.getNomeProduto(),
+                     p.getDescricaoProduto(),
+                     p.getPesoProduto(),
+                     convertStringToDate(ep.getDataCriada())
                  });
                  
              }
@@ -85,7 +87,7 @@ public class TelaConsultaEntradaProduto extends JFrame {
 		   }
 }
 	public TelaConsultaEntradaProduto() {
-		super("Tela de consulta de entrada produto");
+		super("Sde entrada produto");
 		
 		setBounds(100, 100, 768, 500);
 		getContentPane().setLayout(null);
@@ -130,7 +132,7 @@ public class TelaConsultaEntradaProduto extends JFrame {
                 new Object [][] {
                 },
                 new String [] {
-                    "Data de Entrada", "Quantidade", "Nome do Produto", "Descrição do produto","Peso do Produto", "Criado em"
+                    "Data de entrada", "Quantidade", "Nome do Produto", "Descriï¿½ï¿½o do produto","Peso do Produto", "Criado em"
                 }
             ) {
 
@@ -143,7 +145,7 @@ public class TelaConsultaEntradaProduto extends JFrame {
                 public boolean isCellEditable(int rowIndex, int columnIndex) {
                     return canEdit [columnIndex];
                 }
-            });
+        });
         
         tabelaEntradaProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

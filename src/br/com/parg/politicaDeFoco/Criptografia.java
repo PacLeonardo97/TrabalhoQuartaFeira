@@ -26,6 +26,6 @@ public class Criptografia {
 			e.printStackTrace();
 		}
 		return null; 
-	     
+	    
 	}
 }

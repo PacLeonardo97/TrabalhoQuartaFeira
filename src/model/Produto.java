@@ -1,9 +1,13 @@
 package model;
+
+import java.util.Date;
+
 public class Produto {
 	private int idProduto;
 	private String nomeProduto;
 	private String descricaoProduto;
 	private int pesoProduto;
+	private Date dataCriacao;
 
 	public Produto (String nomeProduto, String descricaoProduto, int pesoProduto) {
 		setNomeProduto(nomeProduto);
@@ -31,6 +35,10 @@ public class Produto {
 	      return pesoProduto;
 	}
 	
+	public Date getDataCriacao(){
+	      return dataCriacao;
+	}
+	
 	public void setIdProduto(int idProduto) {
 		this.idProduto = idProduto;
 	}
@@ -46,6 +54,10 @@ public class Produto {
 	public void setPesoProduto(int pesoProduto) {
 		this.pesoProduto = pesoProduto;
 	}	
+	
+	public void setDataCriacao(Date dataCriacao){
+		this.dataCriacao = dataCriacao;
+	}
 
 	public String toString(){
 		return getNomeProduto();
