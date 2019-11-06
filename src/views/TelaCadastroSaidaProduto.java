@@ -1,16 +1,15 @@
 package views;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
-import dao.ProdutoDAO;
-import model.Produto;
+import dao.EntradaProdutoDAO;
+import dao.SaidaProdutoDAO;
+import model.EntradaProduto;
 import model.SaidaProduto;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
@@ -22,7 +21,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
+public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionListener {
 	public static void main(String[] args){
 		new TelaCadastroSaidaProduto();
     }
@@ -32,10 +31,13 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
     private JLabel lblData, lblQuantidade, lblIdProduto;
     private JButton btnCadastrar, btnLimpar;
     private JComboBox<Object> cbProdutos = new JComboBox<Object>();
+    private SaidaProdutoDAO dao;
     
     public TelaCadastroSaidaProduto(){
         super("Cadastro de Saída de Produto");
-
+        setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
 
         lblData = new JLabel("Data:");
         txtData = new JTextField(10);
@@ -43,7 +45,7 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
         lblQuantidade = new JLabel("Quantidade:");
         txtQuantidade = new JTextField(10);
 
-        lblIdProduto = new JLabel("ID do produto:");
+        lblIdProduto = new JLabel("ID da saida de Produto");
 //      txtIdProduto = new JTextField(10);
 
 	    btnCadastrar = new JButton("Cadastrar");
@@ -78,19 +80,19 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 		tela.add(painel6);
 		tela.add(painel7);
 		tela.add(painel8);
-
+		
 		try {
-			ProdutoDAO dao = new ProdutoDAO();
-	        for(Produto p: dao.buscar()){
-	        	cbProdutos.addItem(p);
-	        	  		        	
-	        }  
+			EntradaProdutoDAO dao = new EntradaProdutoDAO();
 	        
+	        for(EntradaProduto p: dao.BuscarEntrada()){
+	        	cbProdutos.addItem(p);
+	        }
+	       
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("index "+cbProdutos.getSelectedIndex());
+		
         tela.add(painel1);
 		tela.add(painel2);
 		tela.add(painel3);
@@ -106,9 +108,7 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
         btnLimpar.addActionListener(this);
         
         setSize(400, 400);
-		setLocationRelativeTo(null);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource() == btnCadastrar){	  
@@ -126,11 +126,16 @@ public class TelaCadastroSaidaProduto extends JFrame implements ActionListener {
 			    int sQuantidade = Integer.parseInt(dQuantidade);
 			    txtQuantidade.setText(""+sQuantidade);
 
-			    Produto ProdutoSelecionado = (Produto) this.cbProdutos.getSelectedItem();
+			    EntradaProduto ProdutoSelecionado = (EntradaProduto) this.cbProdutos.getSelectedItem();
 
-	            SaidaProduto entradaProduto = new SaidaProduto(pData, sQuantidade, ProdutoSelecionado);
-	            JOptionPane.showMessageDialog(this, entradaProduto);
+	            SaidaProduto saidaProduto = new SaidaProduto(pData, sQuantidade, ProdutoSelecionado);
+	            this.dao = new SaidaProdutoDAO();
+	            this.dao.incluir(saidaProduto);
+	            
 			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

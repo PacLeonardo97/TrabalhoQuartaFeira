@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import dao.DepartamentoDAO;
+import model.Departamento;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -91,10 +92,10 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 		    String lLocal = txtLocal.getText();
 		    txtLocal.setText(lLocal);
 		         
-//			Departamento departamento = new Departamento(nNome, lLocal, Fornecedor);
+			Departamento departamento = new Departamento(nNome, lLocal, Fornecedor);
 			try {
 				this.dao = new DepartamentoDAO();
-//				this.dao.incluir(departamento);
+				this.dao.incluir(departamento);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

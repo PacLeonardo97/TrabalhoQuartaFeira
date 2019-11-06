@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,7 +23,7 @@ import javax.swing.table.TableRowSorter;
 import dao.ProdutoDAO;
 import model.Produto;
 
-public class TelaConsultaProduto extends JFrame  implements ActionListener{
+public class TelaConsultaProduto extends JInternalFrame  implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -87,6 +87,10 @@ public class TelaConsultaProduto extends JFrame  implements ActionListener{
 
 	public TelaConsultaProduto() {
 		super("Tela de Consulta de Produto");
+		setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -162,7 +166,6 @@ public class TelaConsultaProduto extends JFrame  implements ActionListener{
 		btnDeletar.addActionListener(this);
         btnAtualizar.addActionListener(this);	
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void jTFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {

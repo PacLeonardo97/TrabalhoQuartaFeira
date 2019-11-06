@@ -36,7 +36,8 @@ create table simetec.produto(
 id_prod int not null auto_increment primary key,
 nome_produto varchar(80) not null,
 Descricao_produto varchar(80) not null,
-peso_produto int not null
+peso_produto int not null,
+created_at datetime
 );
 
 create table simetec.entradaProduto(
@@ -56,9 +57,10 @@ from entradaProduto inner join produto on entradaProduto.prod_id = produto.id_pr
 
 create table simetec.saidaProduto(
 id_saida_prod int not null auto_increment primary key,
-data date not null,
+data_saida date not null,
 quantidade int not null,
 prod_entrada_id int,
+created_at date,
 foreign key (prod_entrada_id) REFERENCES entradaProduto(id_ent_prod)
 on delete set null
 );

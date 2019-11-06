@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,7 +22,7 @@ import dao.EntradaProdutoDAO;
 import model.EntradaProduto;
 import model.Produto;
 
-public class TelaConsultaEntradaProduto extends JFrame {
+public class TelaConsultaEntradaProduto extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -55,9 +55,11 @@ public class TelaConsultaEntradaProduto extends JFrame {
         try {
         	 DefaultTableModel modelo = (DefaultTableModel) tabelaEntradaProduto.getModel();
              modelo.setNumRows(0);
+             
              EntradaProdutoDAO dao = new EntradaProdutoDAO();
              ArrayList<Object> f = dao.buscar();
              Iterator<Object> iter = f.iterator(); 
+             
              while(iter.hasNext()) {
             	 EntradaProduto ep = (EntradaProduto) iter.next();
             	 Produto p = (Produto) iter.next();
@@ -160,7 +162,6 @@ public class TelaConsultaEntradaProduto extends JFrame {
         });
         
         readJTable();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void jTProdutosMouseClicked(java.awt.event.MouseEvent evt) {

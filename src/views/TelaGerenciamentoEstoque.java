@@ -64,9 +64,10 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	private TelaConsultaFuncionario2 telaConsultaFuncionario;
 	
 	private TelaCadastroProduto telaCadastroProduto;
+	private TelaConsultaProduto telaConsultaProduto;
 	
 	private TelaCadastroEntradaProduto telaCadastroEntradaProduto;
-
+	private TelaCadastroSaidaProduto telaCadastroSaidaProduto;
 	public TelaGerenciamentoEstoque() {	
 		setJMenuBar(menuBar);
 		
@@ -103,8 +104,10 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		funcionarioConsulta.addActionListener(this);
 		
 		ProdutoCad.addActionListener(this);
+		ProdutoConsulta.addActionListener(this);
 		
 		cadastrarEntrada.addActionListener(this);
+		SaidaCad.addActionListener(this);
 		
 		this.setResizable(false);
 		contentPane = new JPanel();
@@ -114,8 +117,8 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e){
+		//fornecedor
 		if(e.getSource()==fornecedorCad){   
-			
 			telaCadastroFornecedor = new TelaCadastroFornecedor();
 			desktop.add(telaCadastroFornecedor);
 			telaCadastroFornecedor.setLocation(50, 50);
@@ -125,7 +128,8 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 			desktop.add(telaConsultaFornecedor);
 			telaConsultaFornecedor.setLocation(50, 50);
 			telaConsultaFornecedor.setVisible(true);
-			
+		
+		//Funcionário
 	    } else if(e.getSource() == funcionarioCad) {
 	    	telaCadastroFuncionario = new TelaCadastroFuncionario();
 	    	desktop.add(telaCadastroFuncionario);
@@ -137,18 +141,32 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    	telaConsultaFuncionario.setLocation(50, 50);
 	    	telaConsultaFuncionario.setVisible(true);
 	    	
+	    //Produto
 	    } else if(e.getSource() == ProdutoCad) {
 	    	telaCadastroProduto = new TelaCadastroProduto();
 	    	desktop.add(telaCadastroProduto);
 	    	telaCadastroProduto.setLocation(50, 50);
 	    	telaCadastroProduto.setVisible(true);
+	    } else if (e.getSource() == ProdutoConsulta) {
+	    	telaConsultaProduto = new TelaConsultaProduto();
+	    	desktop.add(telaConsultaProduto);
+	    	telaConsultaProduto.setLocation(50, 50);
+	    	telaConsultaProduto.setVisible(true);
 	    }
-		
+		//Entrada
 	    else if(e.getSource() == cadastrarEntrada) {
 	    	telaCadastroEntradaProduto = new TelaCadastroEntradaProduto();
 	    	desktop.add(telaCadastroEntradaProduto);
 	    	telaCadastroEntradaProduto.setLocation(50, 50);
 	    	telaCadastroEntradaProduto.setVisible(true);
+	    }
+		
+		//Saída
+	    else if(e.getSource() == SaidaCad) {
+	    	telaCadastroSaidaProduto = new TelaCadastroSaidaProduto();
+	    	desktop.add(telaCadastroSaidaProduto);
+	    	telaCadastroSaidaProduto.setLocation(50, 50);
+	    	telaCadastroSaidaProduto.setVisible(true);
 	    }
 	}
 }

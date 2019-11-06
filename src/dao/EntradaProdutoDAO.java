@@ -54,11 +54,10 @@ public class EntradaProdutoDAO {
 	 }
 	
 	 public ArrayList<Object> buscar() {
-	    String sqlSelect = 
-	       "SELECT * FROM entprod;";
+	    String sqlSelect = "SELECT * FROM entprod;";
 	    ArrayList<Object> lista = new ArrayList<Object>();
 	    
-	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
+	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect); ResultSet rs = stm.executeQuery();){
 	        while (rs.next()) {
 	        	
 	        	 EntradaProduto f = new EntradaProduto();
@@ -80,7 +79,27 @@ public class EntradaProdutoDAO {
 	       catch (Exception e) {
 	          e.printStackTrace();
 	       }
-	    System.out.println(lista);
 	    return lista;
+	 }
+	 
+	 public ArrayList<EntradaProduto> BuscarEntrada(){
+		 String sqlSelect = "SELECT * FROM entradaProduto;";
+		 ArrayList<EntradaProduto> lista = new ArrayList<EntradaProduto>();
+		 
+		 try (PreparedStatement stm = conn.prepareStatement(sqlSelect);ResultSet rs = stm.executeQuery();){
+			 while (rs.next()) {
+				 EntradaProduto f = new EntradaProduto();
+				 
+				 f.setIdEntradaProduto(rs.getInt("id_ent_prod"));;
+				 f.setDataEntrada(rs.getDate("data_entrada"));
+		         f.setQuantidade(rs.getInt("quantidade"));
+		         f.setDataCriada(rs.getDate("created_at"));
+		         lista.add(f);
+			 }
+		 }
+		 catch (Exception e) {
+	          e.printStackTrace();
+	       }
+		 return lista;
 	 }
 }

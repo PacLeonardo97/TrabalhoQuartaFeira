@@ -44,7 +44,6 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
 	        
 	        for(Produto p: dao.buscar()){
 	        	cbProdutos.addItem(p);
-	        	
 	        }
 	       
 		} catch (SQLException e) {

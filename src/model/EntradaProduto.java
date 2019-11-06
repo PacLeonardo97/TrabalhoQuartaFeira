@@ -61,6 +61,6 @@ public class EntradaProduto{
 	}
 
 	public String toString(){
-		return " Id Entrada Produto: " + idEntradaProduto;
+		return Integer.toString(getIdEntradaProduto());
 	}
 }
