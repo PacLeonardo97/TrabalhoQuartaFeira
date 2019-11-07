@@ -22,11 +22,11 @@ public class Departamento{
 	      return nomeDepartamento;
 	}
 	
-	public String getLocaDepartamento(){
+	public String getLocalDepartamento(){
 	      return localDepartamento;
 	}
 				
-	public Funcionario funcionario(){
+	public Funcionario getFuncionario(){
 		 return funcionario;
 	}
 	

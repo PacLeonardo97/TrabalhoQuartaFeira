@@ -45,6 +45,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	
 	private JMenu menuEntradaDeProduto = new JMenu("Entrada de Produto");
 	private JMenuItem cadastrarEntrada = new JMenuItem("Cadastrar");
+	private JMenuItem consultaEntrada = new JMenuItem("Consulta");
 	
 	JMenu menuSaidaDeProduto = new JMenu("Saída de Produto");
 	private JMenuItem SaidaCad = new JMenuItem("Cadastrar");
@@ -67,7 +68,13 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	private TelaConsultaProduto telaConsultaProduto;
 	
 	private TelaCadastroEntradaProduto telaCadastroEntradaProduto;
+	private TelaConsultaEntradaProduto telaConsultaEntradaProduto;
+	
 	private TelaCadastroSaidaProduto telaCadastroSaidaProduto;
+	
+	private TelaCadastroDepartamento telaCadastroDepartamento;
+	
+	
 	public TelaGerenciamentoEstoque() {	
 		setJMenuBar(menuBar);
 		
@@ -82,7 +89,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		
 		menuBar.add(menuEntradaDeProduto);
 		menuEntradaDeProduto.add(cadastrarEntrada);
-		
+		menuEntradaDeProduto.add(consultaEntrada);
 		
 		menuBar.add(menuSaidaDeProduto);
 		menuSaidaDeProduto.add(SaidaCad);
@@ -107,9 +114,13 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		ProdutoConsulta.addActionListener(this);
 		
 		cadastrarEntrada.addActionListener(this);
+		consultaEntrada.addActionListener(this);
+		
 		SaidaCad.addActionListener(this);
 		
-		this.setResizable(false);
+		dptoCadastro.addActionListener(this);
+		
+		this.setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(desktop);
@@ -159,6 +170,11 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    	desktop.add(telaCadastroEntradaProduto);
 	    	telaCadastroEntradaProduto.setLocation(50, 50);
 	    	telaCadastroEntradaProduto.setVisible(true);
+	    } else if(e.getSource() == consultaEntrada) {
+	    	telaConsultaEntradaProduto = new TelaConsultaEntradaProduto();
+	    	desktop.add(telaConsultaEntradaProduto);
+	    	telaConsultaEntradaProduto.setLocation(50, 50);
+	    	telaConsultaEntradaProduto.setVisible(true);
 	    }
 		
 		//Saída
@@ -167,6 +183,14 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    	desktop.add(telaCadastroSaidaProduto);
 	    	telaCadastroSaidaProduto.setLocation(50, 50);
 	    	telaCadastroSaidaProduto.setVisible(true);
+	    }
+		
+		//Departamento
+	    else if(e.getSource() == dptoCadastro) {
+	    	telaCadastroDepartamento = new TelaCadastroDepartamento();
+	    	desktop.add(telaCadastroDepartamento);
+	    	telaCadastroDepartamento.setLocation(50, 50);
+	    	telaCadastroDepartamento.setVisible(true);
 	    }
 	}
 }

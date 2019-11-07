@@ -5,8 +5,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Criptografia {
-	
-	public String Criptografia(String senha) {
+	public Criptografia() {
+		
+	}
+
+	public String Criptografar(String senha) {
 		try {
 			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
 		     byte messageDigestSenhaAdmin[] = algorithm.digest(senha.getBytes("UTF-8"));

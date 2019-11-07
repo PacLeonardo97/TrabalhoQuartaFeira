@@ -8,8 +8,8 @@ public class ConexaoBD {
 		String servidor = "127.0.0.1";
 		String porta = "3306";
 		String database = "simetec";
-		String usuario = "root";
-		String senha = "Guga983838753@";
+		String usuario = "Alunos";
+		String senha = "alunos";
 		String conexao = "jdbc:mysql://" + servidor + ":" + porta + 
 				"/" + database + "?useTimezone=true&serverTimezone=UTC";
 		

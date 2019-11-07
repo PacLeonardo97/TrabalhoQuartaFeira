@@ -1,80 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/mysql-connector-java-8.0.18.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/json-20190722.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/org-netbeans-modules-java-j2seproject-copylibstask.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/json-20190722.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/mysql-connector-java-8.0.18.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/org-netbeans-modules-java-j2seproject-copylibstask.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/commons-email-1.5.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/commons-email-1.5-javadoc.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/commons-email-1.5-sources.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/commons-email-1.5-tests.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/commons-email-1.5-test-sources.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/activation-1.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/leozi/OneDrive/Área de Trabalho/TrabaioQuartaFeirinha/Eclipse/libs/javax.mail-1.6.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-email-1.5-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/commons-email-1.5-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-email-1.5-test-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-email-1.5-tests.jar"/>
+	<classpathentry kind="lib" path="lib/commons-email-1.5.jar"/>
+	<classpathentry kind="lib" path="lib/javax.mail-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/json-20190722.jar"/>
+	<classpathentry kind="lib" path="lib/mail-1.4.7.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.18.jar"/>
+	<classpathentry kind="lib" path="lib/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

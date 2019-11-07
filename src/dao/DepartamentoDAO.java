@@ -19,12 +19,12 @@ public class DepartamentoDAO {
 	
 	public void incluir(Departamento departamento) {
 	    String sqlInsert = 
-	       "INSERT INTO produto(nome_departamento, local_departamento) VALUES (?, ?)";
+	       "INSERT INTO departamento(nome_departamento, local, func_id) VALUES (?, ?, ?)";
 	 
 	    try (PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
 	       stm.setString(1, departamento.getNomeDepartamento());
-	       stm.setString(2, departamento.getLocaDepartamento());
-	          
+	       stm.setString(2, departamento.getLocalDepartamento());
+	       stm.setInt(3, departamento.getFuncionario().getidFunc());
 	       stm.execute();
 	       
 	       JOptionPane.showMessageDialog (null, departamento.toString());

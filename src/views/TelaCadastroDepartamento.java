@@ -1,11 +1,17 @@
 package views;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import dao.DepartamentoDAO;
+import dao.EntradaProdutoDAO;
+import dao.LoginDAO;
 import model.Departamento;
+import model.EntradaProduto;
+import model.Funcionario;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -15,19 +21,34 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-public class TelaCadastroDepartamento extends JFrame implements ActionListener {
+public class TelaCadastroDepartamento extends JInternalFrame implements ActionListener {
 	public static void main(String[] args){
 		new TelaCadastroDepartamento();
 	}
 
 	private static final long serialVersionUID = 1L;
 	private DepartamentoDAO dao;
-	private JTextField txtNome, txtLocal, txtFuncionario;
+	private JTextField txtNome, txtLocal;
 	private JLabel lblNome, lblLocal, lblFuncionario;
 	private JButton btnCadastrar, btnLimpar;
-	   
+	private JComboBox<Object> cbFuncionario = new JComboBox<Object>();
 	public TelaCadastroDepartamento(){
 		super("Cadastro de Departamento");
+		setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
+		
+		try {
+			LoginDAO dao = new LoginDAO();
+	        
+	        for(Funcionario p: dao.buscar()){
+	        	cbFuncionario.addItem(p);
+	        }
+	       
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		lblNome = new JLabel("Nome:");
 		txtNome = new JTextField(20);
@@ -36,7 +57,7 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 		txtLocal = new JTextField(20);
         
         lblFuncionario= new JLabel("Funcionario:");
-        txtFuncionario = new JTextField(12);
+        
 
 		btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
@@ -60,7 +81,7 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 		painel6.add(txtLocal);
 		
 		painel9.add(lblFuncionario);
-		painel10.add(txtFuncionario);
+		painel10.add(cbFuncionario);
 		
 		painel11.add(btnCadastrar);
 		painel12.add(btnLimpar);
@@ -70,7 +91,7 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 		tela.add(painel5);
 		tela.add(painel6);
 		tela.add(painel9);
-		tela.add(painel10);
+		tela.add(painel10); 
 		tela.add(painel11);
 		tela.add(painel12);
 
@@ -78,9 +99,7 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 		btnLimpar.addActionListener(this);
 
 		setSize(500,500);
-		setLocationRelativeTo(null);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	   
 	public void actionPerformed(ActionEvent cadastrar){
@@ -92,7 +111,9 @@ public class TelaCadastroDepartamento extends JFrame implements ActionListener {
 		    String lLocal = txtLocal.getText();
 		    txtLocal.setText(lLocal);
 		         
-			Departamento departamento = new Departamento(nNome, lLocal, Fornecedor);
+		    Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
+			Departamento departamento = new Departamento(nNome, lLocal, funcionario);
+			
 			try {
 				this.dao = new DepartamentoDAO();
 				this.dao.incluir(departamento);

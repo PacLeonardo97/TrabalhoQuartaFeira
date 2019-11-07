@@ -89,7 +89,10 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
 		   }
 }
 	public TelaConsultaEntradaProduto() {
-		super("Sde entrada produto");
+		super("Consulta de entrada produto");
+		setClosable(true);
+		setIconifiable(true);
+		setMaximizable(true);
 		
 		setBounds(100, 100, 768, 500);
 		getContentPane().setLayout(null);
@@ -134,7 +137,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
                 new Object [][] {
                 },
                 new String [] {
-                    "Data de entrada", "Quantidade", "Nome do Produto", "Descriï¿½ï¿½o do produto","Peso do Produto", "Criado em"
+                    "Data de entrada", "Quantidade", "Nome do Produto", "Descrição do produto","Peso do Produto", "Criado em"
                 }
             ) {
 

@@ -80,7 +80,7 @@ public class TelaLogin extends JFrame implements ActionListener{
 			
 			//criptografia para entrar no sistema
 			Criptografia cripto = new Criptografia();
-			String senha = cripto.Criptografia(txtSenha.getText());
+			String senha = cripto.Criptografar(txtSenha.getText());
 			//
 			
 			if (dao.checkLogin(txtCPF.getText(), senha)) {

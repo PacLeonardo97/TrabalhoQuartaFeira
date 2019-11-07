@@ -58,7 +58,7 @@ public class Funcionario{
 	
 	public void setSenhaFuncionario(String senhaFuncionario) {
 		Criptografia criptografia = new Criptografia();
-		String senha = criptografia.Criptografia(senhaFuncionario);
+		String senha = criptografia.Criptografar(senhaFuncionario);
 		this.senhaFuncionario = senha;
 	}
 	
@@ -67,7 +67,7 @@ public class Funcionario{
 	}
 	
 	public String toString() {
-		return getNomeFuncionario() + " com o nome: " + getNomeFuncionario() + "com a senha: " + getSenhaFuncionario();
+		return  getNomeFuncionario();
 	}
 }
 

@@ -12,7 +12,7 @@ public class TelaLoadingScreen extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
     private JProgressBar progresso;
-    private ImageIcon imagem = new ImageIcon(getClass().getResource("../logo.jpg"));
+    private ImageIcon imagem = new ImageIcon(getClass().getResource("../logo.png"));
     private JLabel label =new JLabel(imagem);
     
     public TelaLoadingScreen() {
@@ -33,9 +33,8 @@ public class TelaLoadingScreen extends JFrame{
 	                    e.printStackTrace();
 	                }
 	            }
-	            new TelaGerenciamentoEstoque().setExtendedState(MAXIMIZED_BOTH);
-	            new TelaGerenciamentoEstoque().setVisible(true);
-	            
+//	            new TelaGerenciamentoEstoque().setExtendedState(MAXIMIZED_BOTH);
+	            new TelaLogin().setVisible(true);
 	            
 	            TelaLoadingScreen.this.dispose();
 	        }
