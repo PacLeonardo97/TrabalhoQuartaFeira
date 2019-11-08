@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -37,7 +38,6 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
         super("Cadastro de Saída de Produto");
         setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
 
         lblData = new JLabel("Data:");
         txtData = new JTextField(10);
@@ -144,4 +144,9 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 			System.exit(0);
 		}
     }
+    
+    public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	}
 }

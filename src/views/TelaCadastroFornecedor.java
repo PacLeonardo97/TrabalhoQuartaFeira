@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -49,7 +50,6 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 
     public TelaCadastroFornecedor(){
         super("Cadastro de Fornecedor");
-        setMaximizable(true);
         setIconifiable(true);
         setClosable(true);
         
@@ -58,7 +58,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblNome);
 		
         txtNome = new JTextField(20);
-        txtNome.setBounds(92, 25, 153, 20);
+        txtNome.setBounds(92, 25, 153, 28);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
         
@@ -67,7 +67,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblTelefone);
 		
         txtTelefone = new JTextField(20);
-        txtTelefone.setBounds(92, 75, 153, 20);
+        txtTelefone.setBounds(92, 75, 153, 28);
 		getContentPane().add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
@@ -76,7 +76,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblCnpj);
 		
         txtCnpj = new JTextField(20);
-        txtCnpj.setBounds(92, 125, 153, 20);
+        txtCnpj.setBounds(92, 125, 153, 28);
 		getContentPane().add(txtCnpj);
 		txtCnpj.setColumns(10);
         
@@ -85,7 +85,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblCep);
         
         txtCep = new JTextField(20);
-        txtCep.setBounds(92, 175, 153, 20);
+        txtCep.setBounds(92, 175, 153, 28);
 		getContentPane().add(txtCep);
 		txtCep.setColumns(10);
         
@@ -94,7 +94,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblEstado);
 		
         txtEstado = new JTextField(20);
-        txtEstado.setBounds(352, 25, 153, 20);
+        txtEstado.setBounds(352, 25, 153, 28);
 		getContentPane().add(txtEstado);
 		txtEstado.setColumns(10);
         
@@ -103,7 +103,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblCidade);
 		
         txtCidade = new JTextField(20);
-        txtCidade.setBounds(352, 75, 153, 20);
+        txtCidade.setBounds(352, 75, 153, 28);
 		getContentPane().add(txtCidade);
 		txtCidade.setColumns(10);
         
@@ -112,7 +112,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblRua);
         
         txtRua = new JTextField(20);
-        txtRua.setBounds(352, 175, 153, 20);
+        txtRua.setBounds(352, 175, 153, 28);
 		getContentPane().add(txtRua);
 		txtRua.setColumns(10);
         
@@ -121,7 +121,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblBairro);
 		
         txtBairro = new JTextField(20);
-        txtBairro.setBounds(352, 125, 153, 20);
+        txtBairro.setBounds(352, 125, 153, 28);
 		getContentPane().add(txtBairro);
 		txtBairro.setColumns(10);
         
@@ -130,7 +130,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(lblNumero);
 		
         txtNumero = new JTextField(20);
-        txtNumero.setBounds(208, 225, 153, 20);
+        txtNumero.setBounds(208, 225, 153, 28);
 		getContentPane().add(txtNumero);
 		txtNumero.setColumns(10);
         
@@ -162,17 +162,17 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
-        this.setSize(600, 450);
+        this.setSize(583, 402);
         this.setResizable(false); //Não tem mais o botão para maximizar e o tamanho é sempre padrão
 
 		getContentPane().setLayout(null);
 				
 		
-		btnCadastrar.setBounds(156, 268, 89, 34);
+		btnCadastrar.setBounds(156, 268, 89, 48);
 		getContentPane().add(btnCadastrar);
 		
 		JButton btnLimpar = new JButton("limpar");
-		btnLimpar.setBounds(297, 268, 89, 34);
+		btnLimpar.setBounds(297, 268, 89, 48);
 		getContentPane().add(btnLimpar);
 		
 		setFocusTraversalPolicy(new PoliticaFoco());
@@ -243,4 +243,9 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
     	    this.componentes.add(txtNumero);
     	  }
     }  
+    
+    public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	}
 }

@@ -1,7 +1,6 @@
 package views;
 
 import java.awt.EventQueue;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -89,10 +88,8 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
 		super("Tela de Consulta de Produto");
 		setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
 		
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -4,6 +4,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import dao.EntradaProdutoDAO;
 import dao.ProdutoDAO;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import java.sql.SQLException;
@@ -37,7 +39,6 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
         super("Cadastro de Entrada de Produto");
         setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
 		
 		try {
 			ProdutoDAO dao = new ProdutoDAO();
@@ -51,25 +52,25 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
 			e.printStackTrace();
 		}
 		
-		cbProdutos.setBounds(139, 123, 153, 22);
+		cbProdutos.setBounds(139, 127, 153, 28);
 		getContentPane().add(cbProdutos);
 		
-		lblData.setBounds(55, 36, 40, 20);
+		lblData.setBounds(44, 40, 85, 20);
 		getContentPane().add(lblData);
 		
-		lblQuantidade.setBounds(33, 82, 74, 20);
+		lblQuantidade.setBounds(32, 86, 97, 20);
 		getContentPane().add(lblQuantidade);
 		
-		lblIdProduto.setBounds(33, 124, 74, 20);
+		lblIdProduto.setBounds(32, 131, 97, 20);
 		getContentPane().add(lblIdProduto);
 			
 		txtData = new JTextField(20);
-		txtData.setBounds(139, 36, 153, 20);
+		txtData.setBounds(139, 36, 153, 28);
 		getContentPane().add(txtData);
 		txtData.setColumns(10);
 		
 		txtQuantidade = new JTextField(20);
-		txtQuantidade.setBounds(139, 82, 153, 20);
+		txtQuantidade.setBounds(139, 82, 153, 28);
 		getContentPane().add(txtQuantidade);
 		txtQuantidade.setColumns(10);
 		
@@ -78,11 +79,11 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
         getContentPane().setLayout(null);
 		
 		btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(55, 188, 89, 34);
+		btnCadastrar.setBounds(44, 188, 89, 48);
 		getContentPane().add(btnCadastrar);	
 		
 		JButton btnLimpar = new JButton("limpar");
-		btnLimpar.setBounds(184, 188, 89, 34);
+		btnLimpar.setBounds(188, 188, 89, 48);
 		getContentPane().add(btnLimpar);
 		
 		
@@ -114,6 +115,7 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
 		            
 		            this.dao = new EntradaProdutoDAO();
 		            dao.incluir(entradaProduto);
+		            JOptionPane.showMessageDialog(this, "Funcionário Criado");
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -126,5 +128,10 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
 		} else if (cadastrar.getSource() == btnLimpar){
 			
 		}
-    }	
+    }
+    
+    public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	}
 }

@@ -1,12 +1,16 @@
 package views;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -16,10 +20,35 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
 				try {
+					for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				        if ("Nimbus".equals(info.getName())) {
+				            UIManager.setLookAndFeel(info.getClassName());
+				            break;
+				        }
+				    }
+			    } 
+			    catch (UnsupportedLookAndFeelException e) {
+			       // handle exception
+			    }
+			    catch (ClassNotFoundException e) {
+			       // handle exception
+			    }
+			    catch (InstantiationException e) {
+			       // handle exception
+			    }
+			    catch (IllegalAccessException e) {
+			       // handle exception
+			    }
+				
+				try {
+					
 					TelaGerenciamentoEstoque frame = new TelaGerenciamentoEstoque();
+					frame.IconImage();
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+					
 					frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -132,48 +161,47 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		if(e.getSource()==fornecedorCad){   
 			telaCadastroFornecedor = new TelaCadastroFornecedor();
 			desktop.add(telaCadastroFornecedor);
-			telaCadastroFornecedor.setLocation(50, 50);
 			telaCadastroFornecedor.setVisible(true);
+			telaCadastroFornecedor.setPosicao();
 	    } else if(e.getSource()== FornecedorConsulta) {
 	    	telaConsultaFornecedor = new TelaConsultaFornecedor();
 			desktop.add(telaConsultaFornecedor);
-			telaConsultaFornecedor.setLocation(50, 50);
 			telaConsultaFornecedor.setVisible(true);
-		
+			telaConsultaFornecedor.setPosicao();
 		//Funcionário
 	    } else if(e.getSource() == funcionarioCad) {
 	    	telaCadastroFuncionario = new TelaCadastroFuncionario();
 	    	desktop.add(telaCadastroFuncionario);
-	    	telaCadastroFuncionario.setLocation(50, 50);
+	    	telaCadastroFuncionario.setPosicao();
 	    	telaCadastroFuncionario.setVisible(true);
 	    }else if(e.getSource() == funcionarioConsulta) {
 	    	telaConsultaFuncionario = new TelaConsultaFuncionario2();
 	    	desktop.add(telaConsultaFuncionario);
-	    	telaConsultaFuncionario.setLocation(50, 50);
+	    	telaConsultaFuncionario.setPosicao();
 	    	telaConsultaFuncionario.setVisible(true);
 	    	
 	    //Produto
 	    } else if(e.getSource() == ProdutoCad) {
 	    	telaCadastroProduto = new TelaCadastroProduto();
 	    	desktop.add(telaCadastroProduto);
-	    	telaCadastroProduto.setLocation(50, 50);
+	    	telaCadastroProduto.setPosicao();
 	    	telaCadastroProduto.setVisible(true);
 	    } else if (e.getSource() == ProdutoConsulta) {
 	    	telaConsultaProduto = new TelaConsultaProduto();
 	    	desktop.add(telaConsultaProduto);
-	    	telaConsultaProduto.setLocation(50, 50);
+	    	telaConsultaProduto.setLocation(500, 190);
 	    	telaConsultaProduto.setVisible(true);
 	    }
 		//Entrada
 	    else if(e.getSource() == cadastrarEntrada) {
 	    	telaCadastroEntradaProduto = new TelaCadastroEntradaProduto();
 	    	desktop.add(telaCadastroEntradaProduto);
-	    	telaCadastroEntradaProduto.setLocation(50, 50);
+	    	telaCadastroEntradaProduto.setPosicao();
 	    	telaCadastroEntradaProduto.setVisible(true);
 	    } else if(e.getSource() == consultaEntrada) {
 	    	telaConsultaEntradaProduto = new TelaConsultaEntradaProduto();
 	    	desktop.add(telaConsultaEntradaProduto);
-	    	telaConsultaEntradaProduto.setLocation(50, 50);
+	    	telaConsultaEntradaProduto.setPosicao();
 	    	telaConsultaEntradaProduto.setVisible(true);
 	    }
 		
@@ -181,7 +209,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    else if(e.getSource() == SaidaCad) {
 	    	telaCadastroSaidaProduto = new TelaCadastroSaidaProduto();
 	    	desktop.add(telaCadastroSaidaProduto);
-	    	telaCadastroSaidaProduto.setLocation(50, 50);
+	    	telaCadastroSaidaProduto.setPosicao();
 	    	telaCadastroSaidaProduto.setVisible(true);
 	    }
 		
@@ -189,8 +217,11 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    else if(e.getSource() == dptoCadastro) {
 	    	telaCadastroDepartamento = new TelaCadastroDepartamento();
 	    	desktop.add(telaCadastroDepartamento);
-	    	telaCadastroDepartamento.setLocation(50, 50);
+	    	telaCadastroDepartamento.setPosicao();
 	    	telaCadastroDepartamento.setVisible(true);
 	    }
+	}
+	void IconImage() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logo.png") ));
 	}
 }

@@ -1,92 +1,100 @@
 package views;
+
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import dao.ProdutoDAO;
 import model.Produto;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Container;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
-
 public class TelaCadastroProduto extends JInternalFrame implements ActionListener {
-	public static void main(String[] args){
-		new TelaCadastroProduto();
-	}
-
 	private static final long serialVersionUID = 1L;
 	private ProdutoDAO dao;
+
+	private JLabel lblNome, lblDescrio, lblPeso;
 	private JTextField txtNome, txtDescricao, txtPeso;
-	private JLabel lblNome, lblDescricao, lblPeso;
-	private JButton btnCadastrar, btnLimpar;
-	  
-	public TelaCadastroProduto(){
+	
+
+	private JButton btnCadastrar = new JButton("Cadastrar"),  btnLimpar = new JButton("Limpar");
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroProduto frame = new TelaCadastroProduto();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public TelaCadastroProduto() {
 		super("Cadastro de Produto");
-		
 		setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
+		
+		setBounds(100, 100, 345, 315);
 
-		lblNome = new JLabel("Nome:");
-		txtNome = new JTextField(20);
-
-		lblDescricao = new JLabel("Descrição:");
-		txtDescricao = new JTextField(20);
-
-		lblPeso = new JLabel("Peso:");
-		txtPeso = new JTextField(10);
-
-		btnCadastrar = new JButton("Cadastrar");
-		btnLimpar = new JButton("Limpar");
-
-		Container tela = getContentPane();
-		tela.setLayout(new GridLayout(6,2));
-		JPanel painel3 = new JPanel(new FlowLayout());
-		JPanel painel4 = new JPanel(new FlowLayout());
-		JPanel painel5 = new JPanel(new FlowLayout());
-		JPanel painel6 = new JPanel(new FlowLayout());
-		JPanel painel9 = new JPanel(new FlowLayout());
-		JPanel painel10 = new JPanel(new FlowLayout());
-		JPanel painel11 = new JPanel(new FlowLayout());
-		JPanel painel12 = new JPanel(new FlowLayout());
-		      
-		painel3.add(lblNome);
-		painel4.add(txtNome);
-		painel5.add(lblDescricao);
-		painel6.add(txtDescricao);
-		painel9.add(lblPeso);
-		painel10.add(txtPeso);
-		painel11.add(btnCadastrar);
-		painel12.add(btnLimpar);
-	
-		tela.add(painel3);
-		tela.add(painel4);
-		tela.add(painel5);
-		tela.add(painel6);
-		tela.add(painel9);
-		tela.add(painel10);
-		tela.add(painel11);
-		tela.add(painel12);
-	
+		
+		
+		getContentPane().setLayout(null);
+		
+		txtNome = new JTextField();
+		txtNome.setBounds(131, 22, 153, 28);
+		getContentPane().add(txtNome);
+		txtNome.setColumns(10);
+		
+		txtDescricao = new JTextField();
+		txtDescricao.setBounds(131, 80, 153, 28);
+		getContentPane().add(txtDescricao);
+		txtDescricao.setColumns(10);
+		
+		txtPeso = new JTextField();
+		txtPeso.setBounds(131, 137, 153, 28);
+		getContentPane().add(txtPeso);
+		txtPeso.setColumns(10);
+		
+		lblNome = new JLabel("Nome");
+		lblNome.setBounds(45, 29, 48, 14);
+		getContentPane().add(lblNome);
+		
+		lblDescrio = new JLabel("Descri\u00E7\u00E3o");
+		lblDescrio.setBounds(45, 87, 48, 14);
+		getContentPane().add(lblDescrio);
+		
+		lblPeso = new JLabel("Peso");
+		lblPeso.setBounds(45, 144, 48, 14);
+		getContentPane().add(lblPeso);
+		
+		
+		btnCadastrar.setBounds(38, 193, 89, 48);
+		getContentPane().add(btnCadastrar);
+		
+		
+		btnLimpar.setBounds(192, 193, 89, 48);
+		getContentPane().add(btnLimpar);
+		
 		btnCadastrar.addActionListener(this);
 		btnLimpar.addActionListener(this);
-	
-		setSize(500,500);
-		setVisible(true);
 	}
-	   
+
 	public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource()==btnCadastrar){	  
-		    
-		    String nNome = txtNome.getText();
-		    txtNome.setText(nNome); 
-		         
+			    
+			String nNome = txtNome.getText();
+			txtNome.setText(nNome); 
+			         
 		    String dDescricao = txtDescricao.getText();
 		    txtDescricao.setText(dDescricao);
 		         
@@ -107,4 +115,14 @@ public class TelaCadastroProduto extends JInternalFrame implements ActionListene
 	    	  txtPeso.setText("");
 		}
 	}
+		
+	public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	}
 }
+
+
+
+	
+	

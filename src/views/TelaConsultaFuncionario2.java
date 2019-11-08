@@ -1,6 +1,7 @@
 package views;
 
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -98,9 +99,8 @@ public class TelaConsultaFuncionario2 extends JInternalFrame implements ActionLi
 		super("Tela de Consulta de Funcionário");
 		setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
+
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -228,5 +228,9 @@ public class TelaConsultaFuncionario2 extends JInternalFrame implements ActionLi
 			}	
     	}
     }
-
+    
+    public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	}
 }

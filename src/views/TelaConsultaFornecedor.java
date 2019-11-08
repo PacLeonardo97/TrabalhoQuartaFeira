@@ -3,6 +3,7 @@ package views;
 import dao.FornecedorDAO;
 import model.Fornecedor;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -96,7 +97,6 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		super("Consulta de Fornecedor");
 		setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
 		
 		setBounds(100, 100, 600, 500);
 		getContentPane().setLayout(null);
@@ -245,5 +245,10 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 				}
 			}			
 		}
+	}
+    
+    public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
 	}
 }

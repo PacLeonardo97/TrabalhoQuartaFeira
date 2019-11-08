@@ -1,12 +1,43 @@
 package views;
+import java.awt.Color;
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 
 public class TelaLoadingScreen extends JFrame{
 	public static void main(String[] args) {
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		        	 
+		            UIManager.setLookAndFeel(info.getClassName());
+		            
+		            break;
+		        }
+		        
+		    }
+	             
+	    } 
+	    catch (UnsupportedLookAndFeelException e) {
+	       // handle exception
+	    }
+	    catch (ClassNotFoundException e) {
+	       // handle exception
+	    }
+	    catch (InstantiationException e) {
+	       // handle exception
+	    }
+	    catch (IllegalAccessException e) {
+	       // handle exception
+	    }
+		
         new TelaLoadingScreen();
     }
 	
@@ -17,7 +48,9 @@ public class TelaLoadingScreen extends JFrame{
     
     public TelaLoadingScreen() {
 	    super("Tela de Carregamento");
-	    
+	    TelaLoadingScreen.this.IconImage();
+        UIManager.put("ProgressBar.foreground", Color.green);
+        UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
 	    progresso = new JProgressBar();
 	    progresso.setStringPainted(true);
 	    
@@ -26,6 +59,7 @@ public class TelaLoadingScreen extends JFrame{
 	            for (int i = 0; i < 101; i++) {
 	                try {
 	                    sleep(30);
+	                    
 	                    progresso.setValue(i);
 	
 	                } catch (InterruptedException e) {
@@ -33,13 +67,12 @@ public class TelaLoadingScreen extends JFrame{
 	                    e.printStackTrace();
 	                }
 	            }
-//	            new TelaGerenciamentoEstoque().setExtendedState(MAXIMIZED_BOTH);
 	            new TelaLogin().setVisible(true);
 	            
 	            TelaLoadingScreen.this.dispose();
 	        }
 	    }.start();
-	
+	   
 	    setSize(387,252);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -49,9 +82,11 @@ public class TelaLoadingScreen extends JFrame{
 		label.setBounds(42, 11, 279, 119);
 		getContentPane().add(label);
 		
-		
 		progresso.setBounds(64, 167, 245, 17);
 		getContentPane().add(progresso);
     }
     
+    private void IconImage() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logo.png") ));
+	}
 }

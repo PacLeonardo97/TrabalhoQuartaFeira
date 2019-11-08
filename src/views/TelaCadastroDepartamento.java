@@ -1,13 +1,11 @@
 package views;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
 import dao.DepartamentoDAO;
-import dao.EntradaProdutoDAO;
 import dao.LoginDAO;
 import model.Departamento;
-import model.EntradaProduto;
+
 import model.Funcionario;
 
 import javax.swing.JButton;
@@ -16,10 +14,13 @@ import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
+
+
 
 public class TelaCadastroDepartamento extends JInternalFrame implements ActionListener {
 	public static void main(String[] args){
@@ -36,7 +37,7 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 		super("Cadastro de Departamento");
 		setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
+		
 		
 		try {
 			LoginDAO dao = new LoginDAO();
@@ -113,18 +114,18 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 		         
 		    Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
 			Departamento departamento = new Departamento(nNome, lLocal, funcionario);
+//			fazer a Comunicação com o DepartamentoDAO
 			
-			try {
-				this.dao = new DepartamentoDAO();
-				this.dao.incluir(departamento);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		    
 		} else if (cadastrar.getSource()==btnLimpar){
 	    	  txtNome.setText("");
 	    	  txtLocal.setText("");
 		}
 	}
+	
+	public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	}
+	
 }

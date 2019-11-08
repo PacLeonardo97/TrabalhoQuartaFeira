@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.text.SimpleDateFormat;
@@ -35,6 +36,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
 				try {
 					TelaConsultaEntradaProduto frame = new TelaConsultaEntradaProduto();
 					frame.setVisible(true);
@@ -92,7 +94,6 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
 		super("Consulta de entrada produto");
 		setClosable(true);
 		setIconifiable(true);
-		setMaximizable(true);
 		
 		setBounds(100, 100, 768, 500);
 		getContentPane().setLayout(null);
@@ -107,7 +108,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
 		scrollPane.setViewportView(tabelaEntradaProduto);
 		scrollPane.setBounds(30, 113, 685, 295);
 		getContentPane().add(scrollPane);
-        this.setResizable(false);
+       
         
         btnDeletar.setBounds(348, 79, 89, 23);
         getContentPane().add(btnDeletar);
@@ -137,7 +138,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
                 new Object [][] {
                 },
                 new String [] {
-                    "Data de entrada", "Quantidade", "Nome do Produto", "Descrição do produto","Peso do Produto", "Criado em"
+                    "Data de entrada", "Quantidade", "Nome do Produto", "Descriï¿½ï¿½o do produto","Peso do Produto", "Criado em"
                 }
             ) {
 
@@ -164,6 +165,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
             }
         });
         
+        this.setResizable(false);
         readJTable();
 	}
 	
@@ -182,4 +184,8 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
         }
     }
     
+    public void setPosicao() {
+	    Dimension d = this.getDesktopPane().getSize();
+	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	} 
 }

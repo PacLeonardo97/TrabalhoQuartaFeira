@@ -1,6 +1,9 @@
 package views;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import br.com.parg.politicaDeFoco.Criptografia;
 import dao.LoginDAO;
@@ -11,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -19,6 +23,30 @@ import javax.swing.JPanel;
 
 public class TelaLogin extends JFrame implements ActionListener{
 	public static void main(String[] args){
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+	     //        Set cross-platform Java L&F (also called "Metal")
+	       // UIManager.setLookAndFeel(
+	         //   UIManager.getCrossPlatformLookAndFeelClassName());*/
+	    } 
+	    catch (UnsupportedLookAndFeelException e) {
+	       // handle exception
+	    }
+	    catch (ClassNotFoundException e) {
+	       // handle exception
+	    }
+	    catch (InstantiationException e) {
+	       // handle exception
+	    }
+	    catch (IllegalAccessException e) {
+	       // handle exception
+	    }
+		
 		new TelaLogin();
     }
 	
@@ -29,7 +57,7 @@ public class TelaLogin extends JFrame implements ActionListener{
 
     public TelaLogin(){
         super("Tela de Login");
-
+        TelaLogin.this.IconImage();
         lblCPF = new JLabel("CPF:");
         txtCPF = new JTextField(20);
 
@@ -84,7 +112,10 @@ public class TelaLogin extends JFrame implements ActionListener{
 			//
 			
 			if (dao.checkLogin(txtCPF.getText(), senha)) {
-				new TelaGerenciamentoEstoque().setVisible(true);
+				TelaGerenciamentoEstoque TelaEstoque = new TelaGerenciamentoEstoque();
+				TelaEstoque.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				TelaEstoque.setVisible(true);
+				TelaEstoque.IconImage();
 				this.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Credenciais Erradas!!");
@@ -97,4 +128,8 @@ public class TelaLogin extends JFrame implements ActionListener{
             System.exit(0);
         }
      }
+    
+    private void IconImage() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logo.png") ));
+	}
 }
