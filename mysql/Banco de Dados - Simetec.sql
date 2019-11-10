@@ -49,6 +49,8 @@ prod_id int,
 foreign key (prod_id) REFERENCES produto(id_prod)
 on delete set null
 );
+insert into simetec.funcionario (cpf, nome, senha, created_at) values("1234", "josemir","03AC674216F3E15C761EE1A5E255F067953623C8B388B4459E13F978D7C846F4", NOW()); -- cpf = 1234, nome = josemir, senha = 1234(criptografada)
+
 
 select entradaProduto.data_entrada, entradaProduto.quantidade, produto.nome_produto, produto.Descricao_produto, produto.peso_produto from entradaProduto inner join produto on entradaProduto.prod_id = produto.id_prod;
 

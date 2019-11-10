@@ -20,8 +20,6 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
-
-
 public class TelaCadastroDepartamento extends JInternalFrame implements ActionListener {
 	public static void main(String[] args){
 		new TelaCadastroDepartamento();

@@ -1,5 +1,16 @@
 package views;
+
+import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -7,32 +18,29 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import br.com.parg.politicaDeFoco.Criptografia;
 import dao.LoginDAO;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.Container;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 public class TelaLogin extends JFrame implements ActionListener{
-	public static void main(String[] args){
+
+	private static final long serialVersionUID = 1L;
+	private JTextField txtCPF;
+	private JButton btnCadastrar = new JButton("Entrar"), btnLimpar = new JButton("Limpar");;
+	private ImageIcon imagem = new ImageIcon(getClass().getResource("../logo.png"));
+    private JLabel label =new JLabel(imagem);
+    private JPasswordField txtSenha = new JPasswordField();;
+    
+	public static void main(String[] args) {
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
+		        	 
 		            UIManager.setLookAndFeel(info.getClassName());
+		            
 		            break;
 		        }
+		        
 		    }
-	     //        Set cross-platform Java L&F (also called "Metal")
-	       // UIManager.setLookAndFeel(
-	         //   UIManager.getCrossPlatformLookAndFeelClassName());*/
+	             
 	    } 
 	    catch (UnsupportedLookAndFeelException e) {
 	       // handle exception
@@ -46,90 +54,89 @@ public class TelaLogin extends JFrame implements ActionListener{
 	    catch (IllegalAccessException e) {
 	       // handle exception
 	    }
-		
-		new TelaLogin();
-    }
-	
-	private static final long serialVersionUID = 1L;
-    private JTextField txtCPF, txtSenha;
-    private JLabel lblCPF, lblSenha;
-    private JButton btnLogar, btnLimpar;
-
-    public TelaLogin(){
-        super("Tela de Login");
-        TelaLogin.this.IconImage();
-        lblCPF = new JLabel("CPF:");
-        txtCPF = new JTextField(20);
-
-        lblSenha = new JLabel("Senha:");
-        txtSenha = new JTextField(20);
-
-        btnLogar = new JButton("Entrar");
-		btnLimpar = new JButton("Limpar");
-
-        Container tela = getContentPane();
-        tela.setLayout(new GridLayout(3,2));
-        JPanel painel1 = new JPanel(new FlowLayout());
-		JPanel painel2 = new JPanel(new FlowLayout());
-		JPanel painel3 = new JPanel(new FlowLayout());
-		JPanel painel4 = new JPanel(new FlowLayout());
-		JPanel painel5 = new JPanel(new FlowLayout());
-        JPanel painel6 = new JPanel(new FlowLayout());
-
-        painel1.add(lblCPF);
-        painel2.add(txtCPF);
-
-        painel3.add(lblSenha);
-        painel4.add(txtSenha);
-
-        painel5.add(btnLogar);
-        painel6.add(btnLimpar);
-
-        tela.add(painel1);
-        tela.add(painel2);
-        tela.add(painel3);
-        tela.add(painel4);
-        tela.add(painel5);
-        tela.add(painel6);
-
-        btnLogar.addActionListener(this);
-        btnLimpar.addActionListener(this);
-
-        setSize(500,500);
-		setLocationRelativeTo(null);
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    public void actionPerformed(ActionEvent logar){
-        if(logar.getSource()==btnLogar){   
-           try {
-			LoginDAO dao = new LoginDAO();
-			
-			//criptografia para entrar no sistema
-			Criptografia cripto = new Criptografia();
-			String senha = cripto.Criptografar(txtSenha.getText());
-			//
-			
-			if (dao.checkLogin(txtCPF.getText(), senha)) {
-				TelaGerenciamentoEstoque TelaEstoque = new TelaGerenciamentoEstoque();
-				TelaEstoque.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				TelaEstoque.setVisible(true);
-				TelaEstoque.IconImage();
-				this.dispose();
-			} else {
-				JOptionPane.showMessageDialog(null, "Credenciais Erradas!!");
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaLogin frame = new TelaLogin();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		});
+	}
+
+
+	public TelaLogin() {
+		setBounds(100, 100, 351, 344);
+		getContentPane().setLayout(null);
+		TelaLogin.this.IconImage();
+		setLocationRelativeTo(null);
+		
+		JLabel lblCpf = new JLabel("CPF");
+		lblCpf.setBounds(55, 132, 48, 14);
+		getContentPane().add(lblCpf);
+		
+		JLabel lblSenha = new JLabel("Senha");
+		lblSenha.setBounds(55, 187, 48, 14);
+		getContentPane().add(lblSenha);
+		
+		txtCPF = new JTextField();
+		txtCPF.setBounds(128, 125, 142, 28);
+		getContentPane().add(txtCPF);
+		txtCPF.setColumns(10);
+		
+		txtSenha.setBounds(128, 180, 142, 28);
+		getContentPane().add(txtSenha);
+		txtSenha.setColumns(10);
+		
+		btnCadastrar.setBounds(45, 246, 89, 48);
+		getContentPane().add(btnCadastrar);
+		
+		btnLimpar.setBounds(199, 246, 89, 48);
+		getContentPane().add(btnLimpar);
+		
+		label.setBounds(45, 11, 243, 103);
+		getContentPane().add(label);
+		
+		btnCadastrar.addActionListener(this);
+		btnLimpar.addActionListener(this);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		 if (e.getSource()== btnCadastrar) {
+			 try {
+				String cCpf = txtCPF.getText();
+		        txtCPF.setText(cCpf); 
+		        //criptografia para entrar no sistema
+		        Criptografia cripto = new Criptografia();
+		        String strPass = new String(txtSenha.getPassword()).trim();
+				String senha = cripto.Criptografar(strPass);
+				//
+				
+				LoginDAO dao = new LoginDAO();
+				if (dao.checkLogin(txtCPF.getText(), senha)) {
+					
+					TelaGerenciamentoEstoque TelaEstoque = new TelaGerenciamentoEstoque();
+					TelaEstoque.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					TelaEstoque.setVisible(true);
+					TelaEstoque.IconImage();
+					
+					this.dispose();
+
+				}else {
+					JOptionPane.showMessageDialog(this, "Credenciais Erradas!!");
+				}
+				
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+		} else {
+
 		}
-           
-        } else {
-            System.exit(0);
-        }
-     }
-    
-    private void IconImage() {
+	}
+	private void IconImage() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logo.png") ));
 	}
 }
