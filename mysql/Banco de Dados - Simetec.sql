@@ -57,6 +57,9 @@ select entradaProduto.data_entrada, entradaProduto.quantidade, produto.nome_prod
 create view `entProd` as select entradaProduto.data_entrada, entradaProduto.quantidade, produto.nome_produto, produto.Descricao_produto, produto.peso_produto , entradaProduto.created_at
 from entradaProduto inner join produto on entradaProduto.prod_id = produto.id_prod;
 
+
+select * from DptoFunc;	
+
 create table simetec.saidaProduto(
 id_saida_prod int not null auto_increment primary key,
 data_saida date not null,
@@ -75,4 +78,7 @@ func_id int,
 foreign key (func_id) REFERENCES funcionario(id_func)
 on delete set null
 );
+
+select departamento.id_departamento, departamento.nome_departamento, departamento.local, funcionario.cpf, funcionario.nome from departamento inner join funcionario on departamento.func_id = funcionario.id_func;
+create view `DptoFunc`as select departamento.id_departamento, departamento.nome_departamento, departamento.local, funcionario.cpf, funcionario.nome from departamento inner join funcionario on departamento.func_id = funcionario.id_func;
 

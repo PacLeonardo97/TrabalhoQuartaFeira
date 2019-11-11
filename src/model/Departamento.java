@@ -11,7 +11,7 @@ public class Departamento{
 		setLocaDepartamento(localDepartamento);
 
 		setFuncionario(funcionario);
-	}
+	}public Departamento(){}
 	
 	//Métodos Get
 	public int getIdDepartamento(){

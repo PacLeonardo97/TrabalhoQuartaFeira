@@ -110,9 +110,17 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 		    String lLocal = txtLocal.getText();
 		    txtLocal.setText(lLocal);
 		         
-		    Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
-			Departamento departamento = new Departamento(nNome, lLocal, funcionario);
+		    
 //			fazer a Comunicação com o DepartamentoDAO
+			try {
+				Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
+				Departamento departamento = new Departamento(nNome, lLocal, funcionario);
+				this.dao = new DepartamentoDAO();
+				dao.incluir(departamento);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		    
 		} else if (cadastrar.getSource()==btnLimpar){

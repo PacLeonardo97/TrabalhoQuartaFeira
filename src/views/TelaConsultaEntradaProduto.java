@@ -1,3 +1,4 @@
+
 package views;
 
 import java.awt.Dimension;
@@ -89,7 +90,8 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
 		   }catch (Exception ex ){
 			   return "";
 		   }
-}
+	}
+	
 	public TelaConsultaEntradaProduto() {
 		super("Consulta de entrada produto");
 		setClosable(true);

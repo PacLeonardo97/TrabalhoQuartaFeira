@@ -216,9 +216,11 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		            txtTelefone.setText("");
 		            txtcnpj.setText("");
 		            readJTable();
+		            
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				
 	        } else {
 	            JOptionPane.showMessageDialog(null, "Selecione um Fornecedor para excluir.");
 	        }
@@ -228,6 +230,7 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 				try {
 					Fornecedor f = new Fornecedor();
 					dao = new FornecedorDAO();
+					
 					f.setNome(txtNome.getText());
 					f.setTelefone(txtTelefone.getText());
 					f.setCNPJ(txtcnpj.getText());

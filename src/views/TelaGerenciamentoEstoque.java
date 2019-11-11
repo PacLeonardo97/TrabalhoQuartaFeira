@@ -48,7 +48,6 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 					frame.IconImage();
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-					
 					frame.setVisible(true);
 
 				} catch (Exception e) {
@@ -102,7 +101,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	private TelaCadastroSaidaProduto telaCadastroSaidaProduto;
 	
 	private TelaCadastroDepartamento telaCadastroDepartamento;
-	
+	private TelaConsultaDepartamento telaConsultaDepartamento;
 	
 	public TelaGerenciamentoEstoque() {	
 		setJMenuBar(menuBar);
@@ -145,9 +144,10 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		cadastrarEntrada.addActionListener(this);
 		consultaEntrada.addActionListener(this);
 		
-		SaidaCad.addActionListener(this);
+		SaidaCad.addActionListener(this);//falta o saidConsulta
 		
 		dptoCadastro.addActionListener(this);
+		DptoConsulta.addActionListener(this);
 		
 		this.setResizable(true);
 		contentPane = new JPanel();
@@ -219,6 +219,11 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    	desktop.add(telaCadastroDepartamento);
 	    	telaCadastroDepartamento.setPosicao();
 	    	telaCadastroDepartamento.setVisible(true);
+	    } else if(e.getSource() == DptoConsulta){
+	    	telaConsultaDepartamento = new TelaConsultaDepartamento();
+	    	desktop.add(telaConsultaDepartamento);
+	    	telaConsultaDepartamento.setPosicao();
+	    	telaConsultaDepartamento.setVisible(true);
 	    }
 	}
 	void IconImage() {
