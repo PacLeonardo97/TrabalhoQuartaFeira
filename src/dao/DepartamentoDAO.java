@@ -94,10 +94,11 @@ public class DepartamentoDAO {
 	    String sqlUpdate = "UPDATE departamento SET nome_departamento = ? , local = ? WHERE id_departamento = ?";
 
 	    try (PreparedStatement stm = conn.prepareStatement(sqlUpdate);){
-	    	stm.setString(2, dpto.getNomeDepartamento());
-	    	stm.setString(1, dpto.getLocalDepartamento());
+	    	stm.setString(1, dpto.getNomeDepartamento());
+	    	stm.setString(2, dpto.getLocalDepartamento());
 	    	stm.setInt(3, dpto.getIdDepartamento());
-	       
+	    	System.out.println(stm);
+	    	
 	    	stm.execute();
 	    	JOptionPane.showMessageDialog(null, "atualizado com sucesso!");
 	    } 

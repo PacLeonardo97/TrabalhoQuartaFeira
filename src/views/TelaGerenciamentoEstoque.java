@@ -63,34 +63,37 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 
 	private JMenuBar menuBar = new JMenuBar();
 	
-	private JMenu menuFornecedor = new JMenu("Fornecedor");
-	private JMenuItem fornecedorCad = new JMenuItem("Cadastrar");;
-	private JMenuItem FornecedorConsulta = new JMenuItem("Consultar");
+	private JMenu menuFornecedor = new JMenu("Fornecedor"), 
+			menuProduto = new JMenu("Produto"),
+			menuEntradaDeProduto = new JMenu("Entrada de Produto"), 
+			menuSaidaDeProduto = new JMenu("Saída de Produto"),
+			menuFuncionario = new JMenu("Funcionário"),
+			menuDepartamento = new JMenu("Departamento");
 	
-	private JMenu menuProduto = new JMenu("Produto");
-	private JMenuItem ProdutoCad = new JMenuItem("Cadastrar");
-	private JMenuItem ProdutoConsulta = new JMenuItem("Consultar");
+	private JMenuItem 
+			fornecedorCad = new JMenuItem("Cadastrar"),
+			FornecedorConsulta = new JMenuItem("Consultar"),
+			
+			ProdutoCad = new JMenuItem("Cadastrar"),
+			ProdutoConsulta = new JMenuItem("Consultar"),
+			
+			cadastrarEntrada = new JMenuItem("Cadastrar"),
+			consultaEntrada = new JMenuItem("Consulta"),
 	
-	private JMenu menuEntradaDeProduto = new JMenu("Entrada de Produto");
-	private JMenuItem cadastrarEntrada = new JMenuItem("Cadastrar");
-	private JMenuItem consultaEntrada = new JMenuItem("Consulta");
-	
-	JMenu menuSaidaDeProduto = new JMenu("Saída de Produto");
-	private JMenuItem SaidaCad = new JMenuItem("Cadastrar");
-	
-	JMenu menuFuncionario = new JMenu("Funcionário");
-	private JMenuItem funcionarioCad = new JMenuItem("Cadastrar");
-	private JMenuItem funcionarioConsulta = new JMenuItem("Consultar");
-	
-	JMenu menuDepartamento = new JMenu("Departamento");
-	private JMenuItem dptoCadastro = new JMenuItem("Cadastro");
-	private JMenuItem DptoConsulta = new JMenuItem("Consultar");
+			saidaCad = new JMenuItem("Cadastrar"),
+			saidaConsulta = new JMenuItem("Consulta"),
+			
+			funcionarioCad = new JMenuItem("Cadastrar"),
+			funcionarioConsulta = new JMenuItem("Consultar"),
+			
+			dptoCadastro = new JMenuItem("Cadastro"),
+			DptoConsulta = new JMenuItem("Consultar");
 	
 	private TelaCadastroFornecedor telaCadastroFornecedor;
 	private TelaConsultaFornecedor telaConsultaFornecedor;
 	
 	private TelaCadastroFuncionario telaCadastroFuncionario;
-	private TelaConsultaFuncionario2 telaConsultaFuncionario;
+	private TelaConsultaFuncionario telaConsultaFuncionario;
 	
 	private TelaCadastroProduto telaCadastroProduto;
 	private TelaConsultaProduto telaConsultaProduto;
@@ -99,11 +102,14 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	private TelaConsultaEntradaProduto telaConsultaEntradaProduto;
 	
 	private TelaCadastroSaidaProduto telaCadastroSaidaProduto;
+	private TelaConsultaSaidaProduto telaConsultaSaidaProduto;
 	
 	private TelaCadastroDepartamento telaCadastroDepartamento;
 	private TelaConsultaDepartamento telaConsultaDepartamento;
 	
 	public TelaGerenciamentoEstoque() {	
+		super("Gerenciamento de estoque");
+		
 		setJMenuBar(menuBar);
 		
 		menuBar.add(menuFornecedor);	
@@ -114,19 +120,17 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		menuProduto.add(ProdutoCad);
 		menuProduto.add(ProdutoConsulta);
 		
-		
 		menuBar.add(menuEntradaDeProduto);
 		menuEntradaDeProduto.add(cadastrarEntrada);
 		menuEntradaDeProduto.add(consultaEntrada);
 		
 		menuBar.add(menuSaidaDeProduto);
-		menuSaidaDeProduto.add(SaidaCad);
-		
+		menuSaidaDeProduto.add(saidaCad);
+		menuSaidaDeProduto.add(saidaConsulta);
 		
 		menuBar.add(menuDepartamento);
 		menuDepartamento.add(dptoCadastro);
 		menuDepartamento.add(DptoConsulta);
-		
 		
 		menuBar.add(menuFuncionario);
 		menuFuncionario.add(funcionarioCad);	
@@ -144,7 +148,8 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		cadastrarEntrada.addActionListener(this);
 		consultaEntrada.addActionListener(this);
 		
-		SaidaCad.addActionListener(this);//falta o saidConsulta
+		saidaCad.addActionListener(this);
+		saidaConsulta.addActionListener(this);
 		
 		dptoCadastro.addActionListener(this);
 		DptoConsulta.addActionListener(this);
@@ -175,7 +180,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    	telaCadastroFuncionario.setPosicao();
 	    	telaCadastroFuncionario.setVisible(true);
 	    }else if(e.getSource() == funcionarioConsulta) {
-	    	telaConsultaFuncionario = new TelaConsultaFuncionario2();
+	    	telaConsultaFuncionario = new TelaConsultaFuncionario();
 	    	desktop.add(telaConsultaFuncionario);
 	    	telaConsultaFuncionario.setPosicao();
 	    	telaConsultaFuncionario.setVisible(true);
@@ -206,11 +211,16 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    }
 		
 		//Saída
-	    else if(e.getSource() == SaidaCad) {
+	    else if(e.getSource() == saidaCad) {
 	    	telaCadastroSaidaProduto = new TelaCadastroSaidaProduto();
 	    	desktop.add(telaCadastroSaidaProduto);
 	    	telaCadastroSaidaProduto.setPosicao();
 	    	telaCadastroSaidaProduto.setVisible(true);
+	    } else if(e.getSource() == saidaConsulta) {
+	    	telaConsultaSaidaProduto = new TelaConsultaSaidaProduto();
+	    	desktop.add(telaConsultaSaidaProduto);
+//	    	telaConsultaSaidaProduto.setPosicao();
+	    	telaConsultaSaidaProduto.setVisible(true);
 	    }
 		
 		//Departamento

@@ -51,7 +51,6 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		});
 	}
 	
-
 	public void ViewJTable() {
         DefaultTableModel modelo = (DefaultTableModel) tabelaFornecedor.getModel();
         tabelaFornecedor.setRowSorter(new TableRowSorter<DefaultTableModel>(modelo));
@@ -65,8 +64,6 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
              FornecedorDAO dao = new FornecedorDAO();
              
              for (Fornecedor f : dao.buscar()) {
-            	 
-            	 
                  modelo.addRow(new Object[]{
                 		 
                      f.getIdFornecedor(),
@@ -109,25 +106,25 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		
 		scrollPane = new JScrollPane(tabelaFornecedor);
 		scrollPane.setViewportView(tabelaFornecedor);
-		scrollPane.setBounds(30, 113, 498, 295);
+		scrollPane.setBounds(41, 164, 498, 295);
 		getContentPane().add(scrollPane);
         this.setResizable(false);
         
-        btnDeletar.setBounds(246, 79, 89, 23);
+        btnDeletar.setBounds(246, 94, 89, 48);
         getContentPane().add(btnDeletar);
         
         txtNome = new JTextField();
-        txtNome.setBounds(41, 48, 136, 20);
+        txtNome.setBounds(41, 48, 136, 28);
         getContentPane().add(txtNome);
         txtNome.setColumns(10);
         
         txtTelefone = new JTextField();
-        txtTelefone.setBounds(223, 48, 136, 20);
+        txtTelefone.setBounds(223, 48, 136, 28);
         getContentPane().add(txtTelefone);
         txtTelefone.setColumns(10);
         
         txtcnpj = new JTextField();
-        txtcnpj.setBounds(393, 48, 136, 20);
+        txtcnpj.setBounds(393, 48, 136, 28);
         getContentPane().add(txtcnpj);
         txtcnpj.setColumns(10);
         
@@ -143,7 +140,7 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
         lblCnpj.setBounds(449, 23, 48, 14);
         getContentPane().add(lblCnpj);
         
-        btnAtualizar.setBounds(51, 79, 89, 23);
+        btnAtualizar.setBounds(51, 94, 89, 48);
         getContentPane().add(btnAtualizar);
         
         tabelaFornecedor.setModel(new javax.swing.table.DefaultTableModel(
@@ -243,7 +240,6 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		            txtcnpj.setText("");
 		            readJTable();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}			

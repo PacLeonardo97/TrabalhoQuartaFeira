@@ -3,7 +3,10 @@ package views;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,11 +15,9 @@ import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -24,15 +25,15 @@ import dao.EntradaProdutoDAO;
 import model.EntradaProduto;
 import model.Produto;
 
-public class TelaConsultaEntradaProduto extends JInternalFrame {
+public class TelaConsultaEntradaProduto extends JInternalFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel contentPane;
 	private JScrollPane scrollPane;
 	private JTable tabelaEntradaProduto;
 	private JButton btnDeletar = new JButton("Deletar"), btnAtualizar = new JButton("Atualizar");;
 	private JTextField txtData, txtQuantidade;
+	private EntradaProdutoDAO dao;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -66,14 +67,16 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
              while(iter.hasNext()) {
             	 EntradaProduto ep = (EntradaProduto) iter.next();
             	 Produto p = (Produto) iter.next();
-                 modelo.addRow(new Object[]{		 
+                 modelo.addRow(new Object[]{	
+                	 ep.getIdEntradaProduto(),
                      convertStringToDate(ep.getDataEntrada()),
                      ep.getQuantidade(),
                      p.getNomeProduto(),
                      p.getDescricaoProduto(),
                      p.getPesoProduto(),
                      convertStringToDate(ep.getDataCriada())
-                 });
+                 }
+                 );
                  
              }
 		} catch (Exception e) {
@@ -99,48 +102,45 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
 		
 		setBounds(100, 100, 768, 500);
 		getContentPane().setLayout(null);
-		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		contentPane.setLayout(null);
 		tabelaEntradaProduto = new JTable();
 		
 		scrollPane = new JScrollPane(tabelaEntradaProduto);
 		scrollPane.setViewportView(tabelaEntradaProduto);
-		scrollPane.setBounds(30, 113, 685, 295);
+		scrollPane.setBounds(31, 151, 685, 295);
 		getContentPane().add(scrollPane);
        
         
-        btnDeletar.setBounds(348, 79, 89, 23);
+        btnDeletar.setBounds(287, 97, 89, 48);
         getContentPane().add(btnDeletar);
         
+        btnAtualizar.setBounds(119, 97, 89, 48);
+        getContentPane().add(btnAtualizar);
+        
         txtData = new JTextField();
-        txtData.setBounds(172, 48, 136, 20);
+        txtData.setBounds(90, 48, 136, 28);
         getContentPane().add(txtData);
         txtData.setColumns(10);
         
         txtQuantidade = new JTextField();
-        txtQuantidade.setBounds(351, 48, 136, 20);
+        txtQuantidade.setBounds(288, 48, 136, 28);
         getContentPane().add(txtQuantidade);
         txtQuantidade.setColumns(10);
         
-        JLabel lblData = new JLabel("Nome");
-        lblData.setBounds(208, 23, 48, 14);
+        JLabel lblData = new JLabel("Data");
+        lblData.setBounds(134, 23, 48, 14);
         getContentPane().add(lblData);
         
-        JLabel lblQuantidade = new JLabel("Telefone");
-        lblQuantidade.setBounds(389, 24, 48, 14);
+        JLabel lblQuantidade = new JLabel("Quantidade");
+        lblQuantidade.setBounds(309, 23, 98, 14);
         getContentPane().add(lblQuantidade);
         
-        btnAtualizar.setBounds(208, 79, 89, 23);
-        getContentPane().add(btnAtualizar);
         
         tabelaEntradaProduto.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                 },
                 new String [] {
-                    "Data de entrada", "Quantidade", "Nome do Produto", "Descri��o do produto","Peso do Produto", "Criado em"
+                    "id", "Data de entrada", "Quantidade", "Nome do Produto", "Descrição do produto","Peso do Produto", "Criado em"
                 }
             ) {
 
@@ -167,6 +167,9 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
             }
         });
         
+        btnAtualizar.addActionListener(this);
+        btnDeletar.addActionListener(this);
+        
         this.setResizable(false);
         readJTable();
 	}
@@ -185,9 +188,54 @@ public class TelaConsultaEntradaProduto extends JInternalFrame {
         	txtQuantidade.setText(tabelaEntradaProduto.getValueAt(tabelaEntradaProduto.getSelectedRow(), 2).toString());
         }
     }
-    
-    public void setPosicao() {
-	    Dimension d = this.getDesktopPane().getSize();
-	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnDeletar) {
+			if (tabelaEntradaProduto.getSelectedRow() != -1) {
+				try {
+					EntradaProduto ep = new EntradaProduto();
+					dao = new EntradaProdutoDAO();
+					ep.setIdEntradaProduto((int) tabelaEntradaProduto.getValueAt(tabelaEntradaProduto.getSelectedRow(), 0));
+					dao.excluir(ep);
+					txtQuantidade.setText("");
+					txtData.setText("");
+					readJTable();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		} else if(e.getSource() == btnAtualizar) {
+			if (tabelaEntradaProduto.getSelectedRow() != -1) {
+				try {
+					EntradaProduto ep = new EntradaProduto();
+					dao = new EntradaProdutoDAO();
+					ep.getDataEntrada();
+					
+					Date pData;
+					String nData = txtData.getText();
+					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+					pData = formato.parse(nData);
+					txtData.setText(nData); 
+					ep.setDataEntrada(pData);
+					
+					ep.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+					dao.update(ep);
+					txtData.setText("");
+					txtQuantidade.setText("");
+					readJTable();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
 	} 
+	
+	public void setPosicao() {
+		Dimension d = this.getDesktopPane().getSize();
+		this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+	}
 }

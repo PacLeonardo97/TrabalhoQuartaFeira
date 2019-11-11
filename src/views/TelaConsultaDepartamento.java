@@ -67,16 +67,13 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
             	Funcionario func = (Funcionario) iter.next();
             	
             	modelo.addRow(new Object[]{		
-            			
             			dpto.getIdDepartamento(),
                         dpto.getNomeDepartamento(),
                         dpto.getLocalDepartamento(),
                         
                         func.getCPFFuncionario(),
                         func.getNomeFuncionario(),
-                       
                     });
-            	
             }
 		} catch (Exception e) {
 			System.out.println(e);
@@ -97,16 +94,16 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
 	public TelaConsultaDepartamento() {
 		setBounds(100, 100, 632, 539);
 		getContentPane().setLayout(null);
-//		setClosable(true);
-//		setIconifiable(true);
+		setClosable(true);
+		setIconifiable(true);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(82, 52, 158, 20);
+		txtNome.setBounds(82, 52, 158, 28);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtLocal = new JTextField();
-		txtLocal.setBounds(305, 52, 158, 20);
+		txtLocal.setBounds(305, 52, 158, 28);
 		getContentPane().add(txtLocal);
 		txtLocal.setColumns(10);
 		
@@ -206,6 +203,7 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
 				try {
 					Departamento dpto = new Departamento();
 					dao = new DepartamentoDAO();
+					
 					dpto.setNomeDepartamento(txtNome.getText());
 					dpto.setLocaDepartamento(txtLocal.getText());
 					dpto.setIdDepartamento((int) tabelaDepartamento.getValueAt(tabelaDepartamento.getSelectedRow(), 0));

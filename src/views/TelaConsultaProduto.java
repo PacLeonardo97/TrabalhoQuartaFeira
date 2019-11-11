@@ -94,12 +94,12 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
 		contentPane.setLayout(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		setBounds(100, 100, 749, 484);
+		setBounds(100, 100, 726, 504);
 		
 		tabelaProduto= new JTable();
 		scrollPane = new JScrollPane(tabelaProduto);
 		scrollPane.setViewportView(tabelaProduto);
-		scrollPane.setBounds(30, 113, 635, 295);
+		scrollPane.setBounds(34, 148, 635, 295);
 		getContentPane().add(scrollPane);
 		
 		lblNome.setBounds(99, 23, 48, 14);
@@ -108,28 +108,28 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
         lblQuantidade.setBounds(272, 23, 89, 14);
         getContentPane().add(lblQuantidade);
         
-        lblPeso.setBounds(501, 23, 48, 14);
+        lblPeso.setBounds(491, 23, 48, 14);
         getContentPane().add(lblPeso);
 		
         txtNome = new JTextField();
-        txtNome.setBounds(52, 48, 136, 20);
+        txtNome.setBounds(52, 48, 136, 28);
         getContentPane().add(txtNome);
         txtNome.setColumns(10);
         
         txtDescricao = new JTextField();
-        txtDescricao.setBounds(248, 48, 136, 20);
+        txtDescricao.setBounds(248, 48, 136, 28);
         getContentPane().add(txtDescricao);
         txtDescricao.setColumns(10);
         
         txtPeso = new JTextField();
-        txtPeso.setBounds(457, 48, 136, 20);
+        txtPeso.setBounds(450, 48, 136, 28);
         getContentPane().add(txtPeso);
         txtPeso.setColumns(10);
 		
-		btnDeletar.setBounds(340, 79, 89, 23);
+		btnDeletar.setBounds(333, 87, 89, 48);
         getContentPane().add(btnDeletar);
         
-        btnAtualizar.setBounds(174, 79, 89, 23);
+        btnAtualizar.setBounds(156, 89, 89, 48);
 	    getContentPane().add(btnAtualizar);
 		
 		tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -223,7 +223,6 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
 					
 		            readJTable();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

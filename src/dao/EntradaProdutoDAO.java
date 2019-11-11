@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,7 +62,7 @@ public class EntradaProdutoDAO {
 	        while (rs.next()) {
 	        	
 	        	 EntradaProduto f = new EntradaProduto();
-	        	 
+	        	 f.setIdEntradaProduto(rs.getInt("id_ent_prod"));
 	             f.setDataEntrada(rs.getDate("data_entrada"));
 	             f.setQuantidade(rs.getInt("quantidade"));
 	             
@@ -102,4 +103,46 @@ public class EntradaProdutoDAO {
 	       }
 		 return lista;
 	 }
+	 
+	 public void excluir(EntradaProduto ep) {
+		    String sqlDelete = "DELETE FROM entradaProduto WHERE id_ent_prod = ?";
+		    try (PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
+		       stm.setInt(1, ep.getIdEntradaProduto());
+		    
+		       stm.execute(); 
+		       JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+		    } 
+		    catch (Exception e) {
+		       e.printStackTrace();
+		       try {
+		          conn.rollback();
+		       } 
+		       catch (SQLException e1) {
+		          System.out.print(e1.getStackTrace());
+		       }
+		    } 
+	}
+		
+	public void update(EntradaProduto ep) {
+	    String sqlUpdate = "UPDATE entradaProduto SET data_entrada = ? , quantidade = ? WHERE id_departamento = ?";
+
+	    try (PreparedStatement stm = conn.prepareStatement(sqlUpdate);){
+	    	
+	    	stm.setDate(1, (Date) ep.getDataEntrada());
+	    	stm.setInt(2, ep.getQuantidade());
+	    	stm.setInt(3, ep.getIdEntradaProduto());
+	       
+	    	stm.execute();
+	    	JOptionPane.showMessageDialog(null, "atualizado com sucesso!");
+	    } 
+	    catch (Exception e) {
+	       e.printStackTrace();
+	       try {
+	          conn.rollback();
+	       } 
+	       catch (SQLException e1) {
+	          System.out.print(e1.getStackTrace());
+	       }
+	    } 
+	}
 }

@@ -9,16 +9,17 @@ public class SaidaProduto{
 	private EntradaProduto produto;
 	
 	public SaidaProduto( Date data, int quantidade, EntradaProduto produto) {
-		setDate(data);
+		setDataSaida(data);
 		setQuantidade(quantidade);
 		setProduto(produto);
 	}
+	public SaidaProduto() {}
 	
 	public int getIdSaidaProduto(){
 	    return idSaidaProduto;
 	}
 	
-	public Date getDate(){
+	public Date getDataSaida(){
 	    return date;
 	}
 	
@@ -38,7 +39,7 @@ public class SaidaProduto{
 		this.idSaidaProduto = idSaidaProduto;
 	}
 	
-	public void setDate(Date date) {
+	public void setDataSaida(Date date) {
 		this.date = date;
 	}
 	
