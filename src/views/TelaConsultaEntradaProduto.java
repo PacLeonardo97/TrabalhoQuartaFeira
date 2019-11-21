@@ -159,13 +159,19 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTProdutosMouseClicked(evt);
             }
-        });
+        });        
         
         tabelaEntradaProduto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTProdutosKeyReleased(evt);
             }
         });
+        
+        btnDeletar.addActionListener( (e) -> {
+           
+        });
+        
+        
         
         btnAtualizar.addActionListener(this);
         btnDeletar.addActionListener(this);
@@ -180,6 +186,8 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
             txtQuantidade.setText(tabelaEntradaProduto.getValueAt(tabelaEntradaProduto.getSelectedRow(), 2).toString());
         }
     }
+	
+	
     
     
     private void jTProdutosKeyReleased(java.awt.event.KeyEvent evt) {

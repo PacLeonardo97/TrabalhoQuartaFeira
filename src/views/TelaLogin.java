@@ -136,7 +136,7 @@ public class TelaLogin extends JFrame implements ActionListener{
 
 		}
 	}
-	private void IconImage() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logo.png") ));
+	 private void IconImage() {
+			setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logoHome.png") ));
 	}
 }

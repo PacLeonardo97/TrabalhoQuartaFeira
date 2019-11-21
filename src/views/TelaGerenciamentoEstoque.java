@@ -236,7 +236,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    	telaConsultaDepartamento.setVisible(true);
 	    }
 	}
-	void IconImage() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logo.png") ));
+	public void IconImage() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logoHome.png") ));
 	}
 }

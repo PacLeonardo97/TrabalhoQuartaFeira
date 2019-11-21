@@ -54,11 +54,12 @@ public class TelaLoadingScreen extends JFrame{
 	    progresso = new JProgressBar();
 	    progresso.setStringPainted(true);
 	    
+	    //função normal
 	    new Thread() {
 	        public void run() {
 	            for (int i = 0; i < 101; i++) {
 	                try {
-	                    sleep(30);
+	                    sleep(18);
 	                    
 	                    progresso.setValue(i);
 	
@@ -70,8 +71,25 @@ public class TelaLoadingScreen extends JFrame{
 	            new TelaLogin().setVisible(true);
 	            
 	            TelaLoadingScreen.this.dispose();
-	        }
-	    }.start();
+	        }}.start();
+	    	
+	    //usando lambda
+//	    new Thread(() -> {
+//            for (int i = 0; i < 101; i++) {
+//                try {
+//                    Thread.sleep(18);
+//                    
+//                    progresso.setValue(i);
+//
+//                } catch (InterruptedException e) {
+//                    
+//                    e.printStackTrace();
+//                }
+//            }
+//            new TelaLogin().setVisible(true);
+//            
+//            TelaLoadingScreen.this.dispose();
+//	    }).start();
 	   
 	    setSize(387,252);
 		setLocationRelativeTo(null);
@@ -84,9 +102,10 @@ public class TelaLoadingScreen extends JFrame{
 		
 		progresso.setBounds(64, 167, 245, 17);
 		getContentPane().add(progresso);
+		
     }
     
     private void IconImage() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logo.png") ));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logoHome.png") ));
 	}
 }
