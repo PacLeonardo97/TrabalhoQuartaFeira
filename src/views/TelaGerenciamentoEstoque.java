@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -136,11 +135,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		
 		dptoCadastro.addActionListener(this);
 		DptoConsulta.addActionListener(this);
-		
-		
-		
-		
-		
+
 		this.setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -223,6 +218,8 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    	telaConsultaDepartamento.setVisible(true);
 	    }
 	}
+	
+	
 	public void IconImage() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../logoHome.png") ));
 	}
