@@ -135,6 +135,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		
 		dptoCadastro.addActionListener(this);
 		DptoConsulta.addActionListener(this);
+
 		this.setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

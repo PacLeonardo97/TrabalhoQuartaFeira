@@ -114,36 +114,38 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
     
     public void actionPerformed(ActionEvent cadastrar){
     	if(Pattern.matches("[a-zA-Z]+", txtQuantidade.getText()) == false) {
-    		if(cadastrar.getSource() == btnCadastrar){	  	
-				try {
+    		if(cadastrar.getSource() == btnCadastrar ){	  
+    			if(!txtData.getText().equals("") && !txtQuantidade.getText().equals("")) {
+    				try {
 
-					Date pData;
-				    String nData = txtData.getText();
-				    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-					pData = formato.parse(nData);
-					txtData.setText(nData); 
-					
-					String dQuantidade = txtQuantidade.getText();
-				    int sQuantidade = Integer.parseInt(dQuantidade);
-				    txtQuantidade.setText(""+sQuantidade);
-		            
-		            Produto ProdutoSelecionado = (Produto) this.cbProdutos.getSelectedItem();
-		            System.out.println(ProdutoSelecionado);
-		            EntradaProduto entradaProduto = new EntradaProduto(pData, sQuantidade, ProdutoSelecionado);
-		            
-		            this.dao = new EntradaProdutoDAO();
-		            dao.incluir(entradaProduto);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} else if (cadastrar.getSource() == btnLimpar){
+    					Date pData;
+    				    String nData = txtData.getText();
+    				    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    					pData = formato.parse(nData);
+    					txtData.setText(nData); 
+    					
+    					String dQuantidade = txtQuantidade.getText();
+    				    int sQuantidade = Integer.parseInt(dQuantidade);
+    				    txtQuantidade.setText(""+sQuantidade);
+    		            
+    		            Produto ProdutoSelecionado = (Produto) this.cbProdutos.getSelectedItem();
+    		            System.out.println(ProdutoSelecionado);
+    		            EntradaProduto entradaProduto = new EntradaProduto(pData, sQuantidade, ProdutoSelecionado);
+    		            
+    		            this.dao = new EntradaProdutoDAO();
+    		            dao.incluir(entradaProduto);
+    				} catch (ParseException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				} catch (SQLException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+    			}else {
+    				JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
+    			}
 				
-				txtData.setText("");
-				txtQuantidade.setText("");
+			} else if (cadastrar.getSource() == btnLimpar){
 				
 			}
     	}else {

@@ -208,54 +208,62 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 
     public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource() == btnCadastrar){	  
+			if (!txtBairro.getText().equals("") && !txtCep.getText().equals("") && !txtCidade.getText().equals("") 
+					&& !txtCnpj.getText().equals("") && !txtEstado.getText().equals("") && !txtNome.getText().equals("") 
+					&& !txtNumero.getText().equals("") && !txtNumero.getText().equals("") && !txtRua.getText().equals("") 
+					&& !txtTelefone.getText().equals("")) {
+				String nNome = txtNome.getText();
+			    txtNome.setText(nNome); 
+			         
+			    String dTelefone = txtTelefone.getText();
+			    txtTelefone.setText(dTelefone);
+			    
+			    String eEstado = txtEstado.getText();
+			    txtEstado.setText(eEstado);
+			    
+			    String cCidade = txtCidade.getText();
+			    txtCidade.setText(cCidade);
+			    
+			    String cCep = txtCep.getText();
+			    txtCep.setText(cCep);
+			    
+			    String rRua = txtRua.getText();
+			    txtRua.setText(rRua);
+			    
+			    String bBairro = txtBairro.getText();
+			    txtBairro.setText(bBairro);
+			    
+			    String nNumero = txtNumero.getText();
+			    int number = Integer.parseInt(nNumero);
+			    txtNumero.setText(""+number);
 
-			String nNome = txtNome.getText();
-		    txtNome.setText(nNome); 
-		         
-		    String dTelefone = txtTelefone.getText();
-		    txtTelefone.setText(dTelefone);
-		    
-		    String eEstado = txtEstado.getText();
-		    txtEstado.setText(eEstado);
-		    
-		    String cCidade = txtCidade.getText();
-		    txtCidade.setText(cCidade);
-		    
-		    String cCep = txtCep.getText();
-		    txtCep.setText(cCep);
-		    
-		    String rRua = txtRua.getText();
-		    txtRua.setText(rRua);
-		    
-		    String bBairro = txtBairro.getText();
-		    txtBairro.setText(bBairro);
-		    
-		    String nNumero = txtNumero.getText();
-		    int number = Integer.parseInt(nNumero);
-		    txtNumero.setText(""+number);
+	            String pCnpj = txtCnpj.getText();
+	            txtCnpj.setText(pCnpj);
+	            	         
+	            Fornecedor fornecedor = new Fornecedor(nNome, dTelefone, pCnpj);
+	            Endereco endereco = new Endereco(eEstado, cCidade, rRua, bBairro, number, cCep, fornecedor);
+	    
+	            try {
+                    funcDao = new FornecedorDAO();
+                    funcDao.incluir(fornecedor, endereco);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else{
+                JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
+            }
+        } else if (cadastrar.getSource() == btnLimpar){
 
-            String pCnpj = txtCnpj.getText();
-            txtCnpj.setText(pCnpj);
-            	         
-            Fornecedor fornecedor = new Fornecedor(nNome, dTelefone, pCnpj);
-            Endereco endereco = new Endereco(eEstado, cCidade, rRua, bBairro, number, cCep, fornecedor);
-    
-            try {
-
-				this.funcDao = new FornecedorDAO();
-				this.funcDao.incluir(fornecedor, endereco);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-           
-			    		 
-		} else if (cadastrar.getSource()==btnLimpar){
-
-	    	  txtNome.setText("");
-	    	  txtTelefone.setText("");
-	    	  txtCnpj.setText("");
-		}
+            txtBairro.setText("");
+            txtCep.setText("");
+            txtCidade.setText("");
+            txtCnpj.setText("");
+            txtEstado.setText("");
+            txtNome.setText("");
+            txtNumero.setText("");
+            txtRua.setText("");
+            txtTelefone.setText("");
+        }
     }
     
     class PoliticaFoco extends PoliticaFocoGenerica {

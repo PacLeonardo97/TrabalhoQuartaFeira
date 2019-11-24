@@ -39,9 +39,6 @@ public class TelaCadastroProduto extends JInternalFrame implements ActionListene
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public TelaCadastroProduto() {
 		super("Cadastro de Produto");
 		setClosable(true);
@@ -103,24 +100,28 @@ public class TelaCadastroProduto extends JInternalFrame implements ActionListene
 	public void actionPerformed(ActionEvent cadastrar){
 		if(Pattern.matches("[a-zA-Z]+", txtPeso.getText()) == false) {
 			if(cadastrar.getSource()==btnCadastrar){	  
-			    
-				String nNome = txtNome.getText();
-				txtNome.setText(nNome); 
+			    if (!txtDescricao.getText().equals("") && !txtNome.getText().equals("") && !txtPeso.getText().equals("")) {
+			    	String nNome = txtNome.getText();
+					txtNome.setText(nNome); 
+					         
+				    String dDescricao = txtDescricao.getText();
+				    txtDescricao.setText(dDescricao);
 				         
-			    String dDescricao = txtDescricao.getText();
-			    txtDescricao.setText(dDescricao);
-			         
-			    String pPeso  = txtPeso.getText();
-			    int peso = Integer.parseInt(pPeso);
-				txtPeso.setText("" + peso);
-			         
-				Produto produto = new Produto(nNome, dDescricao, peso);
-				 try {
-						this.dao = new ProdutoDAO();
-						this.dao.incluir(produto);
+				    String pPeso  = txtPeso.getText();
+				    int peso = Integer.parseInt(pPeso);
+					txtPeso.setText("" + peso);
+				         
+					Produto produto = new Produto(nNome, dDescricao, peso);
+					 try {
+						dao = new ProdutoDAO();
+						dao.incluir(produto);
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
+				}
+				
 			} else if (cadastrar.getSource()==btnLimpar){
 		    	  txtNome.setText("");
 		    	  txtDescricao.setText("");

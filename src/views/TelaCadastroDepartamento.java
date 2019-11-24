@@ -11,6 +11,8 @@ import model.Funcionario;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
@@ -112,25 +114,26 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 	   
 	public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource()==btnCadastrar){	  
-			     
-		    String nNome = txtNome.getText();
-		    txtNome.setText(nNome); 
-		         
-		    String lLocal = txtLocal.getText();
-		    txtLocal.setText(lLocal);
-		         
-//			fazer a Comunicação com o DepartamentoDAO
-			try {
-				Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
-				Departamento departamento = new Departamento(nNome, lLocal, funcionario);
-				this.dao = new DepartamentoDAO();
-				dao.incluir(departamento);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (!txtLocal.getText().equals("") && !txtNome.getText().equals("")) {
+				String nNome = txtNome.getText();
+			    txtNome.setText(nNome); 
+			         
+			    String lLocal = txtLocal.getText();
+			    txtLocal.setText(lLocal);
+			         
+//				fazer a Comunicação com o DepartamentoDAO
+				try {
+					Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
+					Departamento departamento = new Departamento(nNome, lLocal, funcionario);
+					this.dao = new DepartamentoDAO();
+					dao.incluir(departamento);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
 			}
-			
-		    
 		} else if (cadastrar.getSource()==btnLimpar){
 	    	  txtNome.setText("");
 	    	  txtLocal.setText("");

@@ -112,34 +112,34 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
     }
     public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource() == btnCadastrar){	  
+			if (!txtData.getText().equals("") && !txtQuantidade.getText().equals("")) {
+				try {	  			
+					//come�o data
+					Date pData;
+				    String nData = txtData.getText();
+				    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+					pData = formato.parse(nData);
+					txtData.setText(nData); 
+				    //fim data 
+				         
+				    String dQuantidade = txtQuantidade.getText();
+				    int sQuantidade = Integer.parseInt(dQuantidade);
+				    txtQuantidade.setText(""+sQuantidade);
 
-			try {	  			
-				//come�o data
-				Date pData;
-			    String nData = txtData.getText();
-			    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				pData = formato.parse(nData);
-				txtData.setText(nData); 
-			    //fim data 
-			         
-			    String dQuantidade = txtQuantidade.getText();
-			    int sQuantidade = Integer.parseInt(dQuantidade);
-			    txtQuantidade.setText(""+sQuantidade);
+				    EntradaProduto ProdutoSelecionado = (EntradaProduto) this.cbProdutos.getSelectedItem();
 
-			    EntradaProduto ProdutoSelecionado = (EntradaProduto) this.cbProdutos.getSelectedItem();
-
-	            SaidaProduto saidaProduto = new SaidaProduto(pData, sQuantidade, ProdutoSelecionado);
-	            this.dao = new SaidaProdutoDAO();
-	            this.dao.incluir(saidaProduto);
-	            
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		            SaidaProduto saidaProduto = new SaidaProduto(pData, sQuantidade, ProdutoSelecionado);
+		            this.dao = new SaidaProdutoDAO();
+		            this.dao.incluir(saidaProduto);
+		            
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		    
 		} else if (cadastrar.getSource() == btnLimpar){
 			System.exit(0);
 		}

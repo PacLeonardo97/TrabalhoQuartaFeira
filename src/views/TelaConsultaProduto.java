@@ -228,8 +228,8 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
 				}
 			}
     	}
-
-    } 
+    }
+    
     public void setPosicao() {
 	    Dimension d = this.getDesktopPane().getSize();
 	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 

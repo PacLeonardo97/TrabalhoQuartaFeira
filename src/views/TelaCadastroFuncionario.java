@@ -9,6 +9,8 @@ import model.Funcionario;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
@@ -106,31 +108,32 @@ public class TelaCadastroFuncionario extends JInternalFrame implements ActionLis
 	   
 	public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource()==btnCadastrar){	  
-		   
-			String cCPF = txtCPF.getText();
-		    txtCPF.setText(cCPF); 
-			     
-		    String nNome = txtNome.getText();
-		    txtNome.setText(nNome); 
-		         
-		    String sSenha  = txtSenha.getText();
-		   
-			txtSenha.setText("" + sSenha);
-		         
-			Funcionario funcionario = new Funcionario(cCPF, nNome, sSenha);
-			try {
-				this.dao = new LoginDAO();
-				this.dao.incluir(funcionario);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		} else if (cadastrar.getSource()==btnLimpar){
+		   if (!txtCPF.getText().equals("") && !txtNome.getText().equals("") && !txtSenha.getText().equals("")) {
+			   String cCPF = txtCPF.getText();
+			    txtCPF.setText(cCPF); 
+				     
+			    String nNome = txtNome.getText();
+			    txtNome.setText(nNome); 
+			         
+			    String sSenha  = txtSenha.getText();
+			   
+				txtSenha.setText("" + sSenha);
+			         
+				Funcionario funcionario = new Funcionario(cCPF, nNome, sSenha);
+				try {
+					this.dao = new LoginDAO();
+					this.dao.incluir(funcionario);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		} else {
+			JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
+		} } else if (cadastrar.getSource() == btnLimpar){
 			  txtCPF.setText("");
 	    	  txtNome.setText("");
 	    	  txtSenha.setText("");
-	    	}
+	    }
 	}
 	
 	public void setPosicao() {
