@@ -137,6 +137,10 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 		dptoCadastro.addActionListener(this);
 		DptoConsulta.addActionListener(this);
 		
+		
+		
+		
+		
 		this.setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -177,7 +181,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    } else if (e.getSource() == ProdutoConsulta) {
 	    	telaConsultaProduto = new TelaConsultaProduto();
 	    	desktop.add(telaConsultaProduto);
-	    	telaConsultaProduto.setLocation(500, 190);
+	    	telaConsultaProduto.setPosicao();
 	    	telaConsultaProduto.setVisible(true);
 	    }
 		//Entrada
