@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.text.MaskFormatter;
 
@@ -45,16 +44,7 @@ public class TelaLogin extends JFrame implements ActionListener{
 		    }
 	             
 	    } 
-	    catch (UnsupportedLookAndFeelException e) {
-	       // handle exception
-	    }
-	    catch (ClassNotFoundException e) {
-	       // handle exception
-	    }
-	    catch (InstantiationException e) {
-	       // handle exception
-	    }
-	    catch (IllegalAccessException e) {
+	    catch (Exception e) {
 	       // handle exception
 	    }
 		EventQueue.invokeLater(new Runnable() {

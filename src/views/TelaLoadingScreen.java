@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 
@@ -16,25 +15,12 @@ public class TelaLoadingScreen extends JFrame{
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
-		        	 
-		            UIManager.setLookAndFeel(info.getClassName());
-		            
+		            UIManager.setLookAndFeel(info.getClassName());   
 		            break;
-		        }
-		        
+		        }   
 		    }
-	             
 	    } 
-	    catch (UnsupportedLookAndFeelException e) {
-	       // handle exception
-	    }
-	    catch (ClassNotFoundException e) {
-	       // handle exception
-	    }
-	    catch (InstantiationException e) {
-	       // handle exception
-	    }
-	    catch (IllegalAccessException e) {
+	    catch (Exception e) {
 	       // handle exception
 	    }
 		
@@ -53,43 +39,24 @@ public class TelaLoadingScreen extends JFrame{
         UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
 	    progresso = new JProgressBar();
 	    progresso.setStringPainted(true);
-	    
-	    //função normal
-	    new Thread() {
-	        public void run() {
-	            for (int i = 0; i < 101; i++) {
-	                try {
-	                    sleep(18);
-	                    
-	                    progresso.setValue(i);
-	
-	                } catch (InterruptedException e) {
-	                    
-	                    e.printStackTrace();
-	                }
-	            }
-	            new TelaLogin().setVisible(true);
-	            
-	            TelaLoadingScreen.this.dispose();
-	        }}.start();
 	    	
 	    //usando lambda
-//	    new Thread(() -> {
-//            for (int i = 0; i < 101; i++) {
-//                try {
-//                    Thread.sleep(18);
-//                    
-//                    progresso.setValue(i);
-//
-//                } catch (InterruptedException e) {
-//                    
-//                    e.printStackTrace();
-//                }
-//            }
-//            new TelaLogin().setVisible(true);
-//            
-//            TelaLoadingScreen.this.dispose();
-//	    }).start();
+	    new Thread(() -> {
+            for (int i = 0; i < 101; i++) {
+                try {
+                    Thread.sleep(18);
+                    
+                    progresso.setValue(i);
+
+                } catch (InterruptedException e) {
+                    
+                    e.printStackTrace();
+                }
+            }
+            new TelaLogin().setVisible(true);
+            
+            TelaLoadingScreen.this.dispose();
+	    }).start();
 	   
 	    setSize(387,252);
 		setLocationRelativeTo(null);

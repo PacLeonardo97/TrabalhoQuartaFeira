@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,12 +10,9 @@ import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
-import dao.EntradaProdutoDAO;
 import dao.SaidaProdutoDAO;
 //import dao.SaidaProdutoDAO;
 import model.Produto;

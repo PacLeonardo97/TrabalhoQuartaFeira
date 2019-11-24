@@ -9,7 +9,6 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
@@ -28,31 +27,15 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 				            break;
 				        }
 				    }
-			    } 
-			    catch (UnsupportedLookAndFeelException e) {
-			       // handle exception
-			    }
-			    catch (ClassNotFoundException e) {
-			       // handle exception
-			    }
-			    catch (InstantiationException e) {
-			       // handle exception
-			    }
-			    catch (IllegalAccessException e) {
-			       // handle exception
-			    }
-				
-				try {
-					
 					TelaGerenciamentoEstoque frame = new TelaGerenciamentoEstoque();
 					frame.IconImage();
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 					frame.setVisible(true);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			    } 
+			    catch (Exception e) {
+			       // handle exception
+			    }
 			}
 		});
 	}

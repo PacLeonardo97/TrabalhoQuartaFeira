@@ -1,12 +1,7 @@
 package views;
-import javax.swing.JInternalFrame;
+
 import javax.swing.JTextField;
 
-import org.jdatepicker.JDatePicker;
-import org.jdatepicker.impl.DateComponentFormatter;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilCalendarModel;
 import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.JButton;
@@ -17,21 +12,15 @@ import javax.swing.JOptionPane;
 
 import dao.EntradaProdutoDAO;
 import dao.ProdutoDAO;
-
-import model.EntradaProduto;
 import model.Produto;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Properties;
 import java.util.regex.Pattern;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-
 import java.sql.SQLException;
-import java.text.ParseException;
 
 public class TelaCadastroEntradaProduto extends JFrame implements ActionListener {
 	
