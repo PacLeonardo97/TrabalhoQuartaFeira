@@ -250,7 +250,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			}
            
 			    		 
-		} else if (cadastrar.getSource() == btnLimpar){
+		} else if (cadastrar.getSource()==btnLimpar){
 
 	    	  txtNome.setText("");
 	    	  txtTelefone.setText("");

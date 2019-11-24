@@ -32,7 +32,7 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
 	private JScrollPane scrollPane;
 	private JTable tabelaDepartamento;
 	private JButton btnAtualizar = new JButton("Atualizar"), btnDeletar = new JButton("Deletar");
-	private JLabel lblLocalDoDepartamento = new JLabel("Local do Departamento"), lblNomeDoDepartamento = new JLabel("Nome do Departamento");
+	private JLabel lblLocalDoDepartamento = new JLabel("Local"), lblNomeDoDepartamento = new JLabel("Nome");
 	private DepartamentoDAO dao;
 	
 	public static void main(String[] args) {
@@ -92,35 +92,34 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
 	}
 	
 	public TelaConsultaDepartamento() {
-		setBounds(100, 100, 632, 539);
+		setBounds(100, 100, 726, 504);
 		getContentPane().setLayout(null);
 		setClosable(true);
 		setIconifiable(true);
-		
-		txtNome = new JTextField();
-		txtNome.setBounds(82, 52, 158, 28);
-		getContentPane().add(txtNome);
-		txtNome.setColumns(10);
-		
-		txtLocal = new JTextField();
-		txtLocal.setBounds(305, 52, 158, 28);
-		getContentPane().add(txtLocal);
-		txtLocal.setColumns(10);
 		
 		tabelaDepartamento = new JTable();
 		
 		scrollPane = new JScrollPane(tabelaDepartamento);
 		scrollPane.setViewportView(tabelaDepartamento);
-		scrollPane.setBounds(32, 157, 515, 327);
+		scrollPane.setBounds(34, 148, 635, 295);
 		getContentPane().add(scrollPane);
-		
-		
-		lblLocalDoDepartamento.setBounds(328, 27, 113, 14);
-		getContentPane().add(lblLocalDoDepartamento);
-		
 
-		lblNomeDoDepartamento.setBounds(99, 27, 125, 14);
+		lblNomeDoDepartamento.setBounds(236, 23, 48, 14);
 		getContentPane().add(lblNomeDoDepartamento);
+		
+		lblLocalDoDepartamento.setBounds(416, 23, 48, 14);
+		getContentPane().add(lblLocalDoDepartamento);
+				
+		txtNome = new JTextField();
+		txtNome.setBounds(184, 48, 136, 28);
+		getContentPane().add(txtNome);
+		txtNome.setColumns(10);
+		
+		txtLocal = new JTextField();
+		txtLocal.setBounds(377, 48, 136, 28);
+		getContentPane().add(txtLocal);
+		txtLocal.setColumns(10);
+		
 		
 		tabelaDepartamento.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -142,11 +141,11 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
         });
 		
 		
-		btnAtualizar.setBounds(107, 98, 89, 48);
-		getContentPane().add(btnAtualizar);
-		
-		btnDeletar.setBounds(328, 98, 89, 48);
-		getContentPane().add(btnDeletar);
+		btnAtualizar.setBounds(211, 89, 89, 48);
+        getContentPane().add(btnAtualizar);
+        
+        btnDeletar.setBounds(401, 87, 89, 48);
+        getContentPane().add(btnDeletar);
         
 		tabelaDepartamento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -195,7 +194,7 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
 					txtLocal.setText("");
 					readJTable();
 				} catch (SQLException e2) {
-					System.out.println("Deu Ruim para Deletar" + e2);
+					System.out.println("Não foi possível deletar" + e2);
 				}
 			}
 		} else if(e.getSource() == btnAtualizar) {
@@ -214,7 +213,7 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
 					txtLocal.setText("");
 					readJTable();
 				} catch(SQLException e1){
-					System.out.println("Deu Ruim para atualizar" + e1);
+					System.out.println("Não FOi possível atualizar" + e1);
 				}
 				
 			}

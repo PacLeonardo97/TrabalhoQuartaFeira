@@ -32,7 +32,7 @@ public class LoginDAO {
         	rs = stm.executeQuery();
             
             if (rs.next()) {
-            	JOptionPane.showMessageDialog(null, "ol�, voc� entrou com o cpf: " + cpf);
+            	JOptionPane.showMessageDialog(null, "ola, voce entrou com o cpf: " + cpf);
                 check = true;
             }
 
@@ -57,7 +57,7 @@ public class LoginDAO {
 		       stm.execute();
 		       System.out.println("sql: " + sqlInsert);
 		       System.out.println("stm: " + stm);
-			   JOptionPane.showMessageDialog (null, "Foi cadastrado o fornecedor: " + funcionario.toString());
+			   JOptionPane.showMessageDialog (null, "Foi cadastrado o funcionário: " + funcionario.toString());
 		    } 
 		    catch (Exception e) {
 		       e.printStackTrace();
