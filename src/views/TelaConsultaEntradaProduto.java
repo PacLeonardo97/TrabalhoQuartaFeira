@@ -100,40 +100,42 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
 		setClosable(true);
 		setIconifiable(true);
 		
-		setBounds(100, 100, 768, 500);
+		setBounds(100, 100, 726, 504);
 		getContentPane().setLayout(null);
 		
 		tabelaEntradaProduto = new JTable();
 		
 		scrollPane = new JScrollPane(tabelaEntradaProduto);
 		scrollPane.setViewportView(tabelaEntradaProduto);
-		scrollPane.setBounds(31, 151, 685, 295);
+		scrollPane.setBounds(34, 148, 635, 295);
 		getContentPane().add(scrollPane);
        
+	    
+        JLabel lblData = new JLabel("Data");
+        lblData.setBounds(236, 23, 48, 14);
+        getContentPane().add(lblData);
         
-        btnDeletar.setBounds(287, 97, 89, 48);
-        getContentPane().add(btnDeletar);
-        
-        btnAtualizar.setBounds(119, 97, 89, 48);
-        getContentPane().add(btnAtualizar);
+        JLabel lblQuantidade = new JLabel("Quantidade");
+        lblQuantidade.setBounds(416, 23, 48, 14);
+        getContentPane().add(lblQuantidade);
         
         txtData = new JTextField();
-        txtData.setBounds(90, 48, 136, 28);
+        txtData.setBounds(184, 48, 136, 28);
         getContentPane().add(txtData);
         txtData.setColumns(10);
         
         txtQuantidade = new JTextField();
-        txtQuantidade.setBounds(288, 48, 136, 28);
+        txtQuantidade.setBounds(377, 48, 136, 28);
         getContentPane().add(txtQuantidade);
         txtQuantidade.setColumns(10);
+
+        btnAtualizar.setBounds(211, 89, 89, 48);
+        getContentPane().add(btnAtualizar);
         
-        JLabel lblData = new JLabel("Data");
-        lblData.setBounds(134, 23, 48, 14);
-        getContentPane().add(lblData);
+        btnDeletar.setBounds(401, 87, 89, 48);
+        getContentPane().add(btnDeletar);
+  
         
-        JLabel lblQuantidade = new JLabel("Quantidade");
-        lblQuantidade.setBounds(309, 23, 98, 14);
-        getContentPane().add(lblQuantidade);
         
         
         tabelaEntradaProduto.setModel(new javax.swing.table.DefaultTableModel(
