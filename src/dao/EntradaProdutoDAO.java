@@ -40,7 +40,7 @@ public class EntradaProdutoDAO {
 	       
 	       stm.execute();
 	       
-	       JOptionPane.showMessageDialog (null, "Cadastrado com sucesso");
+	       JOptionPane.showMessageDialog (null, "entrada produto cadastrado com sucesso");
 	    } 
 	    
 	    catch (Exception e) {

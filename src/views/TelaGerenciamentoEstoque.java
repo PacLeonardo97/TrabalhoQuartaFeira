@@ -184,7 +184,7 @@ public class TelaGerenciamentoEstoque extends JFrame implements ActionListener{
 	    else if(e.getSource() == cadastrarEntrada) {
 	    	telaCadastroEntradaProduto = new TelaCadastroEntradaProduto();
 	    	desktop.add(telaCadastroEntradaProduto);
-//	    	telaCadastroEntradaProduto.setPosicao();
+	    	telaCadastroEntradaProduto.setPosicao();
 	    	telaCadastroEntradaProduto.setVisible(true);
 	    } else if(e.getSource() == consultaEntrada) {
 	    	telaConsultaEntradaProduto = new TelaConsultaEntradaProduto();

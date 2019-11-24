@@ -101,8 +101,8 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 		txtLocal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-                 btnCadastrar.doClick();
-                }
+                	btnCadastrar.doClick();
+                } 
              }
         });
 		
@@ -119,8 +119,7 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 		    String lLocal = txtLocal.getText();
 		    txtLocal.setText(lLocal);
 		         
-		    
-//			fazer a Comunica��o com o DepartamentoDAO
+//			fazer a Comunicação com o DepartamentoDAO
 			try {
 				Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
 				Departamento departamento = new Departamento(nNome, lLocal, funcionario);

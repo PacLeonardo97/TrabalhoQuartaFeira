@@ -151,6 +151,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 
         btnCadastrar = new JButton("Cadastrar");
         
+         
         txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER){
