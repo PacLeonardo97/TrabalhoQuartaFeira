@@ -14,19 +14,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
-import br.com.parg.politicaDeFoco.PoliticaFocoGenerica; //Pol�tica de foco
-import br.com.parg.viacep.ViaCEP; //ViaCep
-import br.com.parg.viacep.ViaCEPException; //Exception do ViaCep
+import br.com.parg.politicaDeFoco.PoliticaFocoGenerica;
+import br.com.parg.viacep.ViaCEP;
+import br.com.parg.viacep.ViaCEPException; 
 import dao.FornecedorDAO;
 
 import model.Endereco;
 import model.Fornecedor;
 
-public class TelaCadastroFornecedor extends JInternalFrame implements ActionListener {
+public class TelaCadastroFornecedor extends JInternalFrame implements ActionListener, KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	private FornecedorDAO funcDao;
@@ -97,9 +98,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         lblCep.setBounds(26, 175, 40, 20);
 		getContentPane().add(lblCep);
         
-//        txtCep = new JTextField(20);
         txtCep.setBounds(92, 175, 153, 28);
-        
 		getContentPane().add(txtCep);
 		txtCep.setColumns(10);
         
@@ -148,7 +147,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(txtNumero);
 		txtNumero.setColumns(10);
         
-
+		
         btnCadastrar = new JButton("Cadastrar");
         
          
@@ -187,11 +186,13 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			}						
 		});
 		
+		this.addKeyListener(this);
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
+        
         this.setSize(583, 402);
         this.setResizable(false); //N�o tem mais o bot�o para maximizar e o tamanho � sempre padr�o
-
+       
 		getContentPane().setLayout(null);
 				
 		
@@ -275,4 +276,25 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 	    Dimension d = this.getDesktopPane().getSize();
 	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
 	}
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Don't need to implement this
+
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if( e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
+            System.exit(0); //Change this to dispose or whatever you want to do with the frame
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //Dont need to implement anything here
+
+    }
 }

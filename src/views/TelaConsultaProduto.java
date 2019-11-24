@@ -228,6 +228,7 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
 				}
 			}
     	}
+
     } 
     public void setPosicao() {
 	    Dimension d = this.getDesktopPane().getSize();
