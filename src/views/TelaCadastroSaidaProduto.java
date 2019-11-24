@@ -10,6 +10,8 @@ import model.SaidaProduto;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Container;
@@ -139,6 +141,8 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
 			}
 		} else if (cadastrar.getSource() == btnLimpar){
 			System.exit(0);
