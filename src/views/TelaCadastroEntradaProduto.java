@@ -146,7 +146,8 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
     			}
 				
 			} else if (cadastrar.getSource() == btnLimpar){
-				
+				txtData.setText("");
+				txtQuantidade.setText("");
 			}
     	}else {
     		JOptionPane.showMessageDialog(this, "O campo Quantidade deve conter somente numeros");

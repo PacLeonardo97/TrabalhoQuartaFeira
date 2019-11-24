@@ -145,7 +145,8 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 				JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
 			}
 		} else if (cadastrar.getSource() == btnLimpar){
-			System.exit(0);
+			txtData.setText("");
+			txtQuantidade.setText("");
 		}
     }
     

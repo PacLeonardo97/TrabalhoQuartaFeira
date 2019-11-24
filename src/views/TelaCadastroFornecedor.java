@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
@@ -27,7 +26,7 @@ import dao.FornecedorDAO;
 import model.Endereco;
 import model.Fornecedor;
 
-public class TelaCadastroFornecedor extends JInternalFrame implements ActionListener, KeyListener {
+public class TelaCadastroFornecedor extends JInternalFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	private FornecedorDAO funcDao;
@@ -186,7 +185,6 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			}						
 		});
 		
-		this.addKeyListener(this);
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
         
@@ -256,9 +254,15 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			}		 
 		} else if (cadastrar.getSource() == btnLimpar){
 
-	    	  txtNome.setText("");
-	    	  txtTelefone.setText("");
-	    	  txtCnpj.setText("");
+			txtBairro.setText("");
+			txtCep.setText("");
+			txtCidade.setText("");
+			txtCnpj.setText("");
+			txtEstado.setText("");
+			txtNome.setText("");
+			txtNumero.setText("");
+			txtRua.setText("");
+			txtTelefone.setText("");
 		}
     }
     
@@ -280,25 +284,4 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 	    Dimension d = this.getDesktopPane().getSize();
 	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
 	}
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // Don't need to implement this
-
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if( e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
-            System.exit(0); //Change this to dispose or whatever you want to do with the frame
-        }
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        //Dont need to implement anything here
-
-    }
 }
