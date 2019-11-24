@@ -95,7 +95,7 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		setClosable(true);
 		setIconifiable(true);
 		
-		setBounds(100, 100, 600, 500);
+		setBounds(100, 100, 726, 504);
 		getContentPane().setLayout(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
@@ -106,42 +106,43 @@ public class TelaConsultaFornecedor extends JInternalFrame implements ActionList
 		
 		scrollPane = new JScrollPane(tabelaFornecedor);
 		scrollPane.setViewportView(tabelaFornecedor);
-		scrollPane.setBounds(41, 164, 498, 295);
+		scrollPane.setBounds(34, 148, 635, 295);
 		getContentPane().add(scrollPane);
         this.setResizable(false);
         
-        btnDeletar.setBounds(246, 94, 89, 48);
-        getContentPane().add(btnDeletar);
         
+        JLabel lblNome = new JLabel("Nome");
+        lblNome.setBounds(139, 23, 48, 14);
+        getContentPane().add(lblNome);
+        
+        JLabel lblTelefone = new JLabel("Telefone");
+        lblTelefone.setBounds(325, 23, 48, 14);
+        getContentPane().add(lblTelefone);
+        
+        JLabel lblCnpj = new JLabel("CNPJ");
+        lblCnpj.setBounds(519, 23, 48, 14);
+        getContentPane().add(lblCnpj);
+             
         txtNome = new JTextField();
-        txtNome.setBounds(41, 48, 136, 28);
+        txtNome.setBounds(92, 48, 136, 28);
         getContentPane().add(txtNome);
         txtNome.setColumns(10);
         
         txtTelefone = new JTextField();
-        txtTelefone.setBounds(223, 48, 136, 28);
+        txtTelefone.setBounds(285, 48, 136, 28);
         getContentPane().add(txtTelefone);
         txtTelefone.setColumns(10);
         
         txtcnpj = new JTextField();
-        txtcnpj.setBounds(393, 48, 136, 28);
+        txtcnpj.setBounds(473, 48, 136, 28);
         getContentPane().add(txtcnpj);
         txtcnpj.setColumns(10);
-        
-        JLabel lblNome = new JLabel("Nome");
-        lblNome.setBounds(78, 24, 48, 14);
-        getContentPane().add(lblNome);
-        
-        JLabel lblTelefone = new JLabel("Telefone");
-        lblTelefone.setBounds(263, 23, 48, 14);
-        getContentPane().add(lblTelefone);
-        
-        JLabel lblCnpj = new JLabel("CNPJ");
-        lblCnpj.setBounds(449, 23, 48, 14);
-        getContentPane().add(lblCnpj);
-        
-        btnAtualizar.setBounds(51, 94, 89, 48);
-        getContentPane().add(btnAtualizar);
+
+        btnAtualizar.setBounds(211, 89, 89, 48);
+	    getContentPane().add(btnAtualizar);
+	    
+        btnDeletar.setBounds(401, 87, 89, 48);
+        getContentPane().add(btnDeletar);
         
         tabelaFornecedor.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {

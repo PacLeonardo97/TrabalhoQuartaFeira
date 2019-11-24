@@ -102,35 +102,35 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
 		scrollPane.setBounds(34, 148, 635, 295);
 		getContentPane().add(scrollPane);
 		
-		lblNome.setBounds(99, 23, 48, 14);
+		lblNome.setBounds(139, 23, 48, 14);
         getContentPane().add(lblNome);
         
-        lblQuantidade.setBounds(272, 23, 89, 14);
+        lblQuantidade.setBounds(325, 23, 48, 14);
         getContentPane().add(lblQuantidade);
         
-        lblPeso.setBounds(491, 23, 48, 14);
+        lblPeso.setBounds(519, 23, 48, 14);
         getContentPane().add(lblPeso);
 		
         txtNome = new JTextField();
-        txtNome.setBounds(52, 48, 136, 28);
+        txtNome.setBounds(92, 48, 136, 28);
         getContentPane().add(txtNome);
         txtNome.setColumns(10);
         
         txtDescricao = new JTextField();
-        txtDescricao.setBounds(248, 48, 136, 28);
+        txtDescricao.setBounds(285, 48, 136, 28);
         getContentPane().add(txtDescricao);
         txtDescricao.setColumns(10);
         
         txtPeso = new JTextField();
-        txtPeso.setBounds(450, 48, 136, 28);
+        txtPeso.setBounds(473, 48, 136, 28);
         getContentPane().add(txtPeso);
         txtPeso.setColumns(10);
 		
-		btnDeletar.setBounds(333, 87, 89, 48);
-        getContentPane().add(btnDeletar);
-        
-        btnAtualizar.setBounds(156, 89, 89, 48);
+        btnAtualizar.setBounds(211, 89, 89, 48);
 	    getContentPane().add(btnAtualizar);
+	    
+        btnDeletar.setBounds(401, 87, 89, 48);
+        getContentPane().add(btnDeletar);
 		
 		tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
 				new Object [][] {},
