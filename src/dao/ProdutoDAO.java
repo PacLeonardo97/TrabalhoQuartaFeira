@@ -12,7 +12,7 @@ import model.Produto;
 
 public class ProdutoDAO {
 	
-// a conexão com o banco de dados
+// a conexï¿½o com o banco de dados
 private Connection conn;
 
 public ProdutoDAO() throws SQLException {

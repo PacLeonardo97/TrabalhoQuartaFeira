@@ -5,16 +5,18 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.text.MaskFormatter;
 
 import br.com.parg.politicaDeFoco.Criptografia;
 import dao.LoginDAO;
@@ -23,7 +25,8 @@ import javax.swing.JPasswordField;
 public class TelaLogin extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	private JTextField txtCPF;
+	private JFormattedTextField txtCPF;
+	
 	private JButton btnCadastrar = new JButton("Entrar"), btnLimpar = new JButton("Limpar");;
 	private ImageIcon imagem = new ImageIcon(getClass().getResource("../logo.png"));
     private JLabel label =new JLabel(imagem);
@@ -73,6 +76,12 @@ public class TelaLogin extends JFrame implements ActionListener{
 		TelaLogin.this.IconImage();
 		setLocationRelativeTo(null);
 		
+		try {
+			txtCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));	
+         } catch (ParseException e) {
+            e.printStackTrace();
+         }
+		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setBounds(55, 132, 48, 14);
 		getContentPane().add(lblCpf);
@@ -81,7 +90,6 @@ public class TelaLogin extends JFrame implements ActionListener{
 		lblSenha.setBounds(55, 187, 48, 14);
 		getContentPane().add(lblSenha);
 		
-		txtCPF = new JTextField();
 		txtCPF.setBounds(128, 125, 142, 28);
 		getContentPane().add(txtCPF);
 		txtCPF.setColumns(10);

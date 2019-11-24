@@ -1,7 +1,7 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,7 +55,7 @@ public class EntradaProdutoDAO {
 	 }
 	
 	 public ArrayList<Object> buscar() {
-	    String sqlSelect = "SELECT * FROM entprod;";
+	    String sqlSelect = "SELECT * FROM entprod";
 	    ArrayList<Object> lista = new ArrayList<Object>();
 	    
 	    try (PreparedStatement stm = conn.prepareStatement(sqlSelect); ResultSet rs = stm.executeQuery();){
@@ -124,11 +124,13 @@ public class EntradaProdutoDAO {
 	}
 		
 	public void update(EntradaProduto ep) {
-	    String sqlUpdate = "UPDATE entradaProduto SET data_entrada = ? , quantidade = ? WHERE id_departamento = ?";
+	    String sqlUpdate = "UPDATE entradaProduto SET data_entrada = ? , quantidade = ? WHERE id_ent_prod = ?";
 
 	    try (PreparedStatement stm = conn.prepareStatement(sqlUpdate);){
 	    	
-	    	stm.setDate(1, (Date) ep.getDataEntrada());
+			java.sql.Date dataSql = new java.sql.Date(ep.getDataEntrada().getTime());
+	    	
+	    	stm.setDate(1, dataSql);
 	    	stm.setInt(2, ep.getQuantidade());
 	    	stm.setInt(3, ep.getIdEntradaProduto());
 	       

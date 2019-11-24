@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
@@ -96,7 +97,15 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 
 		btnCadastrar.addActionListener(this);
 		btnLimpar.addActionListener(this);
-
+		
+		txtLocal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                 btnCadastrar.doClick();
+                }
+             }
+        });
+		
 		setSize(500,500);
 		setVisible(true);
 	}
@@ -111,7 +120,7 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 		    txtLocal.setText(lLocal);
 		         
 		    
-//			fazer a Comunicação com o DepartamentoDAO
+//			fazer a Comunicaï¿½ï¿½o com o DepartamentoDAO
 			try {
 				Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
 				Departamento departamento = new Departamento(nNome, lLocal, funcionario);

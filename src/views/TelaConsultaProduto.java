@@ -135,7 +135,7 @@ public class TelaConsultaProduto extends JInternalFrame  implements ActionListen
 		tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
 				new Object [][] {},
 	            	new String [] {
-	                    "ID", "Nome do produto", "Quantidade", "Peso", "Criado em"
+	                    "ID", "Nome do produto", "Descri��o", "Peso", "Criado em"
 	                }
 	            ) {
 	                private static final long serialVersionUID = 1L;

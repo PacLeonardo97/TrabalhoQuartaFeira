@@ -16,7 +16,7 @@ public class FornecedorDAO {
 
 	private Connection conn;
 	FornecedorDAO funrnDao;
-	// a conexão com o banco de dados
+	// a conexï¿½o com o banco de dados
 	public FornecedorDAO() throws SQLException {
 	    new ConexaoBD();
 		this.conn = ConexaoBD.conectar();

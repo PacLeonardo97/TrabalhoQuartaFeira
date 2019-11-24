@@ -4,11 +4,14 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import dao.ProdutoDAO;
@@ -86,33 +89,45 @@ public class TelaCadastroProduto extends JInternalFrame implements ActionListene
 		getContentPane().add(btnLimpar);
 		
 		btnCadastrar.addActionListener(this);
+		txtPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                 btnCadastrar.doClick();
+                }
+             }
+        });
+		
 		btnLimpar.addActionListener(this);
 	}
 
 	public void actionPerformed(ActionEvent cadastrar){
-		if(cadastrar.getSource()==btnCadastrar){	  
+		if(Pattern.matches("[a-zA-Z]+", txtPeso.getText()) == false) {
+			if(cadastrar.getSource()==btnCadastrar){	  
 			    
-			String nNome = txtNome.getText();
-			txtNome.setText(nNome); 
+				String nNome = txtNome.getText();
+				txtNome.setText(nNome); 
+				         
+			    String dDescricao = txtDescricao.getText();
+			    txtDescricao.setText(dDescricao);
 			         
-		    String dDescricao = txtDescricao.getText();
-		    txtDescricao.setText(dDescricao);
-		         
-		    String pPeso  = txtPeso.getText();
-		    int peso = Integer.parseInt(pPeso);
-			txtPeso.setText("" + peso);
-		         
-			Produto produto = new Produto(nNome, dDescricao, peso);
-			 try {
-					this.dao = new ProdutoDAO();
-					this.dao.incluir(produto);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		} else if (cadastrar.getSource()==btnLimpar){
-	    	  txtNome.setText("");
-	    	  txtDescricao.setText("");
-	    	  txtPeso.setText("");
+			    String pPeso  = txtPeso.getText();
+			    int peso = Integer.parseInt(pPeso);
+				txtPeso.setText("" + peso);
+			         
+				Produto produto = new Produto(nNome, dDescricao, peso);
+				 try {
+						this.dao = new ProdutoDAO();
+						this.dao.incluir(produto);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+			} else if (cadastrar.getSource()==btnLimpar){
+		    	  txtNome.setText("");
+		    	  txtDescricao.setText("");
+		    	  txtPeso.setText("");
+			}
+		} else {
+			JOptionPane.showMessageDialog(this, "O campo Peso s� pode conter n�mero");
 		}
 	}
 		

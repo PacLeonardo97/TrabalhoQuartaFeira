@@ -32,7 +32,7 @@ public class LoginDAO {
         	rs = stm.executeQuery();
             
             if (rs.next()) {
-            	JOptionPane.showMessageDialog(null, "olá, você entrou com o cpf: " + cpf);
+            	JOptionPane.showMessageDialog(null, "olï¿½, vocï¿½ entrou com o cpf: " + cpf);
                 check = true;
             }
 

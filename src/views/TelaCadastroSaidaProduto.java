@@ -35,7 +35,7 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
     private SaidaProdutoDAO dao;
     
     public TelaCadastroSaidaProduto(){
-        super("Cadastro de Saída de Produto");
+        super("Cadastro de Saï¿½da de Produto");
         setClosable(true);
 		setIconifiable(true);
 
@@ -114,7 +114,7 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 		if(cadastrar.getSource() == btnCadastrar){	  
 
 			try {	  			
-				//começo data
+				//comeï¿½o data
 				Date pData;
 			    String nData = txtData.getText();
 			    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");

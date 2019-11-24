@@ -6,10 +6,12 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
+import javax.swing.text.MaskFormatter;
 
 import dao.LoginDAO;
 import model.Funcionario;
@@ -28,9 +30,9 @@ import model.Funcionario;
 public class TelaConsultaFuncionario extends JInternalFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	
+	private JFormattedTextField txtCPF;
 	private JPanel contentPane;
-	private JTextField txtCPF = new JTextField(), txtNome = new JTextField();
+	private JTextField txtNome = new JTextField();
 	private JTable tabelaFuncionario;
 	private JScrollPane scrollPane;
 	private JLabel lblCpf = new JLabel("CPF"), lblNome = new JLabel("Nome");
@@ -92,10 +94,16 @@ public class TelaConsultaFuncionario extends JInternalFrame implements ActionLis
 
 
 	public TelaConsultaFuncionario() {
-		super("Tela de Consulta de Funcionário");
+		super("Tela de Consulta de Funcionï¿½rio");
 		setClosable(true);
 		setIconifiable(true);
-
+		
+		try {
+			txtCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+        } catch (ParseException e) {
+        	e.printStackTrace();
+        }
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
@@ -119,8 +127,7 @@ public class TelaConsultaFuncionario extends JInternalFrame implements ActionLis
         txtNome.setBounds(269, 48, 136, 28);
         getContentPane().add(txtNome);
         txtNome.setColumns(10);
-		
-        txtCPF = new JTextField();
+	
         txtCPF.setBounds(65, 48, 136, 28);
         getContentPane().add(txtCPF);
         txtCPF.setColumns(10);

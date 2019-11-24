@@ -2,7 +2,9 @@ package views;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -11,10 +13,12 @@ import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
-import br.com.parg.politicaDeFoco.PoliticaFocoGenerica; //Política de foco
+import br.com.parg.politicaDeFoco.PoliticaFocoGenerica; //Polï¿½tica de foco
 import br.com.parg.viacep.ViaCEP; //ViaCep
 import br.com.parg.viacep.ViaCEPException; //Exception do ViaCep
 import dao.FornecedorDAO;
@@ -39,10 +43,12 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			}
 		});
 	}
-    
-    private JTextField  txtNome, txtTelefone, 
-    txtCep, txtCidade, txtRua, 
-    txtNumero, txtBairro, txtEstado , txtCnpj;
+	
+	JFormattedTextField txtCep, txtCnpj;
+	
+    private JTextField  txtNome, txtTelefone, txtCidade, 
+    txtRua, txtNumero, txtBairro, 
+    txtEstado;
     private JLabel  lblNome, lblTelefone, 
     lblCep, lblCidade, lblRua, 
     lblNumero, lblBairro, lblEstado, lblCnpj;
@@ -53,6 +59,14 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         setIconifiable(true);
         setClosable(true);
         
+        try {
+        	txtCep = new JFormattedTextField(new MaskFormatter("#####-###"));
+        	
+        	txtCnpj = new JFormattedTextField(new MaskFormatter("##.###.###/####-##"));
+                	
+         } catch (ParseException e) {
+            e.printStackTrace();
+         }
         lblNome = new JLabel("Nome:");
         lblNome.setBounds(26, 25, 40, 20);
 		getContentPane().add(lblNome);
@@ -75,7 +89,6 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         lblCnpj.setBounds(26, 125, 45, 20);
 		getContentPane().add(lblCnpj);
 		
-        txtCnpj = new JTextField(20);
         txtCnpj.setBounds(92, 125, 153, 28);
 		getContentPane().add(txtCnpj);
 		txtCnpj.setColumns(10);
@@ -84,8 +97,9 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         lblCep.setBounds(26, 175, 40, 20);
 		getContentPane().add(lblCep);
         
-        txtCep = new JTextField(20);
+//        txtCep = new JTextField(20);
         txtCep.setBounds(92, 175, 153, 28);
+        
 		getContentPane().add(txtCep);
 		txtCep.setColumns(10);
         
@@ -136,13 +150,23 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         
 
         btnCadastrar = new JButton("Cadastrar");
+        
+        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                 btnCadastrar.doClick();
+                }
+             }
+        });
+        
 		btnLimpar = new JButton("Limpar");
 	
 		txtCep.addFocusListener(new FocusAdapter() {			
 			public void focusLost(FocusEvent e) {
 				ViaCEP viacep = new ViaCEP();	
-				
+				new Thread( ()-> {
 				try {
+					 
 					viacep.buscar(txtCep.getText());
 					txtBairro.setText(viacep.getBairro());
 					txtRua.setText(viacep.getLogradouro());
@@ -153,17 +177,19 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 					txtEstado.setEditable(false);
 					txtCidade.setEditable(false);
 					txtBairro.setEditable(false);
+					
 				} catch (ViaCEPException e1) {
-					JOptionPane.showMessageDialog(null, "Não foi possível encontrar o seu endereço");
+					JOptionPane.showMessageDialog(null, "Nao foi possivel encontrar o seu endereco");
 					e1.printStackTrace();
 				}
+				}).start();
 			}						
 		});
 		
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
         this.setSize(583, 402);
-        this.setResizable(false); //Não tem mais o botão para maximizar e o tamanho é sempre padrão
+        this.setResizable(false); //Nï¿½o tem mais o botï¿½o para maximizar e o tamanho ï¿½ sempre padrï¿½o
 
 		getContentPane().setLayout(null);
 				

@@ -1,16 +1,20 @@
 package views;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import dao.LoginDAO;
 import model.Funcionario;
 
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 
@@ -29,27 +33,27 @@ public class TelaCadastroFuncionario extends JInternalFrame implements ActionLis
 	}
 	
 	private static final long serialVersionUID = 1L;
+	private JFormattedTextField txtCPF;
 	private LoginDAO dao;
-	private JTextField txtCPF, txtNome, txtSenha;
+	private JTextField  txtNome, txtSenha;
 	
 	private JButton btnLimpar = new JButton("Limpar"), btnCadastrar = new JButton("Cadastrar");
 	
 	public TelaCadastroFuncionario(){
 		
 		super("Cadastro de Funcionario");
+		
 		setClosable(true);
 		setIconifiable(true);
-		
-		
-
-
-		
-		      
-		
+		try {
+			txtCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));	
+         } catch (ParseException e) {
+            e.printStackTrace();
+         }
 		setSize(324,302);
 		getContentPane().setLayout(null);
 		
-		txtCPF = new JTextField();
+		
 		txtCPF.setBounds(131, 21, 148, 28);
 		getContentPane().add(txtCPF);
 		txtCPF.setColumns(10);
@@ -86,6 +90,15 @@ public class TelaCadastroFuncionario extends JInternalFrame implements ActionLis
 
 		
 		btnCadastrar.addActionListener(this);
+		
+		txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                 btnCadastrar.doClick();
+                }
+             }
+        });
+		
 		btnLimpar.addActionListener(this);
 		setVisible(true);
 

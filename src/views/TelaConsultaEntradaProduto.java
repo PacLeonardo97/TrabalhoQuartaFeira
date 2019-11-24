@@ -205,8 +205,10 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
 					dao = new EntradaProdutoDAO();
 					ep.setIdEntradaProduto((int) tabelaEntradaProduto.getValueAt(tabelaEntradaProduto.getSelectedRow(), 0));
 					dao.excluir(ep);
+					
 					txtQuantidade.setText("");
 					txtData.setText("");
+					
 					readJTable();
 				} catch (Exception e2) {
 					// TODO: handle exception
@@ -217,6 +219,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
 				try {
 					EntradaProduto ep = new EntradaProduto();
 					dao = new EntradaProdutoDAO();
+					
 					ep.getDataEntrada();
 					
 					Date pData;
@@ -227,9 +230,12 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
 					ep.setDataEntrada(pData);
 					
 					ep.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+					ep.setIdEntradaProduto((int) tabelaEntradaProduto.getValueAt(tabelaEntradaProduto.getSelectedRow(), 0));
 					dao.update(ep);
+					
 					txtData.setText("");
 					txtQuantidade.setText("");
+					
 					readJTable();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
