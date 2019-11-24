@@ -137,6 +137,7 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 		} else if (cadastrar.getSource()==btnLimpar){
 	    	  txtNome.setText("");
 	    	  txtLocal.setText("");
+	    	  
 		}
 	}
 	

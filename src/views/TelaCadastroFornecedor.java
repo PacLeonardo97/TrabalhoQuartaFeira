@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
@@ -27,7 +26,7 @@ import dao.FornecedorDAO;
 import model.Endereco;
 import model.Fornecedor;
 
-public class TelaCadastroFornecedor extends JInternalFrame implements ActionListener, KeyListener {
+public class TelaCadastroFornecedor extends JInternalFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	private FornecedorDAO funcDao;
@@ -186,7 +185,6 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			}						
 		});
 		
-		this.addKeyListener(this);
         btnCadastrar.addActionListener(this);
         btnLimpar.addActionListener(this);
         
@@ -254,6 +252,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
             }
         } else if (cadastrar.getSource() == btnLimpar){
 
+<<<<<<< HEAD
             txtBairro.setText("");
             txtCep.setText("");
             txtCidade.setText("");
@@ -264,6 +263,29 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
             txtRua.setText("");
             txtTelefone.setText("");
         }
+=======
+					this.funcDao = new FornecedorDAO();
+					this.funcDao.incluir(fornecedor, endereco);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else{
+				JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
+			}		 
+		} else if (cadastrar.getSource() == btnLimpar){
+
+			txtBairro.setText("");
+			txtCep.setText("");
+			txtCidade.setText("");
+			txtCnpj.setText("");
+			txtEstado.setText("");
+			txtNome.setText("");
+			txtNumero.setText("");
+			txtRua.setText("");
+			txtTelefone.setText("");
+		}
+>>>>>>> 479ec17c8352b53027871603367932fbedbd518c
     }
     
     class PoliticaFoco extends PoliticaFocoGenerica {
@@ -284,25 +306,4 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 	    Dimension d = this.getDesktopPane().getSize();
 	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
 	}
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // Don't need to implement this
-
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if( e.getKeyCode() == KeyEvent.VK_ESCAPE ) {
-            System.exit(0); //Change this to dispose or whatever you want to do with the frame
-        }
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        //Dont need to implement anything here
-
-    }
 }
