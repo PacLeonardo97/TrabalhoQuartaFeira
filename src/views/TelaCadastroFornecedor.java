@@ -146,10 +146,8 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		getContentPane().add(txtNumero);
 		txtNumero.setColumns(10);
         
-		
         btnCadastrar = new JButton("Cadastrar");
-        
-         
+       
         txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -164,24 +162,22 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			public void focusLost(FocusEvent e) {
 				ViaCEP viacep = new ViaCEP();	
 				new Thread( ()-> {
-				try {
-					 
-					viacep.buscar(txtCep.getText());
-					txtBairro.setText(viacep.getBairro());
-					txtRua.setText(viacep.getLogradouro());
-					txtEstado.setText(viacep.getUf());
-					txtCidade.setText(viacep.getLocalidade());
-					txtBairro.setEditable(false);
-					txtRua.setEditable(false);
-					txtEstado.setEditable(false);
-					txtCidade.setEditable(false);
-					txtBairro.setEditable(false);
-					
-				} catch (ViaCEPException e1) {
-					JOptionPane.showMessageDialog(null, "Nao foi possivel encontrar o seu endereco");
-					e1.printStackTrace();
-				}
-				}).start();
+					try {
+						viacep.buscar(txtCep.getText());
+						txtBairro.setText(viacep.getBairro());
+						txtRua.setText(viacep.getLogradouro());
+						txtEstado.setText(viacep.getUf());
+						txtCidade.setText(viacep.getLocalidade());
+						txtBairro.setEditable(false);
+						txtRua.setEditable(false);
+						txtEstado.setEditable(false);
+						txtCidade.setEditable(false);
+						txtBairro.setEditable(false);
+						
+					} catch (ViaCEPException e1) {
+						JOptionPane.showMessageDialog(null, "Nao foi possivel encontrar o seu endereco");
+						e1.printStackTrace();
+					}}).start();
 			}						
 		});
 		
@@ -242,39 +238,15 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 	            Endereco endereco = new Endereco(eEstado, cCidade, rRua, bBairro, number, cCep, fornecedor);
 	    
 	            try {
-                    funcDao = new FornecedorDAO();
-                    funcDao.incluir(fornecedor, endereco);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            } else{
-                JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
-            }
-        } else if (cadastrar.getSource() == btnLimpar){
-
-<<<<<<< HEAD
-            txtBairro.setText("");
-            txtCep.setText("");
-            txtCidade.setText("");
-            txtCnpj.setText("");
-            txtEstado.setText("");
-            txtNome.setText("");
-            txtNumero.setText("");
-            txtRua.setText("");
-            txtTelefone.setText("");
-        }
-=======
-					this.funcDao = new FornecedorDAO();
-					this.funcDao.incluir(fornecedor, endereco);
+					funcDao = new FornecedorDAO();
+					funcDao.incluir(fornecedor, endereco);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else{
 				JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
 			}		 
 		} else if (cadastrar.getSource() == btnLimpar){
-
 			txtBairro.setText("");
 			txtCep.setText("");
 			txtCidade.setText("");
@@ -285,7 +257,6 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 			txtRua.setText("");
 			txtTelefone.setText("");
 		}
->>>>>>> 479ec17c8352b53027871603367932fbedbd518c
     }
     
     class PoliticaFoco extends PoliticaFocoGenerica {

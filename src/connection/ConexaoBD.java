@@ -1,19 +1,38 @@
 package connection;
-import java.sql.*; 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties; 
 
 public class ConexaoBD {
-
+	private static Properties config = new Properties();
+    private static String arquivo = "config.ini";
+    
 	public static Connection conectar () throws SQLException {
-	
-		String servidor = "127.0.0.1";
-		String porta = "3306";
-		String database = "simetec";
-		String usuario = "root";
-		String senha = "guilherme1904";
-		String conexao = "jdbc:mysql://" + servidor + ":" + porta + 
-				"/" + database + "?useTimezone=true&serverTimezone=UTC";
+		 try {
+			config.load(new FileInputStream(arquivo));
+			
+			String servidor = "127.0.0.1";
+			String porta = config.getProperty("porta");
+			String database = config.getProperty("database");
+			String usuario = config.getProperty("usuario");
+			String senha = config.getProperty("senha");
+			
+			String conexao = "jdbc:mysql://" + servidor + ":" + porta + 
+					"/" + database + "?useTimezone=true&serverTimezone=UTC";
+			
+			return DriverManager.getConnection(conexao, usuario, senha);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return null;
 		
-		return DriverManager.getConnection(conexao, usuario, senha);
 	}
 	
 	public static void desconectar(Connection conn) throws SQLException {
