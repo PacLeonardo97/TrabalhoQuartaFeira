@@ -63,6 +63,7 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
 		
 		
 		
+		
 		cbProdutos.setBounds(143, 121, 153, 28);
 		getContentPane().add(cbProdutos);
 		
@@ -109,6 +110,7 @@ public class TelaCadastroEntradaProduto extends JInternalFrame implements Action
         btnLimpar.addActionListener(this);
         
 		setVisible(true);
+		setBounds(100, 100, 345, 315);
 		getContentPane().setLayout(null);	
     }
     

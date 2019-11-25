@@ -52,7 +52,7 @@ public class TelaCadastroFuncionario extends JInternalFrame implements ActionLis
          } catch (ParseException e) {
             e.printStackTrace();
          }
-		setSize(324,302);
+		setBounds(100, 100, 345, 315);
 		getContentPane().setLayout(null);
 		
 		

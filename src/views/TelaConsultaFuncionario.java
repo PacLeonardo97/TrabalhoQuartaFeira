@@ -109,37 +109,36 @@ public class TelaConsultaFuncionario extends JInternalFrame implements ActionLis
 		contentPane.setLayout(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		setBounds(100, 100, 573, 509);
+		setBounds(100, 100, 726, 504);
 		
 		tabelaFuncionario= new JTable();
 		
 		scrollPane = new JScrollPane(tabelaFuncionario);
 		scrollPane.setViewportView(tabelaFuncionario);
-		scrollPane.setBounds(31, 154, 498, 295);
-		
+		scrollPane.setBounds(34, 148, 635, 295);
 		getContentPane().add(scrollPane);
         this.setResizable(false);
-		
-        btnDeletar.setBounds(269, 95, 89, 48);
-        getContentPane().add(btnDeletar);
         
+        lblNome.setBounds(231, 23, 48, 14);
+        getContentPane().add(lblNome);
+        
+        lblCpf.setBounds(431, 23, 48, 14);
+        getContentPane().add(lblCpf);
+		        
         txtNome = new JTextField();
-        txtNome.setBounds(269, 48, 136, 28);
+        txtNome.setBounds(184, 48, 136, 28);
         getContentPane().add(txtNome);
         txtNome.setColumns(10);
 	
-        txtCPF.setBounds(65, 48, 136, 28);
+        txtCPF.setBounds(377, 48, 136, 28);
         getContentPane().add(txtCPF);
         txtCPF.setColumns(10);
+               
+        btnAtualizar.setBounds(211, 89, 89, 48);
+        getContentPane().add(btnAtualizar);
         
-        lblNome.setBounds(315, 23, 48, 14);
-        getContentPane().add(lblNome);
-        
-        lblCpf.setBounds(94, 23, 48, 14);
-        getContentPane().add(lblCpf);
-        
-		btnAtualizar.setBounds(94, 95, 89, 48);
-	    getContentPane().add(btnAtualizar);
+        btnDeletar.setBounds(401, 87, 89, 48);
+        getContentPane().add(btnDeletar);
 		
 		tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
 				new Object [][] {},

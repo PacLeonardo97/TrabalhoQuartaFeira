@@ -69,7 +69,7 @@ public class TelaCadastroProduto extends JInternalFrame implements ActionListene
 		lblNome.setBounds(45, 29, 48, 14);
 		getContentPane().add(lblNome);
 		
-		lblDescrio = new JLabel("Descri\u00E7\u00E3o");
+		lblDescrio = new JLabel("Descrição");
 		lblDescrio.setBounds(45, 87, 48, 14);
 		getContentPane().add(lblDescrio);
 		

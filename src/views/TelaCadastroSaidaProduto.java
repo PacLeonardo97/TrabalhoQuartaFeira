@@ -1,28 +1,31 @@
 package views;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
-import dao.EntradaProdutoDAO;
+
+import dao.ProdutoDAO;
 import dao.SaidaProdutoDAO;
 import model.EntradaProduto;
+import model.Produto;
 import model.SaidaProduto;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Container;
+
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
+
 
 public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionListener {
 	public static void main(String[] args){
@@ -31,62 +34,26 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtData, txtQuantidade;
-    private JLabel lblData, lblQuantidade, lblIdProduto;
+	private JLabel lblData = new JLabel("Data:"), lblQuantidade= new JLabel("Quantidade:"), lblIdProduto= new JLabel("Id do Produto:");
     private JButton btnCadastrar, btnLimpar;
     private JComboBox<Object> cbProdutos = new JComboBox<Object>();
     private SaidaProdutoDAO dao;
     
     public TelaCadastroSaidaProduto(){
-        super("Cadastro de Sa�da de Produto");
+        super("Cadastro de Saída de Produto");
         setClosable(true);
 		setIconifiable(true);
-
-        lblData = new JLabel("Data:");
-        txtData = new JTextField(10);
-
-        lblQuantidade = new JLabel("Quantidade:");
-        txtQuantidade = new JTextField(10);
-
-        lblIdProduto = new JLabel("ID da saida de Produto");
-//      txtIdProduto = new JTextField(10);
-
-	    btnCadastrar = new JButton("Cadastrar");
-	    btnLimpar = new JButton("Limpar");
-        
-	    Container tela = getContentPane();
-
-        tela.setLayout(new GridLayout(4,2));
-
-		JPanel painel1 = new JPanel(new FlowLayout());
-		JPanel painel2 = new JPanel(new FlowLayout());
-		JPanel painel3 = new JPanel(new FlowLayout());
-		JPanel painel4 = new JPanel(new FlowLayout());
-		JPanel painel5 = new JPanel(new FlowLayout());
-		JPanel painel6 = new JPanel(new FlowLayout());
-		JPanel painel7 = new JPanel(new FlowLayout());
-		JPanel painel8 = new JPanel(new FlowLayout());
-
-		painel1.add(lblData);
-	    painel2.add(txtData);
-	    painel3.add(lblQuantidade);
-	    painel4.add(txtQuantidade);
-	    painel5.add(lblIdProduto);
-	    painel7.add(btnCadastrar);
-	    painel8.add(btnLimpar);
-	        
-        tela.add(painel1);
-		tela.add(painel2);
-		tela.add(painel3);
-		tela.add(painel4);
-		tela.add(painel5);
-		tela.add(painel6);
-		tela.add(painel7);
-		tela.add(painel8);
 		
+        try {
+			txtData = new JFormattedTextField(new MaskFormatter("##/##/####"));	
+         } catch (ParseException e) {
+            e.printStackTrace();
+         }
+        
 		try {
-			EntradaProdutoDAO dao = new EntradaProdutoDAO();
+			ProdutoDAO dao = new ProdutoDAO();
 	        
-	        for(EntradaProduto p: dao.BuscarEntrada()){
+	        for(Produto p: dao.buscar()){
 	        	cbProdutos.addItem(p);
 	        }
 	       
@@ -94,24 +61,56 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-        tela.add(painel1);
-		tela.add(painel2);
-		tela.add(painel3);
-		tela.add(painel4);
-		tela.add(painel5);
-		tela.add(painel6);
-		
-		painel6.add(cbProdutos);
-		tela.add(painel7);
-		tela.add(painel8);
 
-        btnCadastrar.addActionListener(this);
+		cbProdutos.setBounds(143, 121, 153, 28);
+		getContentPane().add(cbProdutos);
+		
+		lblData.setBounds(48, 25, 85, 20);
+		getContentPane().add(lblData);
+		
+		lblQuantidade.setBounds(48, 73, 97, 20);
+		getContentPane().add(lblQuantidade);
+		
+		lblIdProduto.setBounds(48, 125, 97, 20);
+		getContentPane().add(lblIdProduto);
+	
+		txtData.setBounds(143, 21, 148, 28);
+		getContentPane().add(txtData);
+		txtData.setColumns(10);
+		
+		txtQuantidade = new JTextField(20);
+		txtQuantidade.setBounds(143, 65, 153, 28);
+		getContentPane().add(txtQuantidade);
+		txtQuantidade.setColumns(10);
+		
+		this.setSize(340, 320);
+        this.setResizable(false);
+        getContentPane().setLayout(null);
+		
+		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(44, 184, 89, 48);
+		getContentPane().add(btnCadastrar);	
+		
+		JButton btnLimpar = new JButton("limpar");
+		btnLimpar.setBounds(207, 184, 89, 48);
+		getContentPane().add(btnLimpar);
+        
+		btnCadastrar.addActionListener(this);
+        
+        txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                 btnCadastrar.doClick();
+                }
+             }
+         });
         btnLimpar.addActionListener(this);
         
-        setSize(400, 400);
 		setVisible(true);
-    }
+		setBounds(100, 100, 345, 315);
+		getContentPane().setLayout(null);	
+    }  
+    
     public void actionPerformed(ActionEvent cadastrar){
 		if(cadastrar.getSource() == btnCadastrar){	  
 			if (!txtData.getText().equals("") && !txtQuantidade.getText().equals("")) {
@@ -147,8 +146,14 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 		} else if (cadastrar.getSource() == btnLimpar){
 			txtData.setText("");
 			txtQuantidade.setText("");
-		}
-    }
+		
+		  }
+		
+		else {
+		JOptionPane.showMessageDialog(this, "O campo Quantidade deve conter somente numeros");
+	}
+	
+}
     
     public void setPosicao() {
 	    Dimension d = this.getDesktopPane().getSize();

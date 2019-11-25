@@ -104,10 +104,10 @@ public class TelaConsultaDepartamento extends JInternalFrame implements ActionLi
 		scrollPane.setBounds(34, 148, 635, 295);
 		getContentPane().add(scrollPane);
 
-		lblNomeDoDepartamento.setBounds(236, 23, 48, 14);
+		lblNomeDoDepartamento.setBounds(231, 23, 48, 14);
 		getContentPane().add(lblNomeDoDepartamento);
 		
-		lblLocalDoDepartamento.setBounds(416, 23, 48, 14);
+		lblLocalDoDepartamento.setBounds(431, 23, 48, 14);
 		getContentPane().add(lblLocalDoDepartamento);
 				
 		txtNome = new JTextField();

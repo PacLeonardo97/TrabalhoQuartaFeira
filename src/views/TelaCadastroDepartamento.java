@@ -147,3 +147,123 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 	}
 	
 }
+
+
+
+
+
+
+//public class TelaCadastroDepartamento extends JInternalFrame implements ActionListener {
+//	public static void main(String[] args){
+//		new TelaCadastroDepartamento();
+//	}
+//
+//	private static final long serialVersionUID = 1L;
+//	private JLabel lblNome = new JLabel("Nome:"), lblLocal= new JLabel("Local:"), lblFuncionario= new JLabel("Funcionario:");
+//	private JTextField txtNome, txtLocal;
+//	private JButton btnCadastrar, btnLimpar;
+//	private JComboBox<Object> cbFuncionario = new JComboBox<Object>();
+//	private DepartamentoDAO dao;
+//	
+//	public TelaCadastroDepartamento(){
+//		super("Cadastro de Departamento");
+//		setClosable(true);
+//		setIconifiable(true);
+//		
+//		
+//		try {
+//			LoginDAO dao = new LoginDAO();
+//	        
+//	        for(Funcionario p: dao.buscar()){
+//	        	cbFuncionario.addItem(p);
+//	        }
+//	       
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	
+//		lblNome.setBounds(48, 25, 85, 20);
+//		getContentPane().add(lblNome);
+//		
+//		lblLocal.setBounds(48, 73, 97, 20);
+//		getContentPane().add(lblLocal);
+//		
+//		lblFuncionario.setBounds(48, 125, 97, 20);
+//		getContentPane().add(lblFuncionario);
+//			
+//        txtNome.setBounds(143, 21, 148, 28);
+//		getContentPane().add(txtNome);
+//		txtNome.setColumns(10);
+//		
+//		txtLocal.setBounds(143, 21, 148, 28);
+//		getContentPane().add(txtLocal);
+//		txtLocal.setColumns(10);
+//        
+//        this.setSize(340, 320);
+//        this.setResizable(false);
+//        getContentPane().setLayout(null);
+//
+//    	btnCadastrar = new JButton("Cadastrar");
+//		btnCadastrar.setBounds(44, 184, 89, 48);
+//		getContentPane().add(btnCadastrar);	
+//		
+//		JButton btnLimpar = new JButton("limpar");
+//		btnLimpar.setBounds(207, 184, 89, 48);
+//		getContentPane().add(btnLimpar);
+//        
+//		btnCadastrar.addActionListener(this);
+//		
+//		txtLocal.addKeyListener(new java.awt.event.KeyAdapter() {
+//            public void keyPressed(java.awt.event.KeyEvent evt) {
+//                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+//                	btnCadastrar.doClick();
+//                } 
+//             }
+//        });
+//		 
+//		btnLimpar.addActionListener(this);
+//	        
+//			setVisible(true);
+//			setBounds(100, 100, 345, 315);
+//			getContentPane().setLayout(null);	
+//	    }  
+//	   
+//	public void actionPerformed(ActionEvent cadastrar){
+//		if(cadastrar.getSource()==btnCadastrar){	  
+//			if (!txtLocal.getText().equals("") && !txtNome.getText().equals("")) {
+//				String nNome = txtNome.getText();
+//			    txtNome.setText(nNome); 
+//			         
+//			    String lLocal = txtLocal.getText();
+//			    txtLocal.setText(lLocal);
+//			         
+////				fazer a Comunicação com o DepartamentoDAO
+//				try {
+//					Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
+//					Departamento departamento = new Departamento(nNome, lLocal, funcionario);
+//					this.dao = new DepartamentoDAO();
+//					dao.incluir(departamento);
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}else {
+//				JOptionPane.showMessageDialog(null, "Algum Campo está faltando!!!");
+//			}
+//		} else if (cadastrar.getSource()==btnLimpar){
+//	    	  txtNome.setText("");
+//	    	  txtLocal.setText("");
+//	    	  
+//		}
+//	}
+//	
+//	public void setPosicao() {
+//	    Dimension d = this.getDesktopPane().getSize();
+//	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
+//	}
+//	
+//}
+        
+     
