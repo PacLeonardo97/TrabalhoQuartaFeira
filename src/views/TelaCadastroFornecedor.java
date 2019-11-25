@@ -44,9 +44,9 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
 		});
 	}
 	
-	JFormattedTextField txtCep, txtCnpj;
+	JFormattedTextField txtCep, txtCnpj, txtTelefone;
 	
-    private JTextField  txtNome, txtTelefone, txtCidade, 
+    private JTextField  txtNome, txtCidade, 
     txtRua, txtNumero, txtBairro, 
     txtEstado;
     private JLabel  lblNome, lblTelefone, 
@@ -63,6 +63,7 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         	txtCep = new JFormattedTextField(new MaskFormatter("#####-###"));
         	
         	txtCnpj = new JFormattedTextField(new MaskFormatter("##.###.###/####-##"));
+        	txtTelefone = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
                 	
          } catch (ParseException e) {
             e.printStackTrace();
@@ -80,7 +81,6 @@ public class TelaCadastroFornecedor extends JInternalFrame implements ActionList
         lblTelefone.setBounds(26, 75, 57, 20);
 		getContentPane().add(lblTelefone);
 		
-        txtTelefone = new JTextField(20);
         txtTelefone.setBounds(92, 75, 153, 28);
 		getContentPane().add(txtTelefone);
 		txtTelefone.setColumns(10);
