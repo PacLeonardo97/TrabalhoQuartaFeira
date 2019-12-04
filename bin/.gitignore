@@ -1,6 +1,11 @@
-/views/
-<<<<<<< HEAD
-/dao/
+/br/
 /connection/
-=======
->>>>>>> 024f8c01a46844ffe328b8ec5bfa6dc6ca8c3715
+/dao/
+/handler/
+/logo.jpg
+/logo.pdf
+/logo.png
+/logo.svg
+/logoHome.png
+/model/
+/views/

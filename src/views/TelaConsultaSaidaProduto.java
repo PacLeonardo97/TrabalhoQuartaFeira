@@ -1,8 +1,11 @@
 package views;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,11 +13,12 @@ import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+
 import dao.SaidaProdutoDAO;
-//import dao.SaidaProdutoDAO;
 import model.Produto;
 import model.SaidaProduto;
 
@@ -29,7 +33,7 @@ public class TelaConsultaSaidaProduto extends JFrame implements ActionListener{
 	private JTable tabelaSaidaProduto;
 	private JScrollPane scrollPane;
 	private JButton btnDeletar = new JButton("Deletar"), btnAtualizar = new JButton("Atualizar");;
-//	private SaidaProdutoDAO dao;
+	private SaidaProdutoDAO dao;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -60,20 +64,17 @@ public class TelaConsultaSaidaProduto extends JFrame implements ActionListener{
              Iterator<Object> iter = f.iterator(); 
              
              while(iter.hasNext()) {
-            	 SaidaProduto sp = (SaidaProduto) iter.next();
+            	 SaidaProduto ep = (SaidaProduto) iter.next();
             	 Produto p = (Produto) iter.next();
                  modelo.addRow(new Object[]{	
-                	 sp.getIdSaidaProduto(),
-                     convertStringToDate(sp.getDataSaida()),
-                     sp.getQuantidade(),
-                     
+                	 ep.getIdSaidaProduto(),
+                     convertStringToDate(ep.getDataSaida()),
+                     ep.getQuantidade(),
                      p.getNomeProduto(),
                      p.getDescricaoProduto(),
                      p.getPesoProduto(),
-//                     convertStringToDate(ep.getDataCriada())
-                 }
-                 );
-                 
+                     convertStringToDate(ep.getDataCriada())
+                 });
              }
 		} catch (Exception e) {
 			System.out.println(e);
@@ -92,6 +93,7 @@ public class TelaConsultaSaidaProduto extends JFrame implements ActionListener{
 	}
 
 	public TelaConsultaSaidaProduto() {
+		super("Tela de consulta de Saída Produto");
 		setBounds(100, 100, 660, 496);
 		getContentPane().setLayout(null);
 		
@@ -179,12 +181,61 @@ public class TelaConsultaSaidaProduto extends JFrame implements ActionListener{
         }
     }
     
+
+
+	public void actionPerformed(ActionEvent e) {		
+		if (e.getSource() == btnDeletar) {
+			if (tabelaSaidaProduto.getSelectedRow() != -1) {
+				try {
+					SaidaProduto ep = new SaidaProduto();
+					dao = new SaidaProdutoDAO();
+					ep.setIdSaidaProduto((int) tabelaSaidaProduto.getValueAt(tabelaSaidaProduto.getSelectedRow(), 0));
+					dao.excluir(ep);
+					
+					txtQuantidade.setText("");
+					txtData.setText("");
+					
+					readJTable();
+				} catch (Exception e2){
+					e2.printStackTrace();
+				}
+			}
+		} else if(e.getSource() == btnAtualizar) {
+			if (tabelaSaidaProduto.getSelectedRow() != -1) {
+				try {
+					SaidaProduto sp = new SaidaProduto();
+					dao = new SaidaProdutoDAO();
+					
+					sp.getDataSaida();
+					
+					Date pData;
+					String nData = txtData.getText();
+					SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+					pData = formato.parse(nData);
+					txtData.setText(nData); 
+					sp.setDataSaida(pData);
+					
+					sp.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+					sp.setIdSaidaProduto((int) tabelaSaidaProduto.getValueAt(tabelaSaidaProduto.getSelectedRow(), 0));
+					dao.update(sp);
+					
+					txtData.setText("");
+					txtQuantidade.setText("");
+					
+					readJTable();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
+	
 //	public void setPosicao() {
 //		Dimension d = this.getDesktopPane().getSize();
 //		this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
 //	}
-
-	public void actionPerformed(ActionEvent e) {		
-		
-	}
 }

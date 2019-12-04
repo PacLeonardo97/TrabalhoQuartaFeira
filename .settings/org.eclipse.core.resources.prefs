@@ -2,7 +2,6 @@ eclipse.preferences.version=1
 encoding//src/dao/FornecedorDAO.java=UTF-8
 encoding//src/dao/LoginDAO.java=UTF-8
 encoding//src/dao/ProdutoDAO.java=UTF-8
-encoding//src/views/TelaCadastroDepartamento.java=UTF-8
 encoding//src/views/TelaCadastroFornecedor.java=UTF-8
 encoding//src/views/TelaCadastroProduto.java=UTF-8
 encoding//src/views/TelaCadastroSaidaProduto.java=UTF-8

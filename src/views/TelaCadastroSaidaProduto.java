@@ -6,7 +6,7 @@ import javax.swing.text.MaskFormatter;
 
 import dao.ProdutoDAO;
 import dao.SaidaProdutoDAO;
-import model.EntradaProduto;
+import model.Produto;
 import model.Produto;
 import model.SaidaProduto;
 
@@ -127,7 +127,7 @@ public class TelaCadastroSaidaProduto extends JInternalFrame implements ActionLi
 				    int sQuantidade = Integer.parseInt(dQuantidade);
 				    txtQuantidade.setText(""+sQuantidade);
 
-				    EntradaProduto ProdutoSelecionado = (EntradaProduto) this.cbProdutos.getSelectedItem();
+				    Produto ProdutoSelecionado = (Produto) this.cbProdutos.getSelectedItem();
 
 		            SaidaProduto saidaProduto = new SaidaProduto(pData, sQuantidade, ProdutoSelecionado);
 		            this.dao = new SaidaProdutoDAO();

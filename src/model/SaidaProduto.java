@@ -4,11 +4,11 @@ public class SaidaProduto{
 	
 	private int idSaidaProduto;
 	private Date date;
-	private int quantidade;
 	private Date dataCriada;
-	private EntradaProduto produto;
+	private int quantidade;
+	private Produto produto;
 	
-	public SaidaProduto( Date data, int quantidade, EntradaProduto produto) {
+	public SaidaProduto( Date data, int quantidade, Produto produto) {
 		setDataSaida(data);
 		setQuantidade(quantidade);
 		setProduto(produto);
@@ -22,12 +22,11 @@ public class SaidaProduto{
 	public Date getDataSaida(){
 	    return date;
 	}
-	
-	public int getQuantidade(){
-	    return quantidade;
+	public int getQuantidade() {
+		return quantidade;
 	}
 	
-	public EntradaProduto getProduto(){
+	public Produto getProduto(){
 	    return produto;
 	}
 	
@@ -43,13 +42,11 @@ public class SaidaProduto{
 		this.date = date;
 	}
 	
-
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
-	}
-	
-	public void setProduto(EntradaProduto produto) {
-		this.produto = produto;
 	}
 	
 	public void setDataCriada(Date dataCriada) {

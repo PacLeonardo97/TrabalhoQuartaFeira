@@ -13,33 +13,40 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
-
-public class TelaCadastroDepartamento extends JInternalFrame implements ActionListener {
-	public static void main(String[] args){
-		new TelaCadastroDepartamento();
-	}
+public class TelaCadastroDepartamento extends JInternalFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private DepartamentoDAO dao;
 	private JTextField txtNome, txtLocal;
-	private JLabel lblNome, lblLocal, lblFuncionario;
+	private JLabel lblNome = new JLabel("Nome:"), lblLocal = new JLabel("Local:"), lblFuncionario = new JLabel("Nome do Funcion·rio:");
 	private JButton btnCadastrar, btnLimpar;
 	private JComboBox<Object> cbFuncionario = new JComboBox<Object>();
-	public TelaCadastroDepartamento(){
-		super("Cadastro de Departamento");
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroDepartamento frame = new TelaCadastroDepartamento();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public TelaCadastroDepartamento() {
+		super("Tela de Cadstro de departamento");
 		setClosable(true);
 		setIconifiable(true);
-		
-		
+		getContentPane().setLayout(null);
+
 		try {
 			LoginDAO dao = new LoginDAO();
 	        
@@ -51,69 +58,51 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		lblNome = new JLabel("Nome:");
+			
+		lblNome.setBounds(55, 11, 113, 28);
+		getContentPane().add(lblNome);
 		txtNome = new JTextField(20);
-
-		lblLocal = new JLabel("Local:");
-		txtLocal = new JTextField(20);
+		txtNome.setBounds(178, 11, 153, 28);
+		getContentPane().add(txtNome);
+		
+		lblLocal.setBounds(55, 63, 120, 28);
+		getContentPane().add(lblLocal);
+		txtLocal= new JTextField(20);
+		txtLocal.setBounds(178, 63, 153, 28);
+		getContentPane().add(txtLocal);
+		
+		lblFuncionario.setBounds(55, 115, 120, 28);
+		getContentPane().add(lblFuncionario);
+		cbFuncionario.setBounds(178, 115, 153, 28);
+		getContentPane().add(cbFuncionario);
+		
+//		this.setSize(421, 315);
+		this.setResizable(false);
+        getContentPane().setLayout(null);
         
-        lblFuncionario= new JLabel("Funcionario:");
-        
-
-		btnCadastrar = new JButton("Cadastrar");
-		btnLimpar = new JButton("Limpar");
-
-		Container tela = getContentPane();
-		tela.setLayout(new GridLayout(6,2));
-		JPanel painel3 = new JPanel(new FlowLayout());
-		JPanel painel4 = new JPanel(new FlowLayout());
-		JPanel painel5 = new JPanel(new FlowLayout());
-		JPanel painel6 = new JPanel(new FlowLayout());
-		JPanel painel9 = new JPanel(new FlowLayout());
-		JPanel painel10 = new JPanel(new FlowLayout());
-		JPanel painel11 = new JPanel(new FlowLayout());
-		JPanel painel12 = new JPanel(new FlowLayout());
-		      
-		//adicionar aos paineis
-		painel3.add(lblNome);
-		painel4.add(txtNome);
+        btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(57, 168, 89, 48);
+		getContentPane().add(btnCadastrar);	
 		
-		painel5.add(lblLocal);
-		painel6.add(txtLocal);
-		
-		painel9.add(lblFuncionario);
-		painel10.add(cbFuncionario);
-		
-		painel11.add(btnCadastrar);
-		painel12.add(btnLimpar);
-		
-		tela.add(painel3);
-		tela.add(painel4);
-		tela.add(painel5);
-		tela.add(painel6);
-		tela.add(painel9);
-		tela.add(painel10); 
-		tela.add(painel11);
-		tela.add(painel12);
-
+		JButton btnLimpar = new JButton("limpar");
+		btnLimpar.setBounds(215, 168, 89, 48);
+		getContentPane().add(btnLimpar);
 		btnCadastrar.addActionListener(this);
-		btnLimpar.addActionListener(this);
 		
-		txtLocal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-                	btnCadastrar.doClick();
-                } 
-             }
-        });
-		
-		setSize(500,500);
-		setVisible(true);
+		 txtLocal.addKeyListener(new java.awt.event.KeyAdapter() {
+	            public void keyPressed(java.awt.event.KeyEvent evt) {
+	                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+	                	btnCadastrar.doClick();
+	                }
+	            }
+		 });
+		 setVisible(true);
+		 setBounds(100, 100, 380, 277);
+		 getContentPane().setLayout(null);
 	}
-	   
-	public void actionPerformed(ActionEvent cadastrar){
-		if(cadastrar.getSource()==btnCadastrar){	  
+
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnCadastrar){	  
 			if (!txtLocal.getText().equals("") && !txtNome.getText().equals("")) {
 				String nNome = txtNome.getText();
 			    txtNome.setText(nNome); 
@@ -121,20 +110,20 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 			    String lLocal = txtLocal.getText();
 			    txtLocal.setText(lLocal);
 			         
-//				fazer a Comunica√ß√£o com o DepartamentoDAO
+//				fazer a ComunicaÁ„o com o DepartamentoDAO
 				try {
 					Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
 					Departamento departamento = new Departamento(nNome, lLocal, funcionario);
 					this.dao = new DepartamentoDAO();
 					dao.incluir(departamento);
-				} catch (SQLException e) {
+				} catch (SQLException ex) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					ex.printStackTrace();
 				}
 			}else {
-				JOptionPane.showMessageDialog(null, "Algum Campo est√° faltando!!!");
+				JOptionPane.showMessageDialog(null, "Algum Campo est· faltando!!!");
 			}
-		} else if (cadastrar.getSource()==btnLimpar){
+		} else if (e.getSource()==btnLimpar){
 	    	  txtNome.setText("");
 	    	  txtLocal.setText("");
 	    	  
@@ -145,125 +134,5 @@ public class TelaCadastroDepartamento extends JInternalFrame implements ActionLi
 	    Dimension d = this.getDesktopPane().getSize();
 	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
 	}
-	
+
 }
-
-
-
-
-
-
-//public class TelaCadastroDepartamento extends JInternalFrame implements ActionListener {
-//	public static void main(String[] args){
-//		new TelaCadastroDepartamento();
-//	}
-//
-//	private static final long serialVersionUID = 1L;
-//	private JLabel lblNome = new JLabel("Nome:"), lblLocal= new JLabel("Local:"), lblFuncionario= new JLabel("Funcionario:");
-//	private JTextField txtNome, txtLocal;
-//	private JButton btnCadastrar, btnLimpar;
-//	private JComboBox<Object> cbFuncionario = new JComboBox<Object>();
-//	private DepartamentoDAO dao;
-//	
-//	public TelaCadastroDepartamento(){
-//		super("Cadastro de Departamento");
-//		setClosable(true);
-//		setIconifiable(true);
-//		
-//		
-//		try {
-//			LoginDAO dao = new LoginDAO();
-//	        
-//	        for(Funcionario p: dao.buscar()){
-//	        	cbFuncionario.addItem(p);
-//	        }
-//	       
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	
-//		lblNome.setBounds(48, 25, 85, 20);
-//		getContentPane().add(lblNome);
-//		
-//		lblLocal.setBounds(48, 73, 97, 20);
-//		getContentPane().add(lblLocal);
-//		
-//		lblFuncionario.setBounds(48, 125, 97, 20);
-//		getContentPane().add(lblFuncionario);
-//			
-//        txtNome.setBounds(143, 21, 148, 28);
-//		getContentPane().add(txtNome);
-//		txtNome.setColumns(10);
-//		
-//		txtLocal.setBounds(143, 21, 148, 28);
-//		getContentPane().add(txtLocal);
-//		txtLocal.setColumns(10);
-//        
-//        this.setSize(340, 320);
-//        this.setResizable(false);
-//        getContentPane().setLayout(null);
-//
-//    	btnCadastrar = new JButton("Cadastrar");
-//		btnCadastrar.setBounds(44, 184, 89, 48);
-//		getContentPane().add(btnCadastrar);	
-//		
-//		JButton btnLimpar = new JButton("limpar");
-//		btnLimpar.setBounds(207, 184, 89, 48);
-//		getContentPane().add(btnLimpar);
-//        
-//		btnCadastrar.addActionListener(this);
-//		
-//		txtLocal.addKeyListener(new java.awt.event.KeyAdapter() {
-//            public void keyPressed(java.awt.event.KeyEvent evt) {
-//                if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-//                	btnCadastrar.doClick();
-//                } 
-//             }
-//        });
-//		 
-//		btnLimpar.addActionListener(this);
-//	        
-//			setVisible(true);
-//			setBounds(100, 100, 345, 315);
-//			getContentPane().setLayout(null);	
-//	    }  
-//	   
-//	public void actionPerformed(ActionEvent cadastrar){
-//		if(cadastrar.getSource()==btnCadastrar){	  
-//			if (!txtLocal.getText().equals("") && !txtNome.getText().equals("")) {
-//				String nNome = txtNome.getText();
-//			    txtNome.setText(nNome); 
-//			         
-//			    String lLocal = txtLocal.getText();
-//			    txtLocal.setText(lLocal);
-//			         
-////				fazer a Comunica√ß√£o com o DepartamentoDAO
-//				try {
-//					Funcionario funcionario = (Funcionario) this.cbFuncionario.getSelectedItem();
-//					Departamento departamento = new Departamento(nNome, lLocal, funcionario);
-//					this.dao = new DepartamentoDAO();
-//					dao.incluir(departamento);
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}else {
-//				JOptionPane.showMessageDialog(null, "Algum Campo est√° faltando!!!");
-//			}
-//		} else if (cadastrar.getSource()==btnLimpar){
-//	    	  txtNome.setText("");
-//	    	  txtLocal.setText("");
-//	    	  
-//		}
-//	}
-//	
-//	public void setPosicao() {
-//	    Dimension d = this.getDesktopPane().getSize();
-//	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
-//	}
-//	
-//}
-        
-     

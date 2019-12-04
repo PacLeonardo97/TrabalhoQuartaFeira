@@ -5,8 +5,8 @@ public class EntradaProduto{
 	
 	private int idEntradaProduto;
 	private Date dataEntrada;
-	private int quantidade;
 	private Produto produto;
+	private int quantidade;
 	private Date dataCriada;
 	
 	public EntradaProduto(Date data, int quantidade, Produto produto){
@@ -26,20 +26,18 @@ public class EntradaProduto{
 	    return dataEntrada;
 	}
 	
-	public int getQuantidade(){
-	    return quantidade;
-	}
-	
 	public Date getDataCriada(){
 	    return dataCriada;
+	}
+	
+	public int getQuantidadeProduto() {
+		return quantidade;
 	}
 	
 	public Produto getProduto(){
 	    return produto;
 	}
 
-	
-	
 	public void setIdEntradaProduto(int idEntradaProduto) {
 		this.idEntradaProduto = idEntradaProduto;
 	}
@@ -48,13 +46,15 @@ public class EntradaProduto{
 		this.dataEntrada = date;
 	}
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
 	
 	public void setDataCriada(Date dataCriada) {
 		this.dataCriada = dataCriada;
 	}
+	
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
 	public void setProduto(Produto produto) {
 		
 		this.produto = produto;

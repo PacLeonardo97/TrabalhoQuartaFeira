@@ -31,7 +31,7 @@ public class EntradaProdutoDAO {
 	       java.sql.Date dataSql1 = new java.sql.Date( entradaProduto.getDataEntrada().getTime() );
 	       stm.setDate(1, dataSql1);
 	       
-	       stm.setInt(2, entradaProduto.getQuantidade());
+	       stm.setInt(2, entradaProduto.getQuantidadeProduto());
 	       stm.setInt(3, entradaProduto.getProduto().getIdProduto());   
 	       
 	       java.util.Date data = new java.util.Date();  
@@ -63,12 +63,13 @@ public class EntradaProdutoDAO {
 	        	
 	        	 EntradaProduto f = new EntradaProduto();
 	        	 f.setIdEntradaProduto(rs.getInt("id_ent_prod"));
-	             f.setDataEntrada(rs.getDate("data_entrada"));
 	             f.setQuantidade(rs.getInt("quantidade"));
+	        	 f.setDataEntrada(rs.getDate("data_entrada"));
 	             
 	             Produto produto = new Produto();
 	             produto.setNomeProduto(rs.getString("nome_produto"));
 	             produto.setDescricaoProduto(rs.getString("descricao_produto"));
+	            
 	             produto.setPesoProduto(rs.getInt("peso_produto"));
 	             
 	             f.setDataCriada(rs.getDate("created_at"));
@@ -92,8 +93,8 @@ public class EntradaProdutoDAO {
 				 EntradaProduto f = new EntradaProduto();
 				 
 				 f.setIdEntradaProduto(rs.getInt("id_ent_prod"));;
+				 f.setQuantidade(rs.getInt("quantidade"));
 				 f.setDataEntrada(rs.getDate("data_entrada"));
-		         f.setQuantidade(rs.getInt("quantidade"));
 		         f.setDataCriada(rs.getDate("created_at"));
 		         lista.add(f);
 			 }
@@ -124,14 +125,13 @@ public class EntradaProdutoDAO {
 	}
 		
 	public void update(EntradaProduto ep) {
-	    String sqlUpdate = "UPDATE entradaProduto SET data_entrada = ? , quantidade = ? WHERE id_ent_prod = ?";
+	    String sqlUpdate = "UPDATE entradaProduto SET data_entrada = ? WHERE id_ent_prod = ?";
 
 	    try (PreparedStatement stm = conn.prepareStatement(sqlUpdate);){
 	    	
 			java.sql.Date dataSql = new java.sql.Date(ep.getDataEntrada().getTime());
 	    	
-	    	stm.setDate(1, dataSql);
-	    	stm.setInt(2, ep.getQuantidade());
+	    	stm.setDate(1, dataSql);;
 	    	stm.setInt(3, ep.getIdEntradaProduto());
 	       
 	    	stm.execute();

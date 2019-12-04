@@ -70,7 +70,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
                  modelo.addRow(new Object[]{	
                 	 ep.getIdEntradaProduto(),
                      convertStringToDate(ep.getDataEntrada()),
-                     ep.getQuantidade(),
+                     ep.getQuantidadeProduto(),
                      p.getNomeProduto(),
                      p.getDescricaoProduto(),
                      p.getPesoProduto(),
@@ -166,13 +166,7 @@ public class TelaConsultaEntradaProduto extends JInternalFrame implements Action
                 jTProdutosKeyReleased(evt);
             }
         });
-        
-        btnDeletar.addActionListener( (e) -> {
-           
-        });
-        
-        
-        
+
         btnAtualizar.addActionListener(this);
         btnDeletar.addActionListener(this);
         
